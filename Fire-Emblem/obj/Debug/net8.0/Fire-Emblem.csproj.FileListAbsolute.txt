@@ -54,3 +54,22 @@ C:\Users\gaspa\OneDrive - Universidad Católica de Chile\Escritorio\FireEmblem\F
 C:\Users\gaspa\OneDrive - Universidad Católica de Chile\Escritorio\FireEmblem\FireEmblem\Fire-Emblem\obj\Debug\net8.0\Fire-Emblem.pdb
 C:\Users\gaspa\OneDrive - Universidad Católica de Chile\Escritorio\FireEmblem\FireEmblem\Fire-Emblem\obj\Debug\net8.0\Fire-Emblem.genruntimeconfig.cache
 C:\Users\gaspa\OneDrive - Universidad Católica de Chile\Escritorio\FireEmblem\FireEmblem\Fire-Emblem\obj\Debug\net8.0\ref\Fire-Emblem.dll
+C:\Users\gaspa\OneDrive - Universidad Católica de Chile\SEMESTRES\VI SEMESTRE\IIC2113\FireEmblemV2\Fire-Emblem\bin\Debug\net8.0\Fire-Emblem.exe
+C:\Users\gaspa\OneDrive - Universidad Católica de Chile\SEMESTRES\VI SEMESTRE\IIC2113\FireEmblemV2\Fire-Emblem\bin\Debug\net8.0\Fire-Emblem.deps.json
+C:\Users\gaspa\OneDrive - Universidad Católica de Chile\SEMESTRES\VI SEMESTRE\IIC2113\FireEmblemV2\Fire-Emblem\bin\Debug\net8.0\Fire-Emblem.runtimeconfig.json
+C:\Users\gaspa\OneDrive - Universidad Católica de Chile\SEMESTRES\VI SEMESTRE\IIC2113\FireEmblemV2\Fire-Emblem\bin\Debug\net8.0\Fire-Emblem.dll
+C:\Users\gaspa\OneDrive - Universidad Católica de Chile\SEMESTRES\VI SEMESTRE\IIC2113\FireEmblemV2\Fire-Emblem\bin\Debug\net8.0\Fire-Emblem.pdb
+C:\Users\gaspa\OneDrive - Universidad Católica de Chile\SEMESTRES\VI SEMESTRE\IIC2113\FireEmblemV2\Fire-Emblem\bin\Debug\net8.0\Fire-Emblem-View.dll
+C:\Users\gaspa\OneDrive - Universidad Católica de Chile\SEMESTRES\VI SEMESTRE\IIC2113\FireEmblemV2\Fire-Emblem\bin\Debug\net8.0\Fire-Emblem-View.pdb
+C:\Users\gaspa\OneDrive - Universidad Católica de Chile\SEMESTRES\VI SEMESTRE\IIC2113\FireEmblemV2\Fire-Emblem\obj\Debug\net8.0\Fire-Emblem.csproj.AssemblyReference.cache
+C:\Users\gaspa\OneDrive - Universidad Católica de Chile\SEMESTRES\VI SEMESTRE\IIC2113\FireEmblemV2\Fire-Emblem\obj\Debug\net8.0\Fire-Emblem.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\gaspa\OneDrive - Universidad Católica de Chile\SEMESTRES\VI SEMESTRE\IIC2113\FireEmblemV2\Fire-Emblem\obj\Debug\net8.0\Fire-Emblem.AssemblyInfoInputs.cache
+C:\Users\gaspa\OneDrive - Universidad Católica de Chile\SEMESTRES\VI SEMESTRE\IIC2113\FireEmblemV2\Fire-Emblem\obj\Debug\net8.0\Fire-Emblem.AssemblyInfo.cs
+C:\Users\gaspa\OneDrive - Universidad Católica de Chile\SEMESTRES\VI SEMESTRE\IIC2113\FireEmblemV2\Fire-Emblem\obj\Debug\net8.0\Fire-Emblem.csproj.CoreCompileInputs.cache
+C:\Users\gaspa\OneDrive - Universidad Católica de Chile\SEMESTRES\VI SEMESTRE\IIC2113\FireEmblemV2\Fire-Emblem\obj\Debug\net8.0\Fire-Emblem.sourcelink.json
+C:\Users\gaspa\OneDrive - Universidad Católica de Chile\SEMESTRES\VI SEMESTRE\IIC2113\FireEmblemV2\Fire-Emblem\obj\Debug\net8.0\Fire-Emb.55254202.Up2Date
+C:\Users\gaspa\OneDrive - Universidad Católica de Chile\SEMESTRES\VI SEMESTRE\IIC2113\FireEmblemV2\Fire-Emblem\obj\Debug\net8.0\Fire-Emblem.dll
+C:\Users\gaspa\OneDrive - Universidad Católica de Chile\SEMESTRES\VI SEMESTRE\IIC2113\FireEmblemV2\Fire-Emblem\obj\Debug\net8.0\refint\Fire-Emblem.dll
+C:\Users\gaspa\OneDrive - Universidad Católica de Chile\SEMESTRES\VI SEMESTRE\IIC2113\FireEmblemV2\Fire-Emblem\obj\Debug\net8.0\Fire-Emblem.pdb
+C:\Users\gaspa\OneDrive - Universidad Católica de Chile\SEMESTRES\VI SEMESTRE\IIC2113\FireEmblemV2\Fire-Emblem\obj\Debug\net8.0\Fire-Emblem.genruntimeconfig.cache
+C:\Users\gaspa\OneDrive - Universidad Católica de Chile\SEMESTRES\VI SEMESTRE\IIC2113\FireEmblemV2\Fire-Emblem\obj\Debug\net8.0\ref\Fire-Emblem.dll
