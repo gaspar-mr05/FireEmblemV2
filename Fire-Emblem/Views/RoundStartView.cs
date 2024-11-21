@@ -1,6 +1,7 @@
 using Fire_Emblem_View;
 using Fire_Emblem.Characters;
 using Fire_Emblem.Combat;
+using Fire_Emblem.Effects;
 
 namespace Fire_Emblem.ViewPrinter;
 
@@ -24,10 +25,19 @@ public class RoundStartView
     public void ShowRoundStart()
     {
         _view.WriteLine($"Round {_roundNumber}: {_attacker.CharacterInfo.Name} (Player {_playerWhoStarts}) comienza");
+        ShowHealingEffectMessage(_attacker);
+        ShowHealingEffectMessage(_defender);
         ShowAdvantageMessage();
-
-        
-        
+    }
+    
+    private void ShowHealingEffectMessage(Unit unit)
+    {
+        EffectsSummary unitEffectsSummary = unit.EffectsSummary;
+        if (unitEffectsSummary.HealingEffectActive.Active)
+        {
+            _view.WriteLine($"{unit.CharacterInfo.Name} recuperará HP igual al " + 
+                            $"{unitEffectsSummary.HealingEffectActive.Percentage} del daño realizado en cada ataque");
+        }
     }
 
 
@@ -45,6 +55,7 @@ public class RoundStartView
                 : $"{_defender.CharacterInfo.Name} ({weaponToDefend}) tiene ventaja con respecto " +
                   $"a {_attacker.CharacterInfo.Name} ({weaponToAttack})");
     }
+
 
     
 }

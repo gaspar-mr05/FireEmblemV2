@@ -182,8 +182,8 @@ public class EffectSummaryView
     {
         EffectsSummary effectsSummary = unit.EffectsSummary;
         PercentageDamageEffectInfo percentageDamageEffectInfo = effectsSummary.PercentageDamageReductionEffectInfo;
-        PercentageDamageEffectStatus percentageDamageEffectStatus = percentageDamageEffectInfo.GetPercentageReduction(effectDuration);
-        int percentageToShow = (int)Math.Round(percentageDamageEffectStatus.Percentage * 100); 
+        PercentageEffectStatus percentageEffectStatus = percentageDamageEffectInfo.GetPercentageReduction(effectDuration);
+        int percentageToShow = (int)Math.Round(percentageEffectStatus.Percentage * 100); 
         if (percentageToShow != 0)
         {
             if (effectDuration == EffectDuration.FullRound)

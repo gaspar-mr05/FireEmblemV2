@@ -16,11 +16,8 @@ public class EffectsSummary
     public DamageEffectInfo ExtraDamageEffectInfo = new();
     public DamageEffectInfo AbsoluteDamageReductionEffectInfo = new();
     public PercentageDamageEffectInfo PercentageDamageReductionEffectInfo = new();
+    public PercentageEffectStatus HealingEffectActive = new();
     
-  
-    
-
-
 
 }
 

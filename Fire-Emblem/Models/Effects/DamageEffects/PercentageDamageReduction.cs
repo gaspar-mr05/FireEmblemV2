@@ -21,7 +21,7 @@ public class PercentageDamageReduction: DamageEffect
     {
         EffectsSummary effectsSummary = Unit.EffectsSummary;
         PercentageDamageEffectInfo percentageDamageEffectInfo = effectsSummary.PercentageDamageReductionEffectInfo;
-        PercentageDamageEffectStatus percentageReduction = percentageDamageEffectInfo.GetPercentageReduction(EffectDuration);
+        PercentageEffectStatus percentageReduction = percentageDamageEffectInfo.GetPercentageReduction(EffectDuration);
         percentageReduction.Active = true;
         percentageReduction.Percentage = 1 - ((1 - percentageReduction.Percentage) * (1 - _percentage));
         percentageDamageEffectInfo.SetPercentageReduction(EffectDuration, percentageReduction);

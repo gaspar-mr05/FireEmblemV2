@@ -1,11 +1,11 @@
 namespace Fire_Emblem.Effects;
 
-public class PercentageDamageEffectStatus
+public class PercentageEffectStatus
 {
     public double Percentage;
     public bool Active;
 
-    public PercentageDamageEffectStatus()
+    public PercentageEffectStatus()
     {
         Percentage = 0;
         Active = false;

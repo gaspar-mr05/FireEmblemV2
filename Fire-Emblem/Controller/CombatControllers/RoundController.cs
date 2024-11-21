@@ -33,8 +33,8 @@ public class RoundController
     private (AttacksController, Unit, Unit) StartRound(TeamsInfo teamsInfo)
     {
         (Unit attacker, Unit defender) = SelectUnits(teamsInfo);
-        ShowRoundStartView(attacker, defender);
         InitializeEffects(attacker, defender);
+        ShowRoundStartView(attacker, defender);
         AttacksController attacksController = CreateAttacksController(attacker, defender);
 
         return (attacksController, attacker, defender);
@@ -44,18 +44,19 @@ public class RoundController
     {
         return _unitSelector.SelectUnits(teamsInfo, _turnsManager.PlayerWhoStarts);
     }
+    
+    private void InitializeEffects(Unit attacker, Unit defender)
+    {
+        attacker.EffectsSummary = new EffectsSummary();
+        defender.EffectsSummary = new EffectsSummary();
+    }
 
     private void ShowRoundStartView(Unit attacker, Unit defender)
     {
         RoundStartView roundStartView = new RoundStartView(_view, attacker, defender, _roundNumber, _turnsManager.PlayerWhoStarts);
         roundStartView.ShowRoundStart();
     }
-
-    private void InitializeEffects(Unit attacker, Unit defender)
-    {
-        attacker.EffectsSummary = new EffectsSummary();
-        defender.EffectsSummary = new EffectsSummary();
-    }
+    
 
     private AttacksController CreateAttacksController(Unit attacker, Unit defender)
     {
