@@ -1,0 +1,77 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <TargetFramework>net8.0</TargetFramework>
+        <RootNamespace>Fire_Emblem</RootNamespace>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Fire-Emblem-View\Fire-Emblem-View.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Remove="Dict.cs" />
+      <Compile Remove="Character.cs" />
+      <Compile Remove="ViewPrinter.cs" />
+      <Compile Remove="ConsolePrinter.cs" />
+      <Compile Remove="Teams\TeamsManager.cs" />
+      <Compile Remove="Characters\CharacterBuilder.cs" />
+      <Compile Remove="Characters\Character.cs" />
+      <Compile Remove="Units\Character.cs" />
+      <Compile Remove="Units\CharacterBuilder.cs" />
+      <Compile Remove="Skills\FairFight.cs" />
+      <Compile Remove="Combat\FollowUpAttack.cs" />
+      <Compile Remove="Conditions\HpUnder75.cs" />
+      <Compile Remove="Conditions\HpUnder80.cs" />
+      <Compile Remove="Conditions\UseSword.cs" />
+      <Compile Remove="Effects\FairFightEffect.cs" />
+      <Compile Remove="Effects\HybridStatAlteration.cs" />
+      <Compile Remove="Conditions\UseMultipleWeaponType.cs" />
+      <Compile Remove="ViewPrinter\IViewPrinter.cs" />
+      <Compile Remove="Conditions\IsFollowUpAttack.cs" />
+      <Compile Remove="Conditions\IsFirstAttack.cs" />
+      <Compile Remove="Views\IViewPrinter.cs" />
+      <Compile Remove="Boundaries\**" />
+      <Compile Remove="Views\ViewPrinter.cs" />
+      <Compile Remove="Effects\NoEffect.cs" />
+      <Compile Remove="Effects\EffectsReverser.cs" />
+      <Compile Remove="Combat\Round\RoundExecutor.cs" />
+      <Compile Remove="Files\File.cs" />
+      <Compile Remove="Combat\ITurnsController.cs" />
+      <Compile Remove="Combat\IUnitSelector.cs" />
+      <Compile Remove="Controller\CombatControllers\FollowUpAttack.cs" />
+      <Compile Remove="Controller\CombatControllers\Round\RoundExecutor.cs" />
+      <Compile Remove="Models\Conditions\UseSword.cs" />
+      <Compile Remove="Models\Conditions\HpUnder75.cs" />
+      <Compile Remove="Models\Conditions\HpUnder80.cs" />
+      <Compile Remove="Models\Conditions\IsFirstAttack.cs" />
+      <Compile Remove="Models\Conditions\IsFollowUpAttack.cs" />
+      <Compile Remove="Models\Conditions\UseMultipleWeaponType.cs" />
+      <Compile Remove="Models\Effects\EffectsReverser.cs" />
+      <Compile Remove="Models\Effects\NoEffect.cs" />
+      <Compile Remove="Controller\CombatControllers\IUnitSelector.cs" />
+      <Compile Remove="Controller\CombatControllers\ITurnsController.cs" />
+      <Compile Remove="Controller\CombatControllers\Attacks\AttacksBuilder.cs" />
+      <Compile Remove="Controller\FilesControllers\File.cs" />
+      <Compile Remove="Controller\TeamControllers\TeamsManager.cs" />
+      <Compile Remove="Controller\UnitControllers\CharacterBuilder.cs" />
+      <Compile Remove="Controller\UnitControllers\Character.cs" />
+      <Compile Remove="Models\Advantage.cs" />
+      <Compile Remove="Models\Unit\CharacterBuilder.cs" />
+      <Compile Remove="Models\Unit\Character.cs" />
+      <Compile Remove="Models\Team\TeamsManager.cs" />
+      <Compile Remove="Models\Attacks\AttacksBuilder.cs" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <EmbeddedResource Remove="Boundaries\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="Boundaries\**" />
+    </ItemGroup>
+
+</Project>
