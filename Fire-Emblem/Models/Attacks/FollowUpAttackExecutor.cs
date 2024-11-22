@@ -43,9 +43,9 @@ public class FollowUpAttackExecutor : AttackExecutor
     {
         
         EffectsSummary effectsSummary = attacker.EffectsSummary;
-        if (effectsSummary.NegationAttacksInfo.IsNegated(AttackType.FollowUpAttack))
+        if (effectsSummary.NegationInfo.IsNegated(AttackType.FollowUpAttack))
             return true;
-        if (effectsSummary.NegationAttacksInfo.IsNegated(AttackType.CounterAttack))
+        if (effectsSummary.NegationInfo.IsNegated(AttackType.CounterAttack))
             return !RoundInfo.UnitAttacksCount.HasUnitAttacked(attacker);
         return false;
     }

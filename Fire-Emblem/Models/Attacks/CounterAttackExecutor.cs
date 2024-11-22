@@ -23,8 +23,14 @@ public class CounterAttackExecutor : AttackExecutor
         return attackMessage;
     }
 
-    private bool IsCounterAttackPossible(Unit unit) =>
-        RoundInfo.AreBothUnitsAlive() && !IsNegatedCounterAttack(unit);
+    private bool IsCounterAttackPossible(Unit unit)
+    {
+        if (RoundInfo.AreBothUnitsAlive())
+            return !IsNegatedCounterAttack(unit);
+        return false;
+
+    }
+
     
 
 }

@@ -28,6 +28,7 @@ public class EffectSummaryView
 
     private void ShowEffectsSummary(Unit unit)
     {
+        
         ShowBonusEffectsSummary(unit);
         ShowFirstAttackBonusSummary(unit);
         ShowFollowUpAttackBonusSummary(unit);
@@ -43,6 +44,9 @@ public class EffectSummaryView
         ShowPercentageDamageReduction(unit, EffectDuration.FirstAttack);
         ShowPercentageDamageReduction(unit, EffectDuration.FollowUp);
         ShowAbsoluteDamageReduction(unit, EffectDuration.FullRound);
+        ShowHealingEffectMessage(unit);
+        ShowNegationEffectMessage(unit, AttackType.CounterAttack);
+        ShowNegationOfNegationEffectMessage(unit, AttackType.CounterAttack);
         
     }
 
@@ -207,6 +211,43 @@ public class EffectSummaryView
         {
             if (effectDuration == EffectDuration.AfterCombat)
                 _view.WriteLine($"{unit.CharacterInfo.Name} recibe {damageEffectStatus.Damage} de daño despues del combate");
+        }
+    }
+    private void ShowHealingEffectMessage(Unit unit)
+    {
+        EffectsSummary unitEffectsSummary = unit.EffectsSummary;
+        if (unitEffectsSummary.ActiveHealingInfo.Active)
+        {
+            int percentageToShow = (int)(unitEffectsSummary.ActiveHealingInfo.Percentage * 100);
+            _view.WriteLine($"{unit.CharacterInfo.Name} recuperará HP igual al " + 
+                            $"{percentageToShow}% del daño realizado en cada ataque");
+        }
+    }
+
+    private void ShowNegationEffectMessage(Unit unit, AttackType attackType)
+    {
+        EffectsSummary effectsSummary = unit.EffectsSummary;
+        bool isNegated = effectsSummary.NegationInfo.IsNegated(attackType);
+        int amount = effectsSummary.NegationInfo.GetAmount(attackType);
+        if (isNegated)
+        {
+            if (attackType == AttackType.CounterAttack)
+                _view.WriteLine($"{unit.CharacterInfo.Name} no podrá contraatacar");
+            if (attackType == AttackType.FollowUpAttack)
+                _view.WriteLine($"{unit.CharacterInfo.Name} tiene {amount} efecto(s) que neutraliza(n) su followup activo(s)");
+        }
+    }
+    
+    private void ShowNegationOfNegationEffectMessage(Unit unit, AttackType attackType)
+    {
+        EffectsSummary effectsSummary = unit.EffectsSummary;
+        bool isNegationNegated = effectsSummary.NegationOfNegationInfo.IsNegationNegated(attackType);
+        if (isNegationNegated)
+        {
+            if (attackType == AttackType.CounterAttack)
+                _view.WriteLine($"{unit.CharacterInfo.Name} neutraliza los efectos que previenen sus contraataques");
+            if (attackType == AttackType.FollowUpAttack)
+                _view.WriteLine($"{unit.CharacterInfo.Name} tiene 1 efecto(s) que neutraliza(n) su followup activo(s)");
         }
     }
 }

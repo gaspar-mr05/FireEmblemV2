@@ -17,7 +17,7 @@ public class NegationEffect: Effect
     public override void ApplyEffect()
     {
         EffectsSummary effectsSummary = Unit.EffectsSummary;
-        effectsSummary.NegationAttacksInfo.NegateAttack(AttackType);
+        effectsSummary.NegationInfo.NegateAttack(AttackType);
     }
 
     public override void RevertEffect()

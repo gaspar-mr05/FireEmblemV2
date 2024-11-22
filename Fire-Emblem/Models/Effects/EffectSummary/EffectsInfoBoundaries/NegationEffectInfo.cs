@@ -21,6 +21,9 @@ public class NegationEffectInfo
     {
         _negationEffectInfo[attackType].Negated = true;
         _negationEffectInfo[attackType].Amount += 1;
-
     }
+
+    public void NegateNegation(AttackType attackType) => _negationEffectInfo[attackType].Negated = false;
+
+    public int GetAmount(AttackType attackType) => _negationEffectInfo[attackType].Amount;
 }

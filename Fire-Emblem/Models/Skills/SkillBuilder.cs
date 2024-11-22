@@ -28,6 +28,7 @@ public class SkillBuilder
         EffectsConditionsCollection effectsConditions = new EffectsConditionsCollection();
         ConditionsCollection conditions = new ConditionsCollection();
         ConditionsCollection extraConditions = new ConditionsCollection();
+        Weapons weapons = new Weapons();
         if (_skillName == "Fair Fight")
             
         {
@@ -67,7 +68,6 @@ public class SkillBuilder
 
         else if (_skillName == "Tome Precision")
         {
-            Weapons weapons = new Weapons();
             weapons.AddWeapons(["Magic"]);
             conditions.AddSingleCondition(new UnitUseWeaponType(unit, weapons));
             effectsConditions.AddEffectConditions(new BonusEffect(unit, "Atk", 6), conditions);
@@ -127,7 +127,6 @@ public class SkillBuilder
         }
         else if (_skillName == "Deadly Blade")
         {
-            Weapons weapons = new Weapons();
             weapons.AddWeapons(["Sword"]);
             conditions.AddSingleCondition(new UnitUseWeaponType(unit, weapons));
             conditions.AddSingleCondition(new UnitStartCombat(unit, _roundInfo));
@@ -334,7 +333,6 @@ public class SkillBuilder
         }
         else if (_skillName == "Soulblade")
         {
-            Weapons weapons = new Weapons();
             weapons.AddWeapons(["Sword"]);
             conditions.AddSingleCondition(new UnitUseWeaponType(unit, weapons));
             
@@ -349,7 +347,6 @@ public class SkillBuilder
         }
         else if (_skillName == "Sword Agility")
         {
-            Weapons weapons = new Weapons();
             weapons.AddWeapons(["Sword"]);
             conditions.AddSingleCondition(new UnitUseWeaponType(unit, weapons));
             effectsConditions.AddEffectConditions(new BonusEffect(unit, "Spd", 12), conditions);
@@ -357,7 +354,6 @@ public class SkillBuilder
         }
         else if (_skillName == "Lance Power")
         {
-            Weapons weapons = new Weapons();
             weapons.AddWeapons(["Lance"]);
             conditions.AddSingleCondition(new UnitUseWeaponType(unit, weapons));
             effectsConditions.AddEffectConditions(new BonusEffect(unit, "Atk", 10), conditions);
@@ -365,7 +361,6 @@ public class SkillBuilder
         }
         else if (_skillName == "Sword Power")
         {
-            Weapons weapons = new Weapons();
             weapons.AddWeapons(["Sword"]);
             conditions.AddSingleCondition(new UnitUseWeaponType(unit, weapons));
             effectsConditions.AddEffectConditions(new BonusEffect(unit, "Atk", 10), conditions);
@@ -373,7 +368,6 @@ public class SkillBuilder
         }
         else if (_skillName == "Bow Focus")
         {
-            Weapons weapons = new Weapons();
             weapons.AddWeapons(["Bow"]);
             conditions.AddSingleCondition(new UnitUseWeaponType(unit, weapons));
             effectsConditions.AddEffectConditions(new BonusEffect(unit, "Atk", 10), conditions);
@@ -381,7 +375,6 @@ public class SkillBuilder
         }
         else if (_skillName == "Lance Agility")
         {
-            Weapons weapons = new Weapons();
             weapons.AddWeapons(["Lance"]);
             conditions.AddSingleCondition(new UnitUseWeaponType(unit, weapons));
             effectsConditions.AddEffectConditions(new BonusEffect(unit, "Spd", 12), conditions);
@@ -389,7 +382,6 @@ public class SkillBuilder
         }
         else if (_skillName == "Axe Power")
         {
-            Weapons weapons = new Weapons();
             weapons.AddWeapons(["Axe"]);
             conditions.AddSingleCondition(new UnitUseWeaponType(unit, weapons));
             effectsConditions.AddEffectConditions(new BonusEffect(unit, "Atk", 10), conditions);
@@ -397,7 +389,6 @@ public class SkillBuilder
         }
         else if (_skillName == "Bow Agility")
         {
-            Weapons weapons = new Weapons();
             weapons.AddWeapons(["Bow"]);
             conditions.AddSingleCondition(new UnitUseWeaponType(unit, weapons));
             effectsConditions.AddEffectConditions(new BonusEffect(unit, "Spd", 12), conditions);
@@ -405,7 +396,6 @@ public class SkillBuilder
         }
         else if (_skillName == "Sword Focus")
         {
-            Weapons weapons = new Weapons();
             weapons.AddWeapons(["Sword"]);
             conditions.AddSingleCondition(new UnitUseWeaponType(unit, weapons));
             effectsConditions.AddEffectConditions(new BonusEffect(unit, "Atk", 10), conditions);
@@ -414,7 +404,6 @@ public class SkillBuilder
         }
         else if (_skillName == "Close Def")
         {
-            Weapons weapons = new Weapons();
             weapons.AddWeapons(["Sword", "Axe", "Lance"]);
             conditions.AddSingleCondition(new UnitUseWeaponType(rival, weapons));
             conditions.AddSingleCondition(new UnitStartCombat(rival, _roundInfo));
@@ -424,12 +413,9 @@ public class SkillBuilder
             effectsConditions.AddEffectConditions(new BonusNeutralizationEffect(rival, "Spd"), conditions);
             effectsConditions.AddEffectConditions(new BonusNeutralizationEffect(rival, "Def"), conditions);
             effectsConditions.AddEffectConditions(new BonusNeutralizationEffect(rival, "Res"), conditions);
-            
-
         }
         else if (_skillName == "Distant Def")
         {
-            Weapons weapons = new Weapons();
             weapons.AddWeapons(["Magic", "Bow"]);
             conditions.AddSingleCondition(new UnitUseWeaponType(rival, weapons));
             conditions.AddSingleCondition(new UnitStartCombat(rival, _roundInfo));
@@ -568,7 +554,6 @@ public class SkillBuilder
         }
         else if (_skillName == "Golden Lotus")
         {
-            Weapons weapons = new Weapons();
             weapons.AddWeapons(["Sword", "Lance", "Axe", "Bow"]);
             extraConditions.AddSingleCondition(new UnitUseWeaponType(rival, weapons));
             effectsConditions.AddEffectConditions(new PercentageDamageReduction(unit, 0.5, EffectDuration.FirstAttack), 
@@ -581,7 +566,6 @@ public class SkillBuilder
         
         else if (_skillName == "Bow Guard")
         {
-            Weapons weapons = new Weapons();
             weapons.AddWeapons(["Bow"]);
             extraConditions.AddSingleCondition(new UnitUseWeaponType(rival, weapons));
             effectsConditions.AddEffectConditions(new AbsoluteDamageReduction(unit, 5,EffectDuration.FullRound), 
@@ -597,7 +581,6 @@ public class SkillBuilder
         
         else if (_skillName == "Axe Guard")
         {
-            Weapons weapons = new Weapons();
             weapons.AddWeapons(["Axe"]);
             extraConditions.AddSingleCondition(new UnitUseWeaponType(rival, weapons));
             effectsConditions.AddEffectConditions(new AbsoluteDamageReduction(unit, 5, EffectDuration.FullRound),
@@ -606,7 +589,6 @@ public class SkillBuilder
         
         else if (_skillName == "Magic Guard")
         {
-            Weapons weapons = new Weapons();
             weapons.AddWeapons(["Magic"]);
             extraConditions.AddSingleCondition(new UnitUseWeaponType(rival, weapons));
             effectsConditions.AddEffectConditions(new AbsoluteDamageReduction(unit, 5, EffectDuration.FullRound),
@@ -616,7 +598,6 @@ public class SkillBuilder
         else if (_skillName == "Lance Guard")
         {
             
-            Weapons weapons = new Weapons();
             weapons.AddWeapons(["Lance"]);
             
             extraConditions.AddSingleCondition(new UnitUseWeaponType(rival, weapons));
@@ -642,7 +623,6 @@ public class SkillBuilder
         }
         else if (_skillName == "Lunar Brace")
         {
-            Weapons weapons = new Weapons();
             weapons.AddWeapons(["Sword", "Axe", "Lance", "Bow"]);
             extraConditions.AddSingleCondition(new UnitStartCombat(unit, _roundInfo));
             extraConditions.AddSingleCondition(new UnitUseWeaponType(unit, weapons));
@@ -843,7 +823,6 @@ public class SkillBuilder
         }
         else if (_skillName == "Prescience")
         {
-            Weapons weapons = new Weapons();
             weapons.AddWeapons(["Magic", "Bow"]);
             OrConditions orConditions = new OrConditions();
             orConditions.AddCondition(new UnitStartCombat(unit, _roundInfo));
@@ -893,7 +872,6 @@ public class SkillBuilder
         }
         else if (_skillName == "Nosferatu")
         {
-            Weapons weapons = new Weapons();
             weapons.AddWeapons(["Magic"]);
             conditions.AddSingleCondition(new UnitUseWeaponType(unit, weapons));
             effectsConditions.AddEffectConditions(new HealingEffect(unit, 0.5), conditions);
@@ -905,7 +883,6 @@ public class SkillBuilder
         }
         else if (_skillName == "Windsweep")
         {
-            Weapons weapons = new Weapons();
             weapons.AddWeapons(["Sword"]);
             conditions.AddSingleCondition(new UnitStartCombat(unit, _roundInfo));
             conditions.AddSingleCondition(new UnitUseWeaponType(unit, weapons));
@@ -914,7 +891,6 @@ public class SkillBuilder
         }
         else if (_skillName == "Surprise Attack")
         {
-            Weapons weapons = new Weapons();
             weapons.AddWeapons(["Bow"]);
             conditions.AddSingleCondition(new UnitStartCombat(unit, _roundInfo));
             conditions.AddSingleCondition(new UnitUseWeaponType(unit, weapons));
@@ -923,12 +899,40 @@ public class SkillBuilder
         }
         else if (_skillName == "Hliðskjálf")
         {
-            Weapons weapons = new Weapons();
             weapons.AddWeapons(["Magic"]);
             conditions.AddSingleCondition(new UnitStartCombat(unit, _roundInfo));
             conditions.AddSingleCondition(new UnitUseWeaponType(unit, weapons));
             conditions.AddSingleCondition(new UnitUseWeaponType(rival, weapons));
             effectsConditions.AddEffectConditions(new NegationEffect(rival, AttackType.CounterAttack), conditions);
+        }
+        
+        else if (_skillName == "Null C-Disrupt")
+        {
+            effectsConditions.AddEffectConditions(new NegationOfNegationEffect(unit, AttackType.CounterAttack), conditions);
+        }
+        
+        else if (_skillName == "Laws of Sacae")
+        {
+            weapons.AddWeapons(["Sword", "Axe", "Lance"]);
+            conditions.AddSingleCondition(new UnitStartCombat(unit, _roundInfo));
+            extraConditions.AddSingleCondition(new UnitStartCombat(unit, _roundInfo));
+            extraConditions.AddSingleCondition(new UnitUseWeaponType(rival, weapons));
+            extraConditions.AddSingleCondition(new StatComparison(unit, rival, "Spd", "Spd", 5, ComparisonType.Greater));
+            effectsConditions.AddEffectConditions(new BonusEffect(unit, "Atk", 6), conditions);
+            effectsConditions.AddEffectConditions(new BonusEffect(unit, "Spd", 6), conditions);
+            effectsConditions.AddEffectConditions(new BonusEffect(unit, "Def", 6), conditions);
+            effectsConditions.AddEffectConditions(new BonusEffect(unit, "Res", 6), conditions);
+            effectsConditions.AddEffectConditions(new NegationEffect(rival, AttackType.CounterAttack), extraConditions);
+        }
+        else if (_skillName == "Eclipse Brace")
+        {
+            weapons.AddWeapons(["Sword", "Axe", "Lance", "Bow"]);
+            conditions.AddSingleCondition(new UnitStartCombat(unit, _roundInfo));
+            conditions.AddSingleCondition(new UnitUseWeaponType(unit, weapons));
+            extraConditions.AddSingleCondition(new UnitStartCombat(unit, _roundInfo));
+            effectsConditions.AddEffectConditions(new ExtraDamageEffect(unit, Convert.ToInt32(Math.Floor(0.3 * 
+                Convert.ToInt32(rival.CharacterInfo.Def))), EffectDuration.FullRound), conditions);
+            effectsConditions.AddEffectConditions(new HealingEffect(unit, 0.5), extraConditions);
         }
         else
         {

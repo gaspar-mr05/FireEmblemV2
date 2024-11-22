@@ -26,7 +26,7 @@ public class SkillsManager
 
     public void ActivateSkills()
     {
-        int maxPriority = 5;
+        int maxPriority = 6;
         for (int priority = 1; priority <= maxPriority; priority++)
         {
             _defenderSkillsCollection.ApplyEffects(priority);

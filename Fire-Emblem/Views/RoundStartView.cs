@@ -27,10 +27,8 @@ public class RoundStartView
     {
         _view.WriteLine($"Round {_roundNumber}: {_attacker.CharacterInfo.Name} (Player {_playerWhoStarts}) comienza");
         ShowAdvantageMessage();
-        ShowHealingEffectMessage(_attacker);
-        ShowHealingEffectMessage(_defender);
-        ShowNegationEffectMessage(_attacker, AttackType.CounterAttack);
-        ShowNegationEffectMessage(_defender, AttackType.CounterAttack);
+
+        
     }
     
 
@@ -50,31 +48,7 @@ public class RoundStartView
                   $"a {_attacker.CharacterInfo.Name} ({weaponToAttack})");
     }
     
-    private void ShowHealingEffectMessage(Unit unit)
-    {
-        EffectsSummary unitEffectsSummary = unit.EffectsSummary;
-        if (unitEffectsSummary.ActiveHealingInfo.Active)
-        {
-            int percentageToShow = (int)(unitEffectsSummary.ActiveHealingInfo.Percentage * 100);
-            _view.WriteLine($"{unit.CharacterInfo.Name} recuperará HP igual al " + 
-                            $"{percentageToShow}% del daño realizado en cada ataque");
-        }
-    }
 
-    private void ShowNegationEffectMessage(Unit unit, AttackType attackType)
-    {
-        EffectsSummary effectsSummary = unit.EffectsSummary;
-        bool isNegated = effectsSummary.NegationAttacksInfo.IsNegated(attackType);
-        if (isNegated)
-        {
-            if (attackType == AttackType.CounterAttack)
-                _view.WriteLine($"{unit.CharacterInfo.Name} no podrá contraatacar");
-            if (attackType == AttackType.FollowUpAttack)
-                _view.WriteLine($"{unit.CharacterInfo.Name} tiene 1 efecto(s) que neutraliza(n) su followup activo(s)");
-        }
-
-
-    }
 
 
     
