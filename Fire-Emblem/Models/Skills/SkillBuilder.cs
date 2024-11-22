@@ -5,6 +5,7 @@ using Fire_Emblem.Characters;
 using Fire_Emblem.Combat;
 using Fire_Emblem.Effects;
 using Fire_Emblem.Effects.DamageEffects;
+using Fire_Emblem.Effects.NegationEffects;
 using Fire_Emblem.Exceptions;
 using Fire_Emblem.Models;
 using Fire_Emblem.Models.Skills;
@@ -901,6 +902,15 @@ public class SkillBuilder
         {
             conditions.AddSingleCondition(new UnitStartCombat(unit, _roundInfo));
             effectsConditions.AddEffectConditions(new HealingEffect(unit, 0.5),conditions);
+        }
+        else if (_skillName == "Windsweep")
+        {
+            Weapons weapons = new Weapons();
+            weapons.AddWeapons(["Sword"]);
+            conditions.AddSingleCondition(new UnitStartCombat(unit, _roundInfo));
+            conditions.AddSingleCondition(new UnitUseWeaponType(unit, weapons));
+            conditions.AddSingleCondition(new UnitUseWeaponType(rival, weapons));
+            effectsConditions.AddEffectConditions(new NegationEffect(rival, AttackType.CounterAttack), conditions);
         }
         else
         {

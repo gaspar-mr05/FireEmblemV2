@@ -18,13 +18,13 @@ public class CounterAttackExecutor : AttackExecutor
     {
         string attackMessage = "";
         RoundInfo.AttackType = AttackType.CounterAttack;
-        if (IsCounterAttackPossible(attacker))
+        if (IsCounterAttackPossible(defender))
             return base.ExecuteAttack(defender, attacker);
         return attackMessage;
     }
 
-    private bool IsCounterAttackPossible(Unit attacker) =>
-        RoundInfo.AreBothUnitsAlive() && !IsNegatedCounterAttack(attacker);
+    private bool IsCounterAttackPossible(Unit unit) =>
+        RoundInfo.AreBothUnitsAlive() && !IsNegatedCounterAttack(unit);
     
 
 }

@@ -20,8 +20,6 @@ public class FollowUpAttackExecutor : AttackExecutor
         RoundInfo.AttackType = AttackType.FollowUpAttack;
         if (RoundInfo.AreBothUnitsAlive())
         {
-            if (!IsFollowUpPossible(attacker, defender) && !IsFollowUpPossible(defender, attacker))
-                return "Ninguna unidad puede hacer un follow up";
             
             if (IsFollowUpPossible(attacker,defender))
                 return base.ExecuteAttack(attacker, defender);
@@ -32,6 +30,9 @@ public class FollowUpAttackExecutor : AttackExecutor
             }
             if (IsFollowUpPossible(defender, attacker))
                 return base.ExecuteAttack(defender, attacker);
+            
+            if (!IsFollowUpPossible(attacker, defender) && !IsFollowUpPossible(defender, attacker))
+                return "Ninguna unidad puede hacer un follow up";
            
         }
         ApplyAfterCombatDamage(attacker);

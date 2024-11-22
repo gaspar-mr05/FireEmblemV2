@@ -29,6 +29,8 @@ public class RoundStartView
         ShowAdvantageMessage();
         ShowHealingEffectMessage(_attacker);
         ShowHealingEffectMessage(_defender);
+        ShowNegationEffectMessage(_attacker, AttackType.CounterAttack);
+        ShowNegationEffectMessage(_defender, AttackType.CounterAttack);
     }
     
 
@@ -62,8 +64,8 @@ public class RoundStartView
     private void ShowNegationEffectMessage(Unit unit, AttackType attackType)
     {
         EffectsSummary effectsSummary = unit.EffectsSummary;
-        bool IsNegated = effectsSummary.NegationAttacksInfo.IsNegated(attackType);
-        if (IsNegated)
+        bool isNegated = effectsSummary.NegationAttacksInfo.IsNegated(attackType);
+        if (isNegated)
         {
             if (attackType == AttackType.CounterAttack)
                 _view.WriteLine($"{unit.CharacterInfo.Name} no podrá contraatacar");
