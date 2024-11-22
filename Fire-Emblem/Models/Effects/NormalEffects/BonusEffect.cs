@@ -32,8 +32,8 @@ public class BonusEffect : NormalEffect
     public void RegisterEffect()
     {
         EffectsSummary effectsSummary = Unit.EffectsSummary;
-        if (effectsSummary.BonusEffectInfo.IsContainingStatName(StatName))
-            effectsSummary.BonusEffectInfo.SaveChange(StatName, Change);
+        if (effectsSummary.BonusesInfo.IsContainingStatName(StatName))
+            effectsSummary.BonusesInfo.SaveChange(StatName, Change);
     }
     
 }

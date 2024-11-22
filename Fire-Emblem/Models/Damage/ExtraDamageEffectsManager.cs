@@ -18,13 +18,13 @@ public class ExtraDamageEffectsManager: DamageEffectsManager
     public override int ApplyDamageEffects(double damage, RoundInfo roundInfo)
     {
         DamageEffectInfo attackerExtraDamageInfo =
-            Attacker.EffectsSummary.ExtraDamageEffectInfo;
+            Attacker.EffectsSummary.ExtraDamageInfo;
         
-        double newDamage = damage + attackerExtraDamageInfo.GetDamageInfo(EffectDuration.FullRound).Change;
+        double newDamage = damage + attackerExtraDamageInfo.GetDamageInfo(EffectDuration.FullRound).Damage;
         if (!roundInfo.UnitAttacksCount.HasUnitAttacked(Attacker))
-            newDamage += attackerExtraDamageInfo.GetDamageInfo(EffectDuration.FirstAttack).Change;
+            newDamage += attackerExtraDamageInfo.GetDamageInfo(EffectDuration.FirstAttack).Damage;
         if (roundInfo.AttackType is AttackType.FollowUpAttack)
-            newDamage += attackerExtraDamageInfo.GetDamageInfo(EffectDuration.FollowUp).Change;
+            newDamage += attackerExtraDamageInfo.GetDamageInfo(EffectDuration.FollowUp).Damage;
         newDamage = Math.Round(newDamage,9);
         return Convert.ToInt32(Math.Floor(newDamage));
     }

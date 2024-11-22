@@ -27,12 +27,12 @@ public class SandstormEffect: NormalEffect
         if (Change >= 0)
         {
             activeEffectsInfo.BonusEffects.RemoveEffect(this);
-            effectsSummary.FollowUpBonusEffectInfo.SetActiveFalse(StatName);
+            effectsSummary.FollowUpBonusesInfo.SetActiveFalse(StatName);
         }
         else if (Change < 0)
         {
             activeEffectsInfo.PenaltyEffects.RemoveEffect(this);
-            effectsSummary.FollowUpPenaltyEffectInfo.SetActiveFalse(StatName);
+            effectsSummary.FollowUpPenaltiesInfo.SetActiveFalse(StatName);
         }
         
     }
@@ -48,14 +48,14 @@ public class SandstormEffect: NormalEffect
         EffectsSummary effectsSummary = Unit.EffectsSummary;
         if (Change >= 0)
         {
-            effectsSummary.FollowUpBonusEffectInfo.SetActiveTrue(StatName);
-            effectsSummary.FollowUpBonusEffectInfo.SaveChange(StatName, Change);
+            effectsSummary.FollowUpBonusesInfo.SetActiveTrue(StatName);
+            effectsSummary.FollowUpBonusesInfo.SaveChange(StatName, Change);
 
         }
         else
         {
-            effectsSummary.FollowUpPenaltyEffectInfo.SetActiveTrue(StatName);
-            effectsSummary.FollowUpPenaltyEffectInfo.SaveChange(StatName,Change);
+            effectsSummary.FollowUpPenaltiesInfo.SetActiveTrue(StatName);
+            effectsSummary.FollowUpPenaltiesInfo.SaveChange(StatName,Change);
         }
 
     }

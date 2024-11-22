@@ -10,7 +10,7 @@ public class FirstAttackPenaltyEffect : FirstAttackEffect
 
     protected override void AddToEffectsSummary(EffectsSummary effectsSummary)
     {
-        effectsSummary.FirstAttackPenaltyEffectInfo.SetActiveTrue(StatName);
+        effectsSummary.FirstAttackPenaltiesInfo.SetActiveTrue(StatName);
         ActiveEffectsInfo activeEffectsInfo = Unit.ActiveEffectsInfo;
         activeEffectsInfo.PenaltyEffects.AddEffect(this);
     }
@@ -18,13 +18,13 @@ public class FirstAttackPenaltyEffect : FirstAttackEffect
 
     protected override void RemoveFromEffectsSummary(EffectsSummary effectsSummary)
     {
-        effectsSummary.FirstAttackPenaltyEffectInfo.SetActiveFalse(StatName);
+        effectsSummary.FirstAttackPenaltiesInfo.SetActiveFalse(StatName);
         ActiveEffectsInfo activeEffectsInfo = Unit.ActiveEffectsInfo;
         activeEffectsInfo.PenaltyEffects.RemoveEffect(this);
     }
 
     protected override void UpdateChange(EffectsSummary effectsSummary)
     {
-        effectsSummary.FirstAttackPenaltyEffectInfo.SaveChange(StatName, -1 * Change);
+        effectsSummary.FirstAttackPenaltiesInfo.SaveChange(StatName, -1 * Change);
     }
 }

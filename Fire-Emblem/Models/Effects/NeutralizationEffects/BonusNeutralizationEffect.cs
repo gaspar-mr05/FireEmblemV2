@@ -21,7 +21,7 @@ public class BonusNeutralizationEffect : NeutralizationEffect
     {
 
         EffectsSummary effectsSummary = Unit.EffectsSummary;
-        effectsSummary.BonusNeutralizationEffectInfo.SetActiveTrue(StatName);
+        effectsSummary.BonusNeutralizationsInfo.SetActiveTrue(StatName);
     }
     
     

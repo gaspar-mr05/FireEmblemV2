@@ -4,13 +4,10 @@ public abstract class NormalEffect: Effect
 {
 
     protected int Change;
-    
-    
 
-    public override int GetPriority()
-    {
-        return 1;
-    }
-    
+
+
+    public override int GetPriority() => 1;
+
 
 }

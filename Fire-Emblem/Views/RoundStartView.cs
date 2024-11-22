@@ -1,6 +1,7 @@
 using Fire_Emblem_View;
 using Fire_Emblem.Characters;
 using Fire_Emblem.Combat;
+using Fire_Emblem.Conditions;
 using Fire_Emblem.Effects;
 
 namespace Fire_Emblem.ViewPrinter;
@@ -50,12 +51,27 @@ public class RoundStartView
     private void ShowHealingEffectMessage(Unit unit)
     {
         EffectsSummary unitEffectsSummary = unit.EffectsSummary;
-        if (unitEffectsSummary.HealingEffectActive.Active)
+        if (unitEffectsSummary.ActiveHealingInfo.Active)
         {
-            int percentageToShow = (int)(unitEffectsSummary.HealingEffectActive.Percentage * 100);
+            int percentageToShow = (int)(unitEffectsSummary.ActiveHealingInfo.Percentage * 100);
             _view.WriteLine($"{unit.CharacterInfo.Name} recuperará HP igual al " + 
                             $"{percentageToShow}% del daño realizado en cada ataque");
         }
+    }
+
+    private void ShowNegationEffectMessage(Unit unit, AttackType attackType)
+    {
+        EffectsSummary effectsSummary = unit.EffectsSummary;
+        bool IsNegated = effectsSummary.NegationAttacksInfo.IsNegated(attackType);
+        if (IsNegated)
+        {
+            if (attackType == AttackType.CounterAttack)
+                _view.WriteLine($"{unit.CharacterInfo.Name} no podrá contraatacar");
+            if (attackType == AttackType.FollowUpAttack)
+                _view.WriteLine($"{unit.CharacterInfo.Name} tiene 1 efecto(s) que neutraliza(n) su followup activo(s)");
+        }
+
+
     }
 
 

@@ -10,7 +10,7 @@ public class FirstAttackBonusEffect : FirstAttackEffect
 
     protected override void AddToEffectsSummary(EffectsSummary effectsSummary)
     {
-        effectsSummary.FirstAttackBonusEffectInfo.SetActiveTrue(StatName);
+        effectsSummary.FirstAttackBonusesInfo.SetActiveTrue(StatName);
         ActiveEffectsInfo activeEffectsInfo = Unit.ActiveEffectsInfo;
         activeEffectsInfo.BonusEffects.AddEffect(this);
         
@@ -18,14 +18,14 @@ public class FirstAttackBonusEffect : FirstAttackEffect
 
     protected override void RemoveFromEffectsSummary(EffectsSummary effectsSummary)
     {
-        effectsSummary.FirstAttackBonusEffectInfo.SetActiveFalse(StatName);
+        effectsSummary.FirstAttackBonusesInfo.SetActiveFalse(StatName);
         ActiveEffectsInfo activeEffectsInfo = Unit.ActiveEffectsInfo;
         activeEffectsInfo.BonusEffects.RemoveEffect(this);
     }
 
     protected override void UpdateChange(EffectsSummary effectsSummary)
     {
-        effectsSummary.FirstAttackBonusEffectInfo.SaveChange(StatName, Change);
+        effectsSummary.FirstAttackBonusesInfo.SaveChange(StatName, Change);
     }
 }
 

@@ -6,23 +6,23 @@ namespace Fire_Emblem.Effects.DamageEffects;
 
 public class ExtraDamageEffect: DamageEffect
 {
-    private int _change;
+    private int _damage;
 
-    public ExtraDamageEffect(Unit unit, int change, EffectDuration effectDuration)
+    public ExtraDamageEffect(Unit unit, int damage, EffectDuration effectDuration)
     {
         base.Unit = unit;
         base.EffectDuration = effectDuration;
-        _change = change;
+        _damage = damage;
 
     }
 
     public override void ApplyEffect()
     {
         EffectsSummary effectsSummary = Unit.EffectsSummary;
-        DamageEffectInfo extraDamageEffectsInfo = effectsSummary.ExtraDamageEffectInfo;
+        DamageEffectInfo extraDamageEffectsInfo = effectsSummary.ExtraDamageInfo;
         DamageEffectStatus extraDamageInfo = extraDamageEffectsInfo.GetDamageInfo(EffectDuration);
         extraDamageInfo.Active = true;  
-        extraDamageInfo.Change += _change;
+        extraDamageInfo.Damage += _damage;
         extraDamageEffectsInfo.SetDamageInfo(EffectDuration, extraDamageInfo); 
     }
 

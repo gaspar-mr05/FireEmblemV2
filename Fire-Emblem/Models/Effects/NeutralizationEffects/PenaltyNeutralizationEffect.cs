@@ -21,7 +21,7 @@ public class PenaltyNeutralizationEffect: NeutralizationEffect
     {
 
         EffectsSummary effectsSummary = Unit.EffectsSummary;
-        effectsSummary.PenaltyNeutralizationEffectInfo.SetActiveTrue(StatName);
+        effectsSummary.PenaltyNeutralizationsInfo.SetActiveTrue(StatName);
     }
     
     public override void RevertEffect()

@@ -10,6 +10,8 @@ public class AttackExecutor
 {
     protected RoundInfo RoundInfo;
 
+
+
     public AttackExecutor(RoundInfo roundInfo)
     {
         RoundInfo = roundInfo;
@@ -32,7 +34,7 @@ public class AttackExecutor
         int hpHealed = 0;
         if (CanBeHealed(attacker, attackerEffectsSummary))
         {
-            hpHealed = Convert.ToInt32(Math.Floor(damageReceived * attackerEffectsSummary.HealingEffectActive.Percentage));
+            hpHealed = Convert.ToInt32(Math.Floor(damageReceived * attackerEffectsSummary.ActiveHealingInfo.Percentage));
             attacker.Stats.SetStat("HP", Math.Min(attacker.Stats.GetHp() + hpHealed, 
                 Convert.ToInt32(attacker.CharacterInfo.HP)));
         }
@@ -42,13 +44,25 @@ public class AttackExecutor
     
     private bool CanBeHealed(Unit attacker, EffectsSummary attackerEffectsSummary)
     {
-        return attackerEffectsSummary.HealingEffectActive.Active && attacker.Stats.GetHp() > 0;
+        return attackerEffectsSummary.ActiveHealingInfo.Active && attacker.IsAlive();
     }
 
     private void RegisterAttack(Unit attacker)
     {
         RoundInfo.UnitAttacksCount.AddAttack(attacker);
     }
+    
+    protected bool IsNegatedCounterAttack(Unit attacker)
+    {
+        EffectsSummary effectsSummary = attacker.EffectsSummary;
+        return effectsSummary.NegationAttacksInfo.IsNegated(AttackType.CounterAttack);
+
+    }
+    
+    
+
+
+
 
 
     

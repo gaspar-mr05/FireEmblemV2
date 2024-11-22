@@ -21,10 +21,10 @@ public class AbsoluteDamageReduction : DamageEffect
     {
         
         EffectsSummary effectsSummary = Unit.EffectsSummary;
-        DamageEffectInfo absoluteDamageReductionEffectInfo = effectsSummary.AbsoluteDamageReductionEffectInfo;
+        DamageEffectInfo absoluteDamageReductionEffectInfo = effectsSummary.AbsoluteDamageReductionInfo;
         DamageEffectStatus absoluteReductionInfo = absoluteDamageReductionEffectInfo.GetDamageInfo(EffectDuration);
         absoluteReductionInfo.Active = true;  
-        absoluteReductionInfo.Change -= _change;
+        absoluteReductionInfo.Damage -= _change;
         absoluteDamageReductionEffectInfo.SetDamageInfo(EffectDuration, absoluteReductionInfo); 
         
     }

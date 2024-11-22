@@ -35,10 +35,10 @@ public class DivineRecreationEffect: DamageEffect
 
     private int CalculateDamageReduction(int damage)
     {
-        DamageEffectInfo rivalExtraDamageEffectInfo = _rival.EffectsSummary.ExtraDamageEffectInfo;
+        DamageEffectInfo rivalExtraDamageEffectInfo = _rival.EffectsSummary.ExtraDamageInfo;
 
-        int extraDamage = rivalExtraDamageEffectInfo.GetDamageInfo(EffectDuration.FirstAttack).Change + 
-                          rivalExtraDamageEffectInfo.GetDamageInfo(EffectDuration.FullRound).Change;
+        int extraDamage = rivalExtraDamageEffectInfo.GetDamageInfo(EffectDuration.FirstAttack).Damage + 
+                          rivalExtraDamageEffectInfo.GetDamageInfo(EffectDuration.FullRound).Damage;
 
         DamageEffectsApplier damageEffectsApplier = new DamageEffectsApplier(_rival, Unit);
         int newDamage = damageEffectsApplier.ApplyDamageEffects(damage, _roundInfo);

@@ -14,15 +14,15 @@ public class HealingEffect: Effect
     public override void ApplyEffect()
     {
         EffectsSummary effectsSummary = Unit.EffectsSummary;
-        effectsSummary.HealingEffectActive.Active = true;
-        effectsSummary.HealingEffectActive.Percentage += _percentageToHeal;
+        effectsSummary.ActiveHealingInfo.Active = true;
+        effectsSummary.ActiveHealingInfo.Percentage += _percentageToHeal;
 
     }
 
     public override void RevertEffect()
     {
         EffectsSummary effectsSummary = Unit.EffectsSummary;
-        effectsSummary.HealingEffectActive.Active = false;
+        effectsSummary.ActiveHealingInfo.Active = false;
     }
 
     public override int GetPriority() => 1;

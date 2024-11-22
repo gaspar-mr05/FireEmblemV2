@@ -12,7 +12,9 @@ public class DamageEffectInfo
         {
             { EffectDuration.FullRound, new DamageEffectStatus()},
             { EffectDuration.FirstAttack, new DamageEffectStatus()},
-            { EffectDuration.FollowUp, new DamageEffectStatus()}
+            { EffectDuration.FollowUp, new DamageEffectStatus()},
+            { EffectDuration.BeforeCombat, new DamageEffectStatus()},
+            { EffectDuration.AfterCombat, new DamageEffectStatus()}
         };
     }
 

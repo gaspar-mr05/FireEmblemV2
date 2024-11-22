@@ -16,13 +16,13 @@ public class AbsoluteDamageReductionEffectsManager: DamageEffectsManager
     public override int ApplyDamageEffects(double damage, RoundInfo roundInfo)
     {
         DamageEffectInfo absoluteDamageInfo =
-            Defender.EffectsSummary.AbsoluteDamageReductionEffectInfo;
+            Defender.EffectsSummary.AbsoluteDamageReductionInfo;
         
-        double newDamage = damage + absoluteDamageInfo.GetDamageInfo(EffectDuration.FullRound).Change;
+        double newDamage = damage + absoluteDamageInfo.GetDamageInfo(EffectDuration.FullRound).Damage;
         if (!roundInfo.UnitAttacksCount.HasUnitAttacked(Attacker))
-            newDamage += absoluteDamageInfo.GetDamageInfo(EffectDuration.FirstAttack).Change;
+            newDamage += absoluteDamageInfo.GetDamageInfo(EffectDuration.FirstAttack).Damage;
         if (roundInfo.AttackType is AttackType.FollowUpAttack)
-            newDamage += absoluteDamageInfo.GetDamageInfo(EffectDuration.FollowUp).Change;
+            newDamage += absoluteDamageInfo.GetDamageInfo(EffectDuration.FollowUp).Damage;
         newDamage = Math.Round(newDamage,9);
         return Convert.ToInt32(Math.Floor(newDamage));
     }

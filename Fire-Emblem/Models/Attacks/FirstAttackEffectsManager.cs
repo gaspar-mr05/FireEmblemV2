@@ -15,8 +15,8 @@ public class FirstAttackEffectsManager: AttackEffectsManager
 
     public override AttacksEffects GetAttackEffects()
     {
-        NormalEffectInfo attackerFirstAttackBonus = Attacker.EffectsSummary.FirstAttackBonusEffectInfo;
-        NormalEffectInfo defenderFirstAttackPenalty = Defender.EffectsSummary.FirstAttackPenaltyEffectInfo;
+        NormalEffectInfo attackerFirstAttackBonus = Attacker.EffectsSummary.FirstAttackBonusesInfo;
+        NormalEffectInfo defenderFirstAttackPenalty = Defender.EffectsSummary.FirstAttackPenaltiesInfo;
         
         int atkEffect = attackerFirstAttackBonus.GetEffectInfo("Atk").Active? 
             attackerFirstAttackBonus.GetEffectInfo("Atk").Change : 0;

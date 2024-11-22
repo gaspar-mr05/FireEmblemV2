@@ -16,7 +16,7 @@ public class PercentageDamageReductionEffectsManager: DamageEffectsManager
     public override int ApplyDamageEffects(double damage, RoundInfo roundInfo)
     {
         PercentageDamageEffectInfo percentageDamageInfo =
-            Defender.EffectsSummary.PercentageDamageReductionEffectInfo;
+            Defender.EffectsSummary.PercentageDamageReductionInfo;
         
         double newDamage = damage * (1 - percentageDamageInfo.GetPercentageReduction(EffectDuration.FullRound).Percentage);
         if (!roundInfo.UnitAttacksCount.HasUnitAttacked(Attacker))

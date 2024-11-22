@@ -5,19 +5,21 @@ namespace Fire_Emblem.Effects;
 
 public class EffectsSummary
 {
-    public NormalEffectInfo BonusEffectInfo = new();
-    public NormalEffectInfo PenaltyEffectInfo = new();
-    public NormalEffectInfo FirstAttackBonusEffectInfo = new();
-    public NormalEffectInfo FirstAttackPenaltyEffectInfo = new();
-    public NormalEffectInfo FollowUpBonusEffectInfo = new();
-    public NormalEffectInfo FollowUpPenaltyEffectInfo = new();
-    public NeutralizationEffectInfo BonusNeutralizationEffectInfo = new();
-    public NeutralizationEffectInfo PenaltyNeutralizationEffectInfo = new();
-    public DamageEffectInfo ExtraDamageEffectInfo = new();
-    public DamageEffectInfo AbsoluteDamageReductionEffectInfo = new();
-    public PercentageDamageEffectInfo PercentageDamageReductionEffectInfo = new();
-    public PercentageEffectStatus HealingEffectActive = new();
-    
+    public NormalEffectInfo BonusesInfo = new();
+    public NormalEffectInfo PenaltiesInfo = new();
+    public NormalEffectInfo FirstAttackBonusesInfo = new();
+    public NormalEffectInfo FirstAttackPenaltiesInfo = new();
+    public NormalEffectInfo FollowUpBonusesInfo = new();
+    public NormalEffectInfo FollowUpPenaltiesInfo = new();
+    public NeutralizationEffectInfo BonusNeutralizationsInfo = new();
+    public NeutralizationEffectInfo PenaltyNeutralizationsInfo = new();
+    public DamageEffectInfo ExtraDamageInfo = new();
+    public DamageEffectInfo AbsoluteDamageReductionInfo = new();
+    public PercentageDamageEffectInfo PercentageDamageReductionInfo = new();
+    public PercentageEffectStatus ActiveHealingInfo = new();
+    public DamageEffectInfo OutOfCombatDamageInfo = new();
+    public NegationEffectInfo NegationAttacksInfo = new();
+
 
 }
 

@@ -30,8 +30,8 @@ public class PenaltyEffect: NormalEffect
     private void RegisterEffect()
     {
         EffectsSummary effectsSummary = Unit.EffectsSummary;
-        if (effectsSummary.PenaltyEffectInfo.IsContainingStatName(StatName))
-            effectsSummary.PenaltyEffectInfo.SaveChange(StatName, Change);
+        if (effectsSummary.PenaltiesInfo.IsContainingStatName(StatName))
+            effectsSummary.PenaltiesInfo.SaveChange(StatName, Change);
         
     }
 }
