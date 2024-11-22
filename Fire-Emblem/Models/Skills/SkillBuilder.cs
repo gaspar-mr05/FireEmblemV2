@@ -912,6 +912,24 @@ public class SkillBuilder
             conditions.AddSingleCondition(new UnitUseWeaponType(rival, weapons));
             effectsConditions.AddEffectConditions(new NegationEffect(rival, AttackType.CounterAttack), conditions);
         }
+        else if (_skillName == "Surprise Attack")
+        {
+            Weapons weapons = new Weapons();
+            weapons.AddWeapons(["Bow"]);
+            conditions.AddSingleCondition(new UnitStartCombat(unit, _roundInfo));
+            conditions.AddSingleCondition(new UnitUseWeaponType(unit, weapons));
+            conditions.AddSingleCondition(new UnitUseWeaponType(rival, weapons));
+            effectsConditions.AddEffectConditions(new NegationEffect(rival, AttackType.CounterAttack), conditions);
+        }
+        else if (_skillName == "Hliðskjálf")
+        {
+            Weapons weapons = new Weapons();
+            weapons.AddWeapons(["Magic"]);
+            conditions.AddSingleCondition(new UnitStartCombat(unit, _roundInfo));
+            conditions.AddSingleCondition(new UnitUseWeaponType(unit, weapons));
+            conditions.AddSingleCondition(new UnitUseWeaponType(rival, weapons));
+            effectsConditions.AddEffectConditions(new NegationEffect(rival, AttackType.CounterAttack), conditions);
+        }
         else
         {
             throw new NoSkillException();

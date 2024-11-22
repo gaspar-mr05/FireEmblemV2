@@ -3,9 +3,9 @@ using Fire_Emblem.Effects;
 
 namespace Fire_Emblem.Combat;
 
-public class CurationManager
+public class HealingManager
 {
-    public static int CurateAttacker(Unit attacker, int damageReceived)
+    public static int HealAttacker(Unit attacker, int damageReceived)
     {
         EffectsSummary attackerEffectsSummary = attacker.EffectsSummary;
         int hpHealed = 0;

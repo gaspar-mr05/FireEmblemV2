@@ -22,7 +22,7 @@ public class AttackExecutor
         DamageCalculator damageCalculator = new DamageCalculator(attacker, defender, RoundInfo);
         int newDamage = damageCalculator.GetDamageWithEffects();
         defender.Stats.SetStat("HP",  Math.Max(defender.Stats.GetHp() - newDamage, 0)); 
-        int hpHealed = CurationManager.CurateAttacker(attacker, newDamage);
+        int hpHealed = HealingManager.HealAttacker(attacker, newDamage);
         RegisterAttack(attacker);
         AttackMessageGenerator attackMessageGenerator = new AttackMessageGenerator(attacker, defender, newDamage, hpHealed);
         return attackMessageGenerator.GenerateAttackMessage();
