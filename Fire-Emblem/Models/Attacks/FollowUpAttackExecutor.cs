@@ -13,32 +13,26 @@ public class FollowUpAttackExecutor : AttackExecutor
         : base(roundInfo)
     {
     }
-
+    
     public string ExecuteAttack(Unit attacker, Unit defender)
     {
-        string attackMessage = "";
         RoundInfo.AttackType = AttackType.FollowUpAttack;
-        if (RoundInfo.AreBothUnitsAlive())
-        {
-            
-            if (IsFollowUpPossible(attacker,defender))
-                return base.ExecuteAttack(attacker, defender);
-            else
-            {
-                if (IsNegatedCounterAttack(defender))
-                    return $"{attacker.CharacterInfo.Name} no puede hacer un follow up";
-            }
-            if (IsFollowUpPossible(defender, attacker))
-                return base.ExecuteAttack(defender, attacker);
-            
-            if (!IsFollowUpPossible(attacker, defender) && !IsFollowUpPossible(defender, attacker))
-                return "Ninguna unidad puede hacer un follow up";
-           
-        }
-        ApplyAfterCombatDamage(attacker);
-        ApplyAfterCombatDamage(defender);
-        return attackMessage;
+
+        if (!RoundInfo.AreBothUnitsAlive())
+            return string.Empty;
+
+        if (IsFollowUpPossible(attacker, defender))
+            return base.ExecuteAttack(attacker, defender);
+
+        if (IsNegatedCounterAttack(defender))
+            return $"{attacker.CharacterInfo.Name} no puede hacer un follow up";
+
+        if (IsFollowUpPossible(defender, attacker))
+            return base.ExecuteAttack(defender, attacker);
+
+        return "Ninguna unidad puede hacer un follow up";
     }
+
 
     private bool IsFollowUpPossible(Unit attacker, Unit defender) =>
         attacker.Stats.GetSpd() - defender.Stats.GetSpd() >= 5 && defender.Stats.GetHp() > 0 && 
