@@ -15,7 +15,7 @@ public class HealingEffect: Effect
     {
         EffectsSummary effectsSummary = Unit.EffectsSummary;
         effectsSummary.HealingEffectActive.Active = true;
-        effectsSummary.HealingEffectActive.Percentage = _percentageToHeal;
+        effectsSummary.HealingEffectActive.Percentage += _percentageToHeal;
 
     }
 

@@ -25,20 +25,11 @@ public class RoundStartView
     public void ShowRoundStart()
     {
         _view.WriteLine($"Round {_roundNumber}: {_attacker.CharacterInfo.Name} (Player {_playerWhoStarts}) comienza");
+        ShowAdvantageMessage();
         ShowHealingEffectMessage(_attacker);
         ShowHealingEffectMessage(_defender);
-        ShowAdvantageMessage();
     }
     
-    private void ShowHealingEffectMessage(Unit unit)
-    {
-        EffectsSummary unitEffectsSummary = unit.EffectsSummary;
-        if (unitEffectsSummary.HealingEffectActive.Active)
-        {
-            _view.WriteLine($"{unit.CharacterInfo.Name} recuperará HP igual al " + 
-                            $"{unitEffectsSummary.HealingEffectActive.Percentage} del daño realizado en cada ataque");
-        }
-    }
 
 
     private void ShowAdvantageMessage()
@@ -54,6 +45,17 @@ public class RoundStartView
                   $"a {_defender.CharacterInfo.Name} ({weaponToDefend})"
                 : $"{_defender.CharacterInfo.Name} ({weaponToDefend}) tiene ventaja con respecto " +
                   $"a {_attacker.CharacterInfo.Name} ({weaponToAttack})");
+    }
+    
+    private void ShowHealingEffectMessage(Unit unit)
+    {
+        EffectsSummary unitEffectsSummary = unit.EffectsSummary;
+        if (unitEffectsSummary.HealingEffectActive.Active)
+        {
+            int percentageToShow = (int)(unitEffectsSummary.HealingEffectActive.Percentage * 100);
+            _view.WriteLine($"{unit.CharacterInfo.Name} recuperará HP igual al " + 
+                            $"{percentageToShow}% del daño realizado en cada ataque");
+        }
     }
 
 

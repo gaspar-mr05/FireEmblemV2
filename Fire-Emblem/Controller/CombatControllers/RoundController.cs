@@ -13,6 +13,7 @@ public class RoundController
     private int _roundNumber;
     private UnitSelector _unitSelector;
     private TurnsManager _turnsManager;
+    private SkillsManager _skillsManager;
 
     public RoundController(View view)
     {
@@ -34,8 +35,11 @@ public class RoundController
     {
         (Unit attacker, Unit defender) = SelectUnits(teamsInfo);
         InitializeEffects(attacker, defender);
+        RoundInfo roundInfo = new RoundInfo(attacker, defender);
+        _skillsManager = new SkillsManager(roundInfo);
+        _skillsManager.ActivateSkills();
+        AttacksController attacksController = CreateAttacksController(attacker, defender, roundInfo);
         ShowRoundStartView(attacker, defender);
-        AttacksController attacksController = CreateAttacksController(attacker, defender);
 
         return (attacksController, attacker, defender);
     }
@@ -58,9 +62,9 @@ public class RoundController
     }
     
 
-    private AttacksController CreateAttacksController(Unit attacker, Unit defender)
+    private AttacksController CreateAttacksController(Unit attacker, Unit defender, RoundInfo roundInfo)
     {
-        return new AttacksController(_view, attacker, defender, new RoundInfo(attacker, defender));
+        return new AttacksController(_view, attacker, defender, roundInfo);
     }
 
     
@@ -70,6 +74,7 @@ public class RoundController
         roundSummaryView.ShowRoundSummary();
         _roundNumber++;
         _turnsManager.SwitchTurns();
+        _skillsManager.DeactivateSkills();
         return _roundNumber;
     }
 }

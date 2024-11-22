@@ -20,13 +20,12 @@ public class AttackMessageGenerator
 
     public string GenerateAttackMessage()
     {
-        string healingMessage;
         string damageMessage = $"{_attacker.CharacterInfo.Name} ataca a {_defender.CharacterInfo.Name} con {_damage} de daño" ;
         if (_hpHealed > 0)
         {
-            healingMessage = $"{_attacker.CharacterInfo.Name} recupera {_hpHealed} de HP luego de atacar y queda con" +
-                             $"{_attacker.Stats.GetHp()} HP";
-            return healingMessage + "\n" + damageMessage;
+            string healingMessage = $"{_attacker.CharacterInfo.Name} recupera {_hpHealed} HP luego de atacar y queda con" +
+                             $" {_attacker.Stats.GetHp()} HP.";
+            return damageMessage + "\n" + healingMessage;
             
         }
         return damageMessage;

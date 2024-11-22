@@ -20,7 +20,7 @@ public class AttackExecutor
         DamageCalculator damageCalculator = new DamageCalculator(attacker, defender, RoundInfo);
         int newDamage = damageCalculator.GetDamageWithEffects();
         defender.Stats.SetStat("HP",  Math.Max(defender.Stats.GetHp() - newDamage, 0)); 
-        int hpHealed = CurateAttacker(defender, newDamage);
+        int hpHealed = CurateAttacker(attacker, newDamage);
         RegisterAttack(attacker);
         AttackMessageGenerator attackMessageGenerator = new AttackMessageGenerator(attacker, defender, newDamage, hpHealed);
         return attackMessageGenerator.GenerateAttackMessage();
@@ -40,9 +40,9 @@ public class AttackExecutor
 
     }
     
-    private bool CanBeHealed(Unit defender, EffectsSummary attackerEffectsSummary)
+    private bool CanBeHealed(Unit attacker, EffectsSummary attackerEffectsSummary)
     {
-        return attackerEffectsSummary.HealingEffectActive.Active && defender.Stats.GetHp() > 0;
+        return attackerEffectsSummary.HealingEffectActive.Active && attacker.Stats.GetHp() > 0;
     }
 
     private void RegisterAttack(Unit attacker)

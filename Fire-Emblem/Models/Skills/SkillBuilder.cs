@@ -885,7 +885,22 @@ public class SkillBuilder
                 extraConditions);
             effectsConditions.AddEffectConditions(new DivineRecreationEffect(unit, rival, _roundInfo), 
                 extraConditions);
-            
+        }
+        else if (_skillName == "Sol")
+        {
+            effectsConditions.AddEffectConditions(new HealingEffect(unit, 0.25), conditions);
+        }
+        else if (_skillName == "Nosferatu")
+        {
+            Weapons weapons = new Weapons();
+            weapons.AddWeapons(["Magic"]);
+            conditions.AddSingleCondition(new UnitUseWeaponType(unit, weapons));
+            effectsConditions.AddEffectConditions(new HealingEffect(unit, 0.5), conditions);
+        }
+        else if (_skillName == "Solar Brace")
+        {
+            conditions.AddSingleCondition(new UnitStartCombat(unit, _roundInfo));
+            effectsConditions.AddEffectConditions(new HealingEffect(unit, 0.5),conditions);
         }
         else
         {

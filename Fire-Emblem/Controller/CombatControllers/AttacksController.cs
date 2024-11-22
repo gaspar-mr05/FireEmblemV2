@@ -12,7 +12,6 @@ public class AttacksController
     private FirstAttackExecutor _firstAttackExecutor;
     private CounterAttackExecutor _counterAttackExecutor;
     private FollowUpAttackExecutor _followUpAttackExecutor;
-    private SkillsManager _skillsManager;
     
     public AttacksController(View view, Unit attacker, Unit defender, RoundInfo roundInfo)
     {
@@ -23,20 +22,18 @@ public class AttacksController
         _firstAttackExecutor = new FirstAttackExecutor(roundInfo);
         _counterAttackExecutor = new CounterAttackExecutor(roundInfo);
         _followUpAttackExecutor = new FollowUpAttackExecutor(roundInfo);
-        _skillsManager = new SkillsManager(roundInfo);
+
 
     }
     
     public void ExecuteAllAttacks()
     {
-
-        _skillsManager.ActivateSkills();
+        
         string firstAttackMessage = _firstAttackExecutor.ExecuteAttack(_attacker, _defender);
         string counterAttackMessage = _counterAttackExecutor.ExecuteAttack(_attacker, _defender);
         string followUpMessage = _followUpAttackExecutor.ExecuteAttack(_attacker, _defender);
         ProcessAttackMessages(firstAttackMessage, counterAttackMessage, followUpMessage);
         RegisterAttacks();
-        _skillsManager.DeactivateSkills();
 
     }
 
