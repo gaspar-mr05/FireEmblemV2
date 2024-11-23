@@ -13,10 +13,19 @@ public class AttacksView
         _effectSummaryView = new EffectSummaryView(view, attacker, defender);
     }
 
-    public void ShowAttacksMessages(List<string> attackMessages)
+    public void ShowAttacksMessages(string[][] attackMessages)
     {
         _effectSummaryView.ShowEffectsSummary();
-        for (int i = 0; i < attackMessages.Count; i++)
+        for (int i = 0; i < attackMessages.Length; i++)
+        {
+            ShowAttacksMessages(attackMessages[i]);
+        }
+    }
+
+    private void ShowAttacksMessages(string[] attackMessages)
+    {
+        
+        for (int i = 0; i < attackMessages.Length; i++)
         {
             string attackMessage = attackMessages[i];
             if (!(attackMessage == ""))
@@ -24,6 +33,7 @@ public class AttacksView
                 _view.WriteLine($"{attackMessage}");
             }
         }
+        
     }
     
 }

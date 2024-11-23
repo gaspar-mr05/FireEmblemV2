@@ -3,7 +3,7 @@ using Fire_Emblem.Effects;
 
 namespace Fire_Emblem.Combat;
 
-public class HealingManager
+public class HealingApplier
 {
     public static int HealAttacker(Unit attacker, int damageReceived)
     {

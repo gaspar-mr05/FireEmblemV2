@@ -21,9 +21,9 @@ public class OutOfCombatDamageEffect: DamageEffect
     public override void ApplyEffect()
     {
         EffectsSummary effectsSummary = Unit.EffectsSummary;
-        DamageEffectStatus damageEffectStatus = new DamageEffectStatus();
+        DamageEffectStatus damageEffectStatus = effectsSummary.OutOfCombatDamageInfo.GetDamageInfo(EffectDuration);
         damageEffectStatus.Active = true;
-        damageEffectStatus.Damage = _damage;
+        damageEffectStatus.Damage += _damage;
         effectsSummary.OutOfCombatDamageInfo.SetDamageInfo(EffectDuration, damageEffectStatus);
     }
 

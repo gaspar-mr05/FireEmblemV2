@@ -202,17 +202,7 @@ public class EffectSummaryView
         }
     }
 
-    private void ShowDamageOutOfCombat(Unit unit, EffectDuration effectDuration)
-    {
-        EffectsSummary effectsSummary = unit.EffectsSummary;
-        DamageEffectInfo damageEffectInfo = effectsSummary.OutOfCombatDamageInfo;
-        DamageEffectStatus damageEffectStatus = damageEffectInfo.GetDamageInfo(effectDuration);
-        if (damageEffectStatus.Active)
-        {
-            if (effectDuration == EffectDuration.AfterCombat)
-                _view.WriteLine($"{unit.CharacterInfo.Name} recibe {damageEffectStatus.Damage} de daño despues del combate");
-        }
-    }
+
     private void ShowHealingEffectMessage(Unit unit)
     {
         EffectsSummary unitEffectsSummary = unit.EffectsSummary;

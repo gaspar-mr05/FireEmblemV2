@@ -24,5 +24,6 @@ public class DamageEffectsApplier
         newDamage = _absoluteDamageReductionEffectsManager.ApplyDamageEffects(newDamage, roundInfo);
         return newDamage;
     }
+    
 
 }

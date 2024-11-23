@@ -1,3 +1,6 @@
+using Fire_Emblem.Conditions;
+using Fire_Emblem.Effects;
+
 namespace Fire_Emblem.Combat;
 using Fire_Emblem_View;
 using Fire_Emblem.Characters;
@@ -6,46 +9,51 @@ using Fire_Emblem.ViewPrinter;
 
 public class AttacksController
 {
-    private Unit _attacker;
-    private Unit _defender;
-    private AttacksView _attacksView;
-    private FirstAttackExecutor _firstAttackExecutor;
-    private CounterAttackExecutor _counterAttackExecutor;
-    private FollowUpAttackExecutor _followUpAttackExecutor;
-    
+    private readonly Unit _attacker;
+    private readonly Unit _defender;
+    private readonly AttacksView _attacksView;
+    private readonly FirstAttackExecutor _firstAttackExecutor;
+    private readonly CounterAttackExecutor _counterAttackExecutor;
+    private readonly FollowUpAttackExecutor _followUpAttackExecutor;
+
     public AttacksController(View view, Unit attacker, Unit defender, RoundInfo roundInfo)
     {
-        
         _attacker = attacker;
         _defender = defender;
         _attacksView = new AttacksView(view, attacker, defender);
         _firstAttackExecutor = new FirstAttackExecutor(roundInfo);
         _counterAttackExecutor = new CounterAttackExecutor(roundInfo);
         _followUpAttackExecutor = new FollowUpAttackExecutor(roundInfo);
-
-
     }
-    
+
     public void ExecuteAllAttacks()
     {
-        
+        string[] beforeCombatMessages = DamageOutOfCombatManager.ApplyDamageOutOfCombat(_attacker, _defender,
+            EffectDuration.BeforeCombat);
+        string[] attackMessages = ExecuteCombatAttacks();
+        string[] afterCombatMessages = DamageOutOfCombatManager.ApplyDamageOutOfCombat(_attacker, _defender, EffectDuration.AfterCombat);
+
+        string[][] allMessages = new []{beforeCombatMessages, attackMessages, afterCombatMessages};
+        ProcessAttackMessages(allMessages);
+        RegisterAttacks();
+    }
+
+
+
+    private string[] ExecuteCombatAttacks()
+    {
         string firstAttackMessage = _firstAttackExecutor.ExecuteAttack(_attacker, _defender);
         string counterAttackMessage = _counterAttackExecutor.ExecuteAttack(_attacker, _defender);
         string followUpMessage = _followUpAttackExecutor.ExecuteAttack(_attacker, _defender);
-        ProcessAttackMessages(firstAttackMessage, counterAttackMessage, followUpMessage);
-        RegisterAttacks();
 
+        return new[] { firstAttackMessage, counterAttackMessage, followUpMessage };
     }
+    
+    
 
- 
-
-    private void ProcessAttackMessages(string firstAttackMessage, string counterAttackMessage, string followUpMessage)
+    private void ProcessAttackMessages(string[][] attackMessages)
     {
-        
-        List<string> attackMessages = new List<string>{firstAttackMessage, counterAttackMessage, followUpMessage};
-        
         _attacksView.ShowAttacksMessages(attackMessages);
-        
     }
 
     private void RegisterAttacks()

@@ -934,6 +934,24 @@ public class SkillBuilder
                 Convert.ToInt32(rival.CharacterInfo.Def))), EffectDuration.FullRound), conditions);
             effectsConditions.AddEffectConditions(new HealingEffect(unit, 0.5), extraConditions);
         }
+        else if (_skillName == "Fury")
+        {
+            effectsConditions.AddEffectConditions(new BonusEffect(unit, "Atk", 4), conditions);
+            effectsConditions.AddEffectConditions(new BonusEffect(unit, "Def", 4), conditions);
+            effectsConditions.AddEffectConditions(new BonusEffect(unit, "Res", 4), conditions);
+            effectsConditions.AddEffectConditions(new BonusEffect(unit, "Spd", 4), conditions);
+            effectsConditions.AddEffectConditions(new OutOfCombatDamageEffect(unit, -8, EffectDuration.AfterCombat), 
+                conditions);
+        }
+        else if (_skillName == "Resonance")
+        {
+            weapons.AddWeapons(["Magic"]);
+            conditions.AddSingleCondition(new UnitUseWeaponType(unit, weapons));
+            conditions.AddSingleCondition(new HpRespectNumber(unit, 2, ComparisonType.Greater));
+            effectsConditions.AddEffectConditions(new OutOfCombatDamageEffect(unit, -1, EffectDuration.BeforeCombat)
+            , conditions);
+            effectsConditions.AddEffectConditions(new ExtraDamageEffect(unit, 3, EffectDuration.FullRound), conditions);
+        }
         else
         {
             throw new NoSkillException();
