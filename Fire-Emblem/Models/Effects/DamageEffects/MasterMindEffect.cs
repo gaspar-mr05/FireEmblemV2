@@ -29,7 +29,6 @@ public class MasterMindEffect: DamageEffect
     {
         int unitBonuses = Unit.EffectsSummary.BonusesInfo.GetAllEffects();
         int rivalPenalties = _rival.EffectsSummary.PenaltiesInfo.GetAllEffects();
-        Console.WriteLine($"unitbonuses : {unitBonuses}");
         _damage = (int)Math.Truncate(0.8 * unitBonuses) + (int)Math.Truncate(0.8 * rivalPenalties);
 
     }

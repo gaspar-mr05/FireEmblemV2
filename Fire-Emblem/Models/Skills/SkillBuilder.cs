@@ -543,14 +543,16 @@ public class SkillBuilder
         {
             conditions.AddSingleCondition(new StatComparison(unit, rival, "Res", "Res", 0, 
             ComparisonType.StrictlyGreater));
-            effectsConditions.AddEffectConditions(new StatDifferenceDamageReduction(unit, rival, "Res", EffectDuration.FullRound, 4), 
+            effectsConditions.AddEffectConditions(new StatDifferenceDamageReduction(unit, rival, "Res", 
+                    EffectDuration.FullRound, 4), 
                 conditions);
         }
         else if (_skillName == "Dodge")
         {
             conditions.AddSingleCondition(new StatComparison(unit, rival, "Spd", "Spd", 0, 
             ComparisonType.StrictlyGreater));
-            effectsConditions.AddEffectConditions(new StatDifferenceDamageReduction(unit, rival, "Spd", EffectDuration.FullRound, 4), 
+            effectsConditions.AddEffectConditions(new StatDifferenceDamageReduction(unit, rival, "Spd", 
+                    EffectDuration.FullRound, 4), 
                 conditions);
         
         }
@@ -628,7 +630,8 @@ public class SkillBuilder
             weapons.AddWeapons(["Sword", "Axe", "Lance", "Bow"]);
             extraConditions.AddSingleCondition(new UnitStartCombat(unit, _roundInfo));
             extraConditions.AddSingleCondition(new UnitUseWeaponType(unit, weapons));
-            effectsConditions.AddEffectConditions(new ExtraDamageBasedOnStat(unit, rival, "Def", 0.3, EffectDuration.FullRound), 
+            effectsConditions.AddEffectConditions(new ExtraDamageBasedOnStat(unit, rival, "Def", 0.3, EffectDuration.FullRound, 
+                    BasedOn.Rival), 
                 extraConditions);
         }
         else if (_skillName == "Bravery")
@@ -641,8 +644,8 @@ public class SkillBuilder
             extraConditions.AddSingleCondition(new StatComparison(unit, rival, "Spd", "Spd", 0, 
             ComparisonType.StrictlyGreater));
             effectsConditions.AddEffectConditions(new ExtraDamageEffect(unit, 7, EffectDuration.FullRound), conditions);
-            effectsConditions.AddEffectConditions(new StatDifferenceDamageReduction(unit, rival, "Spd", EffectDuration.FullRound, 4), 
-                extraConditions);
+            effectsConditions.AddEffectConditions(new StatDifferenceDamageReduction(unit, rival, "Spd", 
+                    EffectDuration.FullRound, 4), extraConditions);
         }
         
         else if (_skillName == "Moon-Twin Wing")
@@ -655,8 +658,8 @@ public class SkillBuilder
             extraConditions.AddSingleCondition(new HpRespectPercentage(unit, 0.25, ComparisonType.Greater, _roundInfo));
             effectsConditions.AddEffectConditions(new PenaltyEffect(rival, "Atk", 5), conditions);
             effectsConditions.AddEffectConditions(new PenaltyEffect(rival, "Spd", 5), conditions);
-            effectsConditions.AddEffectConditions(new StatDifferenceDamageReduction(unit, rival, "Spd", EffectDuration.FullRound, 4), 
-                extraConditions);
+            effectsConditions.AddEffectConditions(new StatDifferenceDamageReduction(unit, rival, "Spd", 
+                    EffectDuration.FullRound, 4), extraConditions);
 
         }
         else if (_skillName == "Blue Skies")
@@ -741,7 +744,8 @@ public class SkillBuilder
             extraConditions.AddSingleCondition(new UnitStartCombat(rival, _roundInfo));
             effectsConditions.AddEffectConditions(new BonusEffect(unit, "Atk", 6), conditions);
             effectsConditions.AddEffectConditions(new BonusEffect(unit, "Spd", 6), conditions);
-            effectsConditions.AddEffectConditions(new PercentageDamageReduction(unit, 0.1, EffectDuration.FollowUp), extraConditions);
+            effectsConditions.AddEffectConditions(new PercentageDamageReduction(unit, 0.1, EffectDuration.FollowUp), 
+                extraConditions);
             
         }
         else if (_skillName == "Sturdy Stance")
@@ -792,7 +796,8 @@ public class SkillBuilder
         else if (_skillName == "Poetic Justice")
         {
             effectsConditions.AddEffectConditions(new PenaltyEffect(rival, "Spd", 4), conditions);
-            effectsConditions.AddEffectConditions(new ExtraDamageBasedOnStat(unit, rival, "Atk", 0.15, EffectDuration.FullRound), 
+            effectsConditions.AddEffectConditions(new ExtraDamageBasedOnStat(unit, rival, "Atk", 0.15, EffectDuration.FullRound, 
+                    BasedOn.Rival), 
                 extraConditions);
         }
         else if (_skillName == "Laguz Friend")
@@ -819,7 +824,8 @@ public class SkillBuilder
             
             extraConditions.AddSingleCondition(new StatComparison(unit, rival, 
                 "Atk", "Res", 0, ComparisonType.StrictlyGreater));
-            effectsConditions.AddEffectConditions(new PercentageDamageReduction(unit, 0.25, EffectDuration.FirstAttack), conditions);
+            effectsConditions.AddEffectConditions(new PercentageDamageReduction(unit, 0.25, EffectDuration.FirstAttack), 
+                conditions);
             effectsConditions.AddEffectConditions(new DragonWrathEffect(unit, rival, "Atk", "Res", EffectDuration.FirstAttack), 
                 extraConditions);
         }
@@ -932,8 +938,9 @@ public class SkillBuilder
             conditions.AddSingleCondition(new UnitStartCombat(unit, _roundInfo));
             conditions.AddSingleCondition(new UnitUseWeaponType(unit, weapons));
             extraConditions.AddSingleCondition(new UnitStartCombat(unit, _roundInfo));
-            effectsConditions.AddEffectConditions(new ExtraDamageEffect(unit, Convert.ToInt32(Math.Floor(0.3 * 
-                Convert.ToInt32(rival.CharacterInfo.Def))), EffectDuration.FullRound), conditions);
+            effectsConditions.AddEffectConditions(new ExtraDamageBasedOnStat(unit, rival, "Def", 0.3, EffectDuration.FullRound, 
+                    BasedOn.Rival),
+                conditions);
             effectsConditions.AddEffectConditions(new HealingEffect(unit, 0.5), extraConditions);
         }
         else if (_skillName == "Resonance")
@@ -1033,7 +1040,8 @@ public class SkillBuilder
         else if (_skillName == "True Dragon Wall")
         {
             weapons.AddWeapons(["Magic"]);
-            conditions.AddSingleCondition(new StatComparison(unit, rival, "Res", "Res", 0, ComparisonType.Greater));
+            conditions.AddSingleCondition(new StatComparison(unit, rival, "Res", "Res", 0, 
+                ComparisonType.Greater));
             extraConditions.AddSingleCondition(new AllyWithWeaponType(unit, weapons));
             effectsConditions.AddEffectConditions(new StatDifferenceDamageReduction(unit, rival, "Res", 
                     EffectDuration.FirstAttack, 6), conditions);
@@ -1044,8 +1052,8 @@ public class SkillBuilder
         else if (_skillName == "Scendscale")
         {
             extraConditions.AddSingleCondition(new UnitHasAttacked(unit, _roundInfo));
-            effectsConditions.AddEffectConditions(new ExtraDamageEffect(unit, Convert.ToInt32(Math.Floor(0.25 * 
-                Convert.ToInt32(rival.CharacterInfo.Atk))), EffectDuration.FullRound), conditions);
+            effectsConditions.AddEffectConditions(new ExtraDamageBasedOnStat(unit, rival, "Atk", 0.25, 
+                EffectDuration.FullRound, BasedOn.Unit), conditions);
             effectsConditions.AddEffectConditions(new AfterCombatDamageEffect(unit, -7), extraConditions);
             
         }
@@ -1058,6 +1066,28 @@ public class SkillBuilder
             effectsConditions.AddEffectConditions(new BonusEffect(unit, "Atk", 9), extraConditions);
             effectsConditions.AddEffectConditions(new BonusEffect(unit, "Spd", 9), extraConditions);
             effectsConditions.AddEffectConditions(new MasterMindEffect(unit, rival, EffectDuration.FullRound), extraConditions);
+        }
+        else if (_skillName == "Bewitching Tome")
+        {
+            weapons.AddWeapons(["Magic", "Bow"]);
+            OrConditions orConditions = new OrConditions();
+            orConditions.AddCondition(new UnitStartCombat(unit, _roundInfo));
+            orConditions.AddCondition(new UnitUseWeaponType(rival, weapons));
+            conditions.AddOrConditions(orConditions);
+            effectsConditions.AddEffectConditions(new BewitchingTomeEffect(unit, rival, EffectDuration.BeforeCombat),
+                conditions);
+            effectsConditions.AddEffectConditions(new BonusEffect(unit, "Atk", 5), conditions);
+            effectsConditions.AddEffectConditions(new BonusEffect(unit, "Spd", 5), conditions);
+            effectsConditions.AddEffectConditions(new BonusEffect(unit, "Def", 5), conditions);
+            effectsConditions.AddEffectConditions(new BonusEffect(unit, "Res", 5), conditions);
+            effectsConditions.AddEffectConditions(new BonusEffect(unit, "Atk", Convert.ToInt32(
+                Math.Floor(0.2 * unit.Stats.GetSpd()))), conditions);
+            effectsConditions.AddEffectConditions(new BonusEffect(unit, "Spd", Convert.ToInt32(
+                Math.Floor(0.2 * unit.Stats.GetSpd()))), conditions);
+            effectsConditions.AddEffectConditions(new PercentageDamageReduction(unit, 0.3, EffectDuration.FirstAttack), 
+                conditions);
+            effectsConditions.AddEffectConditions(new AfterCombatDamageEffect(unit, 7), conditions);
+
         }
         else
         {

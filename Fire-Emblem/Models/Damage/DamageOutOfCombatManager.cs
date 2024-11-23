@@ -45,6 +45,8 @@ public static class DamageOutOfCombatManager
 
     private static string GenerateMessage(Unit unit, EffectDuration effectDuration, int damage, int newHp)
     {
+        if (damage == 0)
+            return string.Empty;
         string damageType = effectDuration == EffectDuration.AfterCombat ? "despues del combate" : "antes de iniciar el combate";
         string finalHp = effectDuration == EffectDuration.AfterCombat ? "" : $" y queda con {newHp} HP";
         int absoluteDamage = Math.Abs(damage);
