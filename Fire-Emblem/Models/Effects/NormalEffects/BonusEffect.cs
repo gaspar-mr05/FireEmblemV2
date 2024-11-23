@@ -26,6 +26,7 @@ public class BonusEffect : NormalEffect
     {
         ActiveEffectsInfo activeEffectsInfo = Unit.ActiveEffectsInfo;
         Unit.Stats.AddChange(StatName, -Change);
+        Unit.EffectsSummary.BonusesInfo.SetActiveFalse(StatName);
         activeEffectsInfo.BonusEffects.RemoveEffect(this);
     }
 
@@ -33,7 +34,10 @@ public class BonusEffect : NormalEffect
     {
         EffectsSummary effectsSummary = Unit.EffectsSummary;
         if (effectsSummary.BonusesInfo.IsContainingStatName(StatName))
+        {
             effectsSummary.BonusesInfo.SaveChange(StatName, Change);
+            effectsSummary.BonusesInfo.SetActiveTrue(StatName);
+        }
     }
     
 }

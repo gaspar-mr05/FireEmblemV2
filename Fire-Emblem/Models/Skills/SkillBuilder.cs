@@ -950,8 +950,8 @@ public class SkillBuilder
         {
             weapons.AddWeapons(["Magic"]);
             conditions.AddSingleCondition(new UnitUseWeaponType(unit, weapons));
-            effectsConditions.AddEffectConditions(new PenaltyEffect(unit, "Res", Convert.ToInt32(Math.Floor(
-                    0.2 * unit.Stats.GetRes()))),
+            effectsConditions.AddEffectConditions(new PenaltyEffect(rival, "Res", Convert.ToInt32(Math.Floor(
+                    0.2 * rival.Stats.GetRes()))),
                 conditions);
             effectsConditions.AddEffectConditions(new HealingEffect(unit, 0.5), conditions);
         }

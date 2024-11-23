@@ -48,7 +48,8 @@ public class NormalEffectInfo
         int sum = 0;
         foreach (KeyValuePair<string, StatEffectStatus> effect in _normalEffectInfo)
         {
-            sum += Math.Abs(effect.Value.Change);
+            if (effect.Value.Active)
+                sum += Math.Abs(effect.Value.Change);
         }
 
         return sum;
