@@ -19,6 +19,4 @@ public class PercentageDamageEffectInfo
     public PercentageEffectStatus GetPercentageReduction(EffectDuration effectDuration)
         => _percentageDamageEffectInfo[effectDuration];
     
-    public void SetPercentageReduction(EffectDuration effectDuration, PercentageEffectStatus percentageReduction)
-        => _percentageDamageEffectInfo[effectDuration] = percentageReduction;
 }

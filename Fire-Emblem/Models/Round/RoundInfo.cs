@@ -1,27 +1,30 @@
 using Fire_Emblem.Conditions;
+using Fire_Emblem.Models.Unit;
 
 namespace Fire_Emblem.Combat;
 using Fire_Emblem.Characters;
 
 public class RoundInfo
 {
-    public Unit UnitWhoStart;
-    public Unit UnitWhoNotStart;
+    public Unit Attacker;
+    public Unit Defender;
+    public InitialUnitStats InitialUnitStats;
     public UnitAttacksCount UnitAttacksCount;
     public AttackType AttackType;
 
-    public RoundInfo(Unit unitWhoStart, Unit unitWhoNotStart)
+    public RoundInfo(Unit attacker, Unit defender)
     {
         
-        UnitWhoStart = unitWhoStart;
-        UnitWhoNotStart = unitWhoNotStart;
-        UnitAttacksCount = new UnitAttacksCount(unitWhoStart, unitWhoNotStart);
+        Attacker = attacker;
+        Defender = defender;
+        InitialUnitStats = new InitialUnitStats(attacker, defender);
+        UnitAttacksCount = new UnitAttacksCount(attacker, defender);
 
     }
     
     public bool AreBothUnitsAlive()
     {
-        if (UnitWhoStart.IsAlive() && UnitWhoNotStart.IsAlive())
+        if (Attacker.IsAlive() && Defender.IsAlive())
             return true;
         return false;
     }
@@ -29,7 +32,7 @@ public class RoundInfo
 
     public bool IsRoundStart()
     {
-        return !UnitAttacksCount.HasUnitAttacked(UnitWhoStart) && !UnitAttacksCount.HasUnitAttacked(UnitWhoNotStart);
+        return !UnitAttacksCount.HasUnitAttacked(Attacker) && !UnitAttacksCount.HasUnitAttacked(Defender);
     }
     
 

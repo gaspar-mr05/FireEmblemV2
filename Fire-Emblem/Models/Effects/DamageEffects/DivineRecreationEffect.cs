@@ -23,7 +23,7 @@ public class DivineRecreationEffect: DamageEffect
         int damageWithoutReduction = Convert.ToInt32(Math.Floor(damageCalculator.CalculateDamage()));
         ExtraDamageEffect extraDamageEffect;
         int reduction = -1 * (CalculateDamageReduction(damageWithoutReduction));
-        if (_roundInfo.UnitWhoStart == Unit)
+        if (_roundInfo.Attacker == Unit)
             extraDamageEffect = new ExtraDamageEffect(Unit, reduction, EffectDuration.FollowUp);
         else 
             extraDamageEffect = new ExtraDamageEffect(Unit, reduction, EffectDuration.FirstAttack);

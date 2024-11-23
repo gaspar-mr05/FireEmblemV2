@@ -31,7 +31,5 @@ public class NeutralizationEffectInfo
     
     public void SetActiveTrue(string statName)
         => _neutralizationEffectInfo[statName] = true;
-
-    public void SetActiveFalse(string statName)
-        => _neutralizationEffectInfo[statName] = false;
+    
 }

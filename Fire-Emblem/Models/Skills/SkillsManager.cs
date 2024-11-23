@@ -19,12 +19,12 @@ public class SkillsManager
     {
         _roundInfo = roundInfo;
         UnitSkillsBuilder unitSkillsBuilder = new UnitSkillsBuilder(roundInfo);
-        _attackerSkillsCollection = unitSkillsBuilder.BuildSkills(_roundInfo.UnitWhoStart, _roundInfo.UnitWhoNotStart);
-        _defenderSkillsCollection = unitSkillsBuilder.BuildSkills(_roundInfo.UnitWhoNotStart, _roundInfo.UnitWhoStart);
+        _attackerSkillsCollection = unitSkillsBuilder.BuildSkills(_roundInfo.Attacker, _roundInfo.Defender);
+        _defenderSkillsCollection = unitSkillsBuilder.BuildSkills(_roundInfo.Defender, _roundInfo.Attacker);
 
     }
 
-    public void ActivateSkills()
+    public void ActivateEffects()
     {
         int maxPriority = 6;
         for (int priority = 1; priority <= maxPriority; priority++)
@@ -35,10 +35,10 @@ public class SkillsManager
         }
     }
     
-    public void DeactivateSkills()
+    public void DeactivateEffects()
     {
-        RevertEffects(_roundInfo.UnitWhoStart);
-        RevertEffects(_roundInfo.UnitWhoNotStart);
+        RevertEffects(_roundInfo.Attacker);
+        RevertEffects(_roundInfo.Defender);
     }
 
     private void RevertEffects(Unit unit)
@@ -47,6 +47,15 @@ public class SkillsManager
         EffectsCollection penaltyEffects = unit.ActiveEffectsInfo.PenaltyEffects;
         bonusEffects.RevertEffects();
         penaltyEffects.RevertEffects();
+    }
+
+    public void ActivateAfterCombatEffects()
+    {
+        int afterCombatPriority = 7;
+        _defenderSkillsCollection.ApplyEffects(afterCombatPriority);
+        _attackerSkillsCollection.ApplyEffects(afterCombatPriority);
+        
+
     }
 
 

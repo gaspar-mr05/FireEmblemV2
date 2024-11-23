@@ -20,10 +20,7 @@ public class DamageEffectInfo
 
     public DamageEffectStatus GetDamageInfo(EffectDuration effectDuration)
         => _damageEffectInfo[effectDuration];
-
-    public void SetDamageInfo(EffectDuration effectDuration, DamageEffectStatus damageInfo)
-        => _damageEffectInfo[effectDuration] = damageInfo;
-
+    
 
 
 }

@@ -27,7 +27,7 @@ public class RoundController
     public void ExecuteRound(TeamsInfo teamsInfo)
     {
          (AttacksController attacksManager, Unit attacker, Unit defender) = StartRound(teamsInfo);
-        attacksManager.ExecuteAllAttacks();
+        attacksManager.ExecuteAllAttacks(_skillsManager);
         _roundNumber = FinishRound(attacker, defender);
     }
     
@@ -37,7 +37,7 @@ public class RoundController
         InitializeEffects(attacker, defender);
         RoundInfo roundInfo = new RoundInfo(attacker, defender);
         _skillsManager = new SkillsManager(roundInfo);
-        _skillsManager.ActivateSkills();
+        _skillsManager.ActivateEffects();
         AttacksController attacksController = CreateAttacksController(attacker, defender, roundInfo);
         ShowRoundStartView(attacker, defender);
 
@@ -74,7 +74,7 @@ public class RoundController
         roundSummaryView.ShowRoundSummary();
         _roundNumber++;
         _turnsManager.SwitchTurns();
-        _skillsManager.DeactivateSkills();
+        _skillsManager.DeactivateEffects();
         return _roundNumber;
     }
 }

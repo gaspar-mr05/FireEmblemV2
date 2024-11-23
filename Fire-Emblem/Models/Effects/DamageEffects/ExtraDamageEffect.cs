@@ -23,7 +23,6 @@ public class ExtraDamageEffect: DamageEffect
         DamageEffectStatus extraDamageInfo = extraDamageEffectsInfo.GetDamageInfo(EffectDuration);
         extraDamageInfo.Active = true;  
         extraDamageInfo.Damage += _damage;
-        extraDamageEffectsInfo.SetDamageInfo(EffectDuration, extraDamageInfo); 
     }
 
     public override void RevertEffect()

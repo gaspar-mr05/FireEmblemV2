@@ -16,7 +16,7 @@ public class UnitStartCombat: ICondition
 
     public bool IsConditionMet()
     {
-        if (_unit == _roundInfo.UnitWhoStart)
+        if (_unit == _roundInfo.Attacker)
             return true;
         return false;
     }

@@ -29,9 +29,9 @@ public class GuardBearingEffect: DamageEffect
     private double CalculatePercentage()
     {
         UnitRoundsInfo unitRoundsInfo = Unit.UnitRoundsInfo;
-        if (Unit == _roundInfo.UnitWhoStart && unitRoundsInfo.AttackingRoundsCount == 0)
+        if (Unit == _roundInfo.Attacker && unitRoundsInfo.AttackingRoundsCount == 0)
             return 0.6;
-        if (Unit == _roundInfo.UnitWhoNotStart && unitRoundsInfo.DefendingRoundsCount == 0)
+        if (Unit == _roundInfo.Defender && unitRoundsInfo.DefendingRoundsCount == 0)
             return 0.6;
         return 0.3;
     }

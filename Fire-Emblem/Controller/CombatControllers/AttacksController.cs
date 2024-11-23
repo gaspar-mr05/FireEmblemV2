@@ -26,11 +26,11 @@ public class AttacksController
         _followUpAttackExecutor = new FollowUpAttackExecutor(roundInfo);
     }
 
-    public void ExecuteAllAttacks()
+    public void ExecuteAllAttacks(SkillsManager skillsManager)
     {
         string[] beforeCombatMessages = DamageOutOfCombatManager.ApplyDamageOutOfCombat(_attacker, _defender,
             EffectDuration.BeforeCombat);
-        string[] attackMessages = ExecuteCombatAttacks();
+        string[] attackMessages = ExecuteCombatAttacks(skillsManager);
         string[] afterCombatMessages = DamageOutOfCombatManager.ApplyDamageOutOfCombat(_attacker, _defender, EffectDuration.AfterCombat);
 
         string[][] allMessages = new []{beforeCombatMessages, attackMessages, afterCombatMessages};
@@ -40,11 +40,12 @@ public class AttacksController
 
 
 
-    private string[] ExecuteCombatAttacks()
+    private string[] ExecuteCombatAttacks(SkillsManager skillsManager)
     {
         string firstAttackMessage = _firstAttackExecutor.ExecuteAttack(_attacker, _defender);
         string counterAttackMessage = _counterAttackExecutor.ExecuteAttack(_attacker, _defender);
         string followUpMessage = _followUpAttackExecutor.ExecuteAttack(_attacker, _defender);
+        skillsManager.ActivateAfterCombatEffects();
 
         return new[] { firstAttackMessage, counterAttackMessage, followUpMessage };
     }

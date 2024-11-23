@@ -8,6 +8,8 @@ using Fire_Emblem.Effects.DamageEffects;
 using Fire_Emblem.Effects.NegationEffects;
 using Fire_Emblem.Exceptions;
 using Fire_Emblem.Models;
+using Fire_Emblem.Models.Effects.DamageEffects;
+using Fire_Emblem.Models.Effects.OutOfCombatDamageEffects;
 using Fire_Emblem.Models.Skills;
 
 namespace Fire_Emblem.Conditions;
@@ -42,7 +44,7 @@ public class SkillBuilder
         }
         else if (_skillName == "Will to Win")
         {
-            conditions.AddSingleCondition(new HpRespectPercentage(unit, 0.5, ComparisonType.Less));
+            conditions.AddSingleCondition(new HpRespectPercentage(unit, 0.5, ComparisonType.Less, _roundInfo));
             conditions.AddSingleCondition(new CombatStart(_roundInfo));
             effectsConditions.AddEffectConditions(new BonusEffect(unit, "Atk", 8), conditions);
         }
@@ -98,7 +100,7 @@ public class SkillBuilder
         }
         else if (_skillName == "Resolve")
         {
-            conditions.AddSingleCondition(new HpRespectPercentage(unit, 0.75, ComparisonType.Less));
+            conditions.AddSingleCondition(new HpRespectPercentage(unit, 0.75, ComparisonType.Less, _roundInfo));
             conditions.AddSingleCondition(new CombatStart(_roundInfo));
             effectsConditions.AddEffectConditions(new BonusEffect(unit, "Def", 7), conditions);
             effectsConditions.AddEffectConditions(new BonusEffect(unit, "Res", 7), conditions);
@@ -199,42 +201,42 @@ public class SkillBuilder
 
         else if (_skillName == "Brazen Atk/Spd")
         {
-            conditions.AddSingleCondition(new HpRespectPercentage(unit, 0.8, ComparisonType.Less));
+            conditions.AddSingleCondition(new HpRespectPercentage(unit, 0.8, ComparisonType.Less, _roundInfo));
             conditions.AddSingleCondition(new CombatStart(_roundInfo));
             effectsConditions.AddEffectConditions(new BonusEffect(unit, "Atk", 10), conditions);
             effectsConditions.AddEffectConditions(new BonusEffect(unit, "Spd", 10), conditions);
         }
         else if (_skillName == "Brazen Atk/Def")
         {
-            conditions.AddSingleCondition(new HpRespectPercentage(unit, 0.8, ComparisonType.Less));
+            conditions.AddSingleCondition(new HpRespectPercentage(unit, 0.8, ComparisonType.Less, _roundInfo));
             conditions.AddSingleCondition( new CombatStart(_roundInfo));
             effectsConditions.AddEffectConditions(new BonusEffect(unit, "Atk", 10), conditions);
             effectsConditions.AddEffectConditions(new BonusEffect(unit, "Def", 10), conditions);
         }
         else if (_skillName == "Brazen Atk/Res")
         {
-            conditions.AddSingleCondition(new HpRespectPercentage(unit, 0.8, ComparisonType.Less));
+            conditions.AddSingleCondition(new HpRespectPercentage(unit, 0.8, ComparisonType.Less, _roundInfo));
             conditions.AddSingleCondition(new CombatStart(_roundInfo));
             effectsConditions.AddEffectConditions(new BonusEffect(unit, "Atk", 10), conditions);
             effectsConditions.AddEffectConditions(new BonusEffect(unit, "Res", 10), conditions);
         }
         else if (_skillName == "Brazen Spd/Def")
         {
-            conditions.AddSingleCondition(new HpRespectPercentage(unit, 0.8, ComparisonType.Less));
+            conditions.AddSingleCondition(new HpRespectPercentage(unit, 0.8, ComparisonType.Less, _roundInfo));
             conditions.AddSingleCondition(new CombatStart(_roundInfo));
             effectsConditions.AddEffectConditions(new BonusEffect(unit, "Spd", 10), conditions);
             effectsConditions.AddEffectConditions(new BonusEffect(unit, "Def", 10), conditions);
         }
         else if (_skillName == "Brazen Spd/Res")
         {
-            conditions.AddSingleCondition(new HpRespectPercentage(unit, 0.8, ComparisonType.Less));
+            conditions.AddSingleCondition(new HpRespectPercentage(unit, 0.8, ComparisonType.Less, _roundInfo));
             conditions.AddSingleCondition(new CombatStart(_roundInfo));
             effectsConditions.AddEffectConditions(new BonusEffect(unit, "Spd", 10), conditions);
             effectsConditions.AddEffectConditions(new BonusEffect(unit, "Res", 10), conditions);
         }
         else if (_skillName == "Brazen Def/Res")
         {
-            conditions.AddSingleCondition(new HpRespectPercentage(unit, 0.8, ComparisonType.Less));
+            conditions.AddSingleCondition(new HpRespectPercentage(unit, 0.8, ComparisonType.Less, _roundInfo));
             conditions.AddSingleCondition(new CombatStart(_roundInfo));
             effectsConditions.AddEffectConditions(new BonusEffect(unit, "Def", 10), conditions);
             effectsConditions.AddEffectConditions(new BonusEffect(unit, "Res", 10), conditions);
@@ -505,7 +507,7 @@ public class SkillBuilder
         else if (_skillName == "Dragonskin")
         {
             OrConditions orConditions = new OrConditions();
-            orConditions.AddCondition(new HpRespectPercentage(rival, 0.75, ComparisonType.Greater));
+            orConditions.AddCondition(new HpRespectPercentage(rival, 0.75, ComparisonType.Greater, _roundInfo));
             orConditions.AddCondition( new UnitStartCombat(rival, _roundInfo));
             conditions.AddOrConditions(orConditions);
             effectsConditions.AddEffectConditions(new BonusEffect(unit, "Atk", 6), conditions);
@@ -608,7 +610,7 @@ public class SkillBuilder
         else if (_skillName == "Sympathetic")
         {
             extraConditions.AddSingleCondition(new UnitStartCombat(rival, _roundInfo));
-            extraConditions.AddSingleCondition(new HpRespectPercentage(unit, 0.5, ComparisonType.Less));
+            extraConditions.AddSingleCondition(new HpRespectPercentage(unit, 0.5, ComparisonType.Less, _roundInfo));
             effectsConditions.AddEffectConditions(new AbsoluteDamageReduction(unit, 5, EffectDuration.FullRound),
                 extraConditions);
         }
@@ -645,12 +647,12 @@ public class SkillBuilder
         
         else if (_skillName == "Moon-Twin Wing")
         {
-            conditions.AddSingleCondition(new HpRespectPercentage(unit, 0.25, ComparisonType.Greater));
+            conditions.AddSingleCondition(new HpRespectPercentage(unit, 0.25, ComparisonType.Greater, _roundInfo));
 
 
             extraConditions.AddSingleCondition(new StatComparison(unit, rival, "Spd", 
                 "Spd", 0, ComparisonType.StrictlyGreater));
-            extraConditions.AddSingleCondition(new HpRespectPercentage(unit, 0.25, ComparisonType.Greater));
+            extraConditions.AddSingleCondition(new HpRespectPercentage(unit, 0.25, ComparisonType.Greater, _roundInfo));
             effectsConditions.AddEffectConditions(new PenaltyEffect(rival, "Atk", 5), conditions);
             effectsConditions.AddEffectConditions(new PenaltyEffect(rival, "Spd", 5), conditions);
             effectsConditions.AddEffectConditions(new StatDifferenceDamageReduction(unit, rival, "Spd", EffectDuration.FullRound), 
@@ -836,7 +838,7 @@ public class SkillBuilder
         }
         else if (_skillName == "Extra Chivalry")
         {
-            conditions.AddSingleCondition(new HpRespectPercentage(rival, 0.5, ComparisonType.Greater));
+            conditions.AddSingleCondition(new HpRespectPercentage(rival, 0.5, ComparisonType.Greater, _roundInfo));
             double percentageValue = 0.5 * ((double)rival.Stats.GetHp() / Convert.ToInt32(rival.CharacterInfo.HP));
             double truncatedPercentageValue = Math.Truncate(percentageValue * 100) / 100;
             effectsConditions.AddEffectConditions(new PenaltyEffect(rival, "Atk", 5), conditions);
@@ -855,8 +857,8 @@ public class SkillBuilder
             
         }
         else if (_skillName == "Divine Recreation"){
-            conditions.AddSingleCondition(new HpRespectPercentage(rival, 0.5, ComparisonType.Greater));
-            extraConditions.AddSingleCondition(new HpRespectPercentage(rival, 0.5, ComparisonType.Greater));
+            conditions.AddSingleCondition(new HpRespectPercentage(rival, 0.5, ComparisonType.Greater, _roundInfo));
+            extraConditions.AddSingleCondition(new HpRespectPercentage(rival, 0.5, ComparisonType.Greater, _roundInfo));
             effectsConditions.AddEffectConditions(new PenaltyEffect(rival, "Atk", 4), conditions);
             effectsConditions.AddEffectConditions(new PenaltyEffect(rival, "Spd", 4), conditions);
             effectsConditions.AddEffectConditions(new PenaltyEffect(rival, "Def", 4), conditions);
@@ -934,23 +936,59 @@ public class SkillBuilder
                 Convert.ToInt32(rival.CharacterInfo.Def))), EffectDuration.FullRound), conditions);
             effectsConditions.AddEffectConditions(new HealingEffect(unit, 0.5), extraConditions);
         }
+        else if (_skillName == "Resonance")
+        {
+            weapons.AddWeapons(["Magic"]);
+            conditions.AddSingleCondition(new UnitUseWeaponType(unit, weapons));
+            conditions.AddSingleCondition(new HpRespectNumber(unit, 2, ComparisonType.Greater));
+            effectsConditions.AddEffectConditions(new BeforeCombatDamageEffect(unit, -1)
+                , conditions);
+            effectsConditions.AddEffectConditions(new ExtraDamageEffect(unit, 3, EffectDuration.FullRound), conditions);
+        }
         else if (_skillName == "Fury")
         {
             effectsConditions.AddEffectConditions(new BonusEffect(unit, "Atk", 4), conditions);
             effectsConditions.AddEffectConditions(new BonusEffect(unit, "Def", 4), conditions);
             effectsConditions.AddEffectConditions(new BonusEffect(unit, "Res", 4), conditions);
             effectsConditions.AddEffectConditions(new BonusEffect(unit, "Spd", 4), conditions);
-            effectsConditions.AddEffectConditions(new OutOfCombatDamageEffect(unit, -8, EffectDuration.AfterCombat), 
+            effectsConditions.AddEffectConditions(new AfterCombatDamageEffect(unit, -8), 
                 conditions);
         }
-        else if (_skillName == "Resonance")
+        else if (_skillName == "Mystic Boost")
         {
-            weapons.AddWeapons(["Magic"]);
-            conditions.AddSingleCondition(new UnitUseWeaponType(unit, weapons));
-            conditions.AddSingleCondition(new HpRespectNumber(unit, 2, ComparisonType.Greater));
-            effectsConditions.AddEffectConditions(new OutOfCombatDamageEffect(unit, -1, EffectDuration.BeforeCombat)
-            , conditions);
-            effectsConditions.AddEffectConditions(new ExtraDamageEffect(unit, 3, EffectDuration.FullRound), conditions);
+            effectsConditions.AddEffectConditions(new PenaltyEffect(rival, "Atk", 5), conditions);
+            effectsConditions.AddEffectConditions(new AfterCombatDamageEffect(unit, 10), 
+                conditions);
+        }
+        else if (_skillName == "Atk/Spd Push")
+        {
+            conditions.AddSingleCondition(new HpRespectPercentage(unit, 0.25, ComparisonType.Greater, _roundInfo));
+            extraConditions.AddSingleCondition(new HpRespectPercentage(unit, 0.25, ComparisonType.Greater, _roundInfo));
+            extraConditions.AddSingleCondition(new UnitHasAttacked(unit, _roundInfo));
+            effectsConditions.AddEffectConditions(new BonusEffect(unit, "Atk", 7), conditions);
+            effectsConditions.AddEffectConditions(new BonusEffect(unit, "Spd", 7), conditions);
+            effectsConditions.AddEffectConditions(new AfterCombatDamageEffect(unit, -5),
+                extraConditions);
+        }
+        else if (_skillName == "Atk/Def Push")
+        {
+            conditions.AddSingleCondition(new HpRespectPercentage(unit, 0.25, ComparisonType.Greater, _roundInfo));
+            extraConditions.AddSingleCondition(new HpRespectPercentage(unit, 0.25, ComparisonType.Greater, _roundInfo));
+            extraConditions.AddSingleCondition(new UnitHasAttacked(unit, _roundInfo));
+            effectsConditions.AddEffectConditions(new BonusEffect(unit, "Atk", 7), conditions);
+            effectsConditions.AddEffectConditions(new BonusEffect(unit, "Def", 7), conditions);
+            effectsConditions.AddEffectConditions(new AfterCombatDamageEffect(unit, -5),
+                extraConditions);
+        }
+        else if (_skillName == "Atk/Res Push")
+        {
+            conditions.AddSingleCondition(new HpRespectPercentage(unit, 0.25, ComparisonType.Greater, _roundInfo));
+            extraConditions.AddSingleCondition(new HpRespectPercentage(unit, 0.25, ComparisonType.Greater, _roundInfo));
+            extraConditions.AddSingleCondition(new UnitHasAttacked(unit, _roundInfo));
+            effectsConditions.AddEffectConditions(new BonusEffect(unit, "Atk", 7), conditions);
+            effectsConditions.AddEffectConditions(new BonusEffect(unit, "Res", 7), conditions);
+            effectsConditions.AddEffectConditions(new AfterCombatDamageEffect(unit, -5),
+                extraConditions);
         }
         else
         {

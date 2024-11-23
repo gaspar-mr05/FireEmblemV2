@@ -47,9 +47,9 @@ public static class DamageOutOfCombatManager
     {
         string damageType = effectDuration == EffectDuration.AfterCombat ? "despues del combate" : "antes de iniciar el combate";
         string finalHp = effectDuration == EffectDuration.AfterCombat ? "" : $" y queda con {newHp} HP";
-        string action = damage < 0 ? "recibe" : "recupera";
         int absoluteDamage = Math.Abs(damage);
+        string action = damage < 0 ? $"recibe {absoluteDamage} de daño" : $"recupera {absoluteDamage} HP";
 
-        return $"{unit.CharacterInfo.Name} {action} {absoluteDamage} de daño {damageType}{finalHp}";
+        return $"{unit.CharacterInfo.Name} {action} {damageType}{finalHp}";
     }
 }

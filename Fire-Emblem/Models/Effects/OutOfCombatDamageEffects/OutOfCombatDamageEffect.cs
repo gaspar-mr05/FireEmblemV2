@@ -4,17 +4,18 @@ using Fire_Emblem.Effects.DamageEffects;
 
 namespace Fire_Emblem.Effects;
 
-public class OutOfCombatDamageEffect: DamageEffect
+public abstract class OutOfCombatDamageEffect: Effect
 {
 
     private int _damage;
+    protected EffectDuration EffectDuration;
 
-    public OutOfCombatDamageEffect(Unit unit, int damage, EffectDuration effectDuration)
+    public OutOfCombatDamageEffect(Unit unit, int damage)
     {
 
         Unit = unit;
         _damage = damage;
-        EffectDuration = effectDuration;
+
 
 
     }
@@ -22,10 +23,16 @@ public class OutOfCombatDamageEffect: DamageEffect
     {
         EffectsSummary effectsSummary = Unit.EffectsSummary;
         DamageEffectStatus damageEffectStatus = effectsSummary.OutOfCombatDamageInfo.GetDamageInfo(EffectDuration);
+        ApplyDamageOrHealing(damageEffectStatus);
+    }
+
+    protected void ApplyDamageOrHealing(DamageEffectStatus damageEffectStatus)
+    {
         damageEffectStatus.Active = true;
         damageEffectStatus.Damage += _damage;
-        effectsSummary.OutOfCombatDamageInfo.SetDamageInfo(EffectDuration, damageEffectStatus);
     }
+
+    public override int GetPriority() => 3;
 
     public override void RevertEffect()
     {

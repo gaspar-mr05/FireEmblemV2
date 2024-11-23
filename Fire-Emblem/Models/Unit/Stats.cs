@@ -18,6 +18,11 @@ public class Stats
         };
 
     }
+    
+    private Stats()
+    {
+        _stats = new Dictionary<string, int>();
+    }
 
     public int GetHp() => _stats["HP"];
     
@@ -34,5 +39,15 @@ public class Stats
     public void AddChange(string statName, int change) => _stats[statName] += change;
     
     public void SetStat(string statName, int change) => _stats[statName] = change;
+
+    public Stats Clone()
+    {
+        Stats clonedStats = new Stats();
+        foreach (var stat in _stats)
+        {
+            clonedStats._stats[stat.Key] = stat.Value;
+        }
+        return clonedStats;
+    }
 
 }

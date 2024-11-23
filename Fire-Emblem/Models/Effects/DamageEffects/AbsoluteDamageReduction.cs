@@ -25,7 +25,6 @@ public class AbsoluteDamageReduction : DamageEffect
         DamageEffectStatus absoluteReductionInfo = absoluteDamageReductionEffectInfo.GetDamageInfo(EffectDuration);
         absoluteReductionInfo.Active = true;  
         absoluteReductionInfo.Damage -= _change;
-        absoluteDamageReductionEffectInfo.SetDamageInfo(EffectDuration, absoluteReductionInfo); 
         
     }
 
