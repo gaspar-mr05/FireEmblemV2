@@ -945,6 +945,16 @@ public class SkillBuilder
                 , conditions);
             effectsConditions.AddEffectConditions(new ExtraDamageEffect(unit, 3, EffectDuration.FullRound), conditions);
         }
+        
+        else if (_skillName == "Flare")
+        {
+            weapons.AddWeapons(["Magic"]);
+            conditions.AddSingleCondition(new UnitUseWeaponType(unit, weapons));
+            effectsConditions.AddEffectConditions(new PenaltyEffect(unit, "Res", Convert.ToInt32(Math.Floor(
+                    0.2 * unit.Stats.GetRes()))),
+                conditions);
+            effectsConditions.AddEffectConditions(new HealingEffect(unit, 0.5), conditions);
+        }
         else if (_skillName == "Fury")
         {
             effectsConditions.AddEffectConditions(new BonusEffect(unit, "Atk", 4), conditions);
@@ -989,6 +999,44 @@ public class SkillBuilder
             effectsConditions.AddEffectConditions(new BonusEffect(unit, "Res", 7), conditions);
             effectsConditions.AddEffectConditions(new AfterCombatDamageEffect(unit, -5),
                 extraConditions);
+        }
+        else if (_skillName == "Spd/Def Push")
+        {
+            conditions.AddSingleCondition(new HpRespectPercentage(unit, 0.25, ComparisonType.Greater, _roundInfo));
+            extraConditions.AddSingleCondition(new HpRespectPercentage(unit, 0.25, ComparisonType.Greater, _roundInfo));
+            extraConditions.AddSingleCondition(new UnitHasAttacked(unit, _roundInfo));
+            effectsConditions.AddEffectConditions(new BonusEffect(unit, "Spd", 7), conditions);
+            effectsConditions.AddEffectConditions(new BonusEffect(unit, "Def", 7), conditions);
+            effectsConditions.AddEffectConditions(new AfterCombatDamageEffect(unit, -5),
+                extraConditions);
+        }
+        else if (_skillName == "Spd/Res Push")
+        {
+            conditions.AddSingleCondition(new HpRespectPercentage(unit, 0.25, ComparisonType.Greater, _roundInfo));
+            extraConditions.AddSingleCondition(new HpRespectPercentage(unit, 0.25, ComparisonType.Greater, _roundInfo));
+            extraConditions.AddSingleCondition(new UnitHasAttacked(unit, _roundInfo));
+            effectsConditions.AddEffectConditions(new BonusEffect(unit, "Spd", 7), conditions);
+            effectsConditions.AddEffectConditions(new BonusEffect(unit, "Res", 7), conditions);
+            effectsConditions.AddEffectConditions(new AfterCombatDamageEffect(unit, -5),
+                extraConditions);
+        }
+        else if (_skillName == "Def/Res Push")
+        {
+            conditions.AddSingleCondition(new HpRespectPercentage(unit, 0.25, ComparisonType.Greater, _roundInfo));
+            extraConditions.AddSingleCondition(new HpRespectPercentage(unit, 0.25, ComparisonType.Greater, _roundInfo));
+            extraConditions.AddSingleCondition(new UnitHasAttacked(unit, _roundInfo));
+            effectsConditions.AddEffectConditions(new BonusEffect(unit, "Def", 7), conditions);
+            effectsConditions.AddEffectConditions(new BonusEffect(unit, "Res", 7), conditions);
+            effectsConditions.AddEffectConditions(new AfterCombatDamageEffect(unit, -5),
+                extraConditions);
+        }
+        else if (_skillName == "Scendscale")
+        {
+            extraConditions.AddSingleCondition(new UnitHasAttacked(unit, _roundInfo));
+            effectsConditions.AddEffectConditions(new ExtraDamageEffect(unit, Convert.ToInt32(Math.Floor(0.25 * 
+                Convert.ToInt32(rival.CharacterInfo.Atk))), EffectDuration.FullRound), conditions);
+            effectsConditions.AddEffectConditions(new AfterCombatDamageEffect(unit, -7), extraConditions);
+            
         }
         else
         {

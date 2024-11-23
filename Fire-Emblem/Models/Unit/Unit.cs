@@ -1,12 +1,14 @@
 using Fire_Emblem.Conditions;
 using Fire_Emblem.Effects;
 using Fire_Emblem.Models.Unit;
+using Fire_Emblem.Teams;
 
 namespace Fire_Emblem.Characters;
 
 public class Unit
 {
 
+    public Team Team;
     public CharacterInfo CharacterInfo;
     public Stats Stats;
     public string[] SkillsNames;

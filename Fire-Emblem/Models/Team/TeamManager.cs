@@ -29,6 +29,7 @@ public class TeamManager: Team
         (string name, string[] skillsArray) = lineHandler.HandleLine();
         Models.Unit.Characters characters = CharactersBuilder.CreateCharactersFromJson();
         Unit unit = UnitBuilder.BuildUnit(characters.GetCharacter(name), skillsArray);
+        unit.Team = _team;
         _team.AddUnit(unit);
     }
 }

@@ -8,7 +8,7 @@ public class RoundInfo
 {
     public Unit Attacker;
     public Unit Defender;
-    public InitialUnitStats InitialUnitStats;
+    public InitialUnitStats InitialUnitsStats;
     public UnitAttacksCount UnitAttacksCount;
     public AttackType AttackType;
 
@@ -17,7 +17,7 @@ public class RoundInfo
         
         Attacker = attacker;
         Defender = defender;
-        InitialUnitStats = new InitialUnitStats(attacker, defender);
+        InitialUnitsStats = new InitialUnitStats(attacker, defender);
         UnitAttacksCount = new UnitAttacksCount(attacker, defender);
 
     }

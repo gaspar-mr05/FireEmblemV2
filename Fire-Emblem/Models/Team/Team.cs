@@ -12,6 +12,8 @@ public class Team
     public void AddUnit(Unit unit)
         => _unitList.Add(unit);
 
+    public Unit[] GetTeam() => _unitList.ToArray();
+
 
     public void RemoveUnit(Unit unit)
         => _unitList.Remove(unit);

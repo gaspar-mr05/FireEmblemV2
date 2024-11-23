@@ -22,7 +22,7 @@ public class HpRespectPercentage: ICondition
     }
     public bool IsConditionMet()
     {
-        Stats initialStats = _roundInfo.InitialUnitStats.GetInitialStats(_unit);
+        Stats initialStats = _roundInfo.InitialUnitsStats.GetInitialStats(_unit);
         CharacterInfo characterInfo = _unit.CharacterInfo;
         if (_comparisonType == ComparisonType.Less)
             return initialStats.GetHp() <= Convert.ToInt32(characterInfo.HP) * _maxPercentage;
