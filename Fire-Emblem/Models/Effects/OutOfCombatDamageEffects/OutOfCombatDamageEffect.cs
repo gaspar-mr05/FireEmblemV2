@@ -26,7 +26,7 @@ public abstract class OutOfCombatDamageEffect: Effect
         ApplyDamageOrHealing(damageEffectStatus);
     }
 
-    protected void ApplyDamageOrHealing(DamageEffectStatus damageEffectStatus)
+    private void ApplyDamageOrHealing(DamageEffectStatus damageEffectStatus)
     {
         damageEffectStatus.Active = true;
         damageEffectStatus.Damage += _damage;

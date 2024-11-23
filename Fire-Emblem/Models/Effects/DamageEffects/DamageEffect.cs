@@ -6,9 +6,7 @@ public abstract class DamageEffect: Effect
 {
     protected EffectDuration EffectDuration;
 
-    public override int GetPriority()
-    {
-        return 3;
-    }
+    public override int GetPriority() => 3;
+
     
 }

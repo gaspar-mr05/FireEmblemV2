@@ -543,14 +543,14 @@ public class SkillBuilder
         {
             conditions.AddSingleCondition(new StatComparison(unit, rival, "Res", "Res", 0, 
             ComparisonType.StrictlyGreater));
-            effectsConditions.AddEffectConditions(new StatDifferenceDamageReduction(unit, rival, "Res", EffectDuration.FullRound), 
+            effectsConditions.AddEffectConditions(new StatDifferenceDamageReduction(unit, rival, "Res", EffectDuration.FullRound, 4), 
                 conditions);
         }
         else if (_skillName == "Dodge")
         {
             conditions.AddSingleCondition(new StatComparison(unit, rival, "Spd", "Spd", 0, 
             ComparisonType.StrictlyGreater));
-            effectsConditions.AddEffectConditions(new StatDifferenceDamageReduction(unit, rival, "Spd", EffectDuration.FullRound), 
+            effectsConditions.AddEffectConditions(new StatDifferenceDamageReduction(unit, rival, "Spd", EffectDuration.FullRound, 4), 
                 conditions);
         
         }
@@ -641,7 +641,7 @@ public class SkillBuilder
             extraConditions.AddSingleCondition(new StatComparison(unit, rival, "Spd", "Spd", 0, 
             ComparisonType.StrictlyGreater));
             effectsConditions.AddEffectConditions(new ExtraDamageEffect(unit, 7, EffectDuration.FullRound), conditions);
-            effectsConditions.AddEffectConditions(new StatDifferenceDamageReduction(unit, rival, "Spd", EffectDuration.FullRound), 
+            effectsConditions.AddEffectConditions(new StatDifferenceDamageReduction(unit, rival, "Spd", EffectDuration.FullRound, 4), 
                 extraConditions);
         }
         
@@ -655,7 +655,7 @@ public class SkillBuilder
             extraConditions.AddSingleCondition(new HpRespectPercentage(unit, 0.25, ComparisonType.Greater, _roundInfo));
             effectsConditions.AddEffectConditions(new PenaltyEffect(rival, "Atk", 5), conditions);
             effectsConditions.AddEffectConditions(new PenaltyEffect(rival, "Spd", 5), conditions);
-            effectsConditions.AddEffectConditions(new StatDifferenceDamageReduction(unit, rival, "Spd", EffectDuration.FullRound), 
+            effectsConditions.AddEffectConditions(new StatDifferenceDamageReduction(unit, rival, "Spd", EffectDuration.FullRound, 4), 
                 extraConditions);
 
         }
@@ -1030,6 +1030,17 @@ public class SkillBuilder
             effectsConditions.AddEffectConditions(new AfterCombatDamageEffect(unit, -5),
                 extraConditions);
         }
+        else if (_skillName == "True Dragon Wall")
+        {
+            weapons.AddWeapons(["Magic"]);
+            conditions.AddSingleCondition(new StatComparison(unit, rival, "Res", "Res", 0, ComparisonType.Greater));
+            extraConditions.AddSingleCondition(new AllyWithWeaponType(unit, weapons));
+            effectsConditions.AddEffectConditions(new StatDifferenceDamageReduction(unit, rival, "Res", 
+                    EffectDuration.FirstAttack, 6), conditions);
+            effectsConditions.AddEffectConditions(new StatDifferenceDamageReduction(unit, rival, "Res", 
+                EffectDuration.FollowUp, 4), conditions);
+            effectsConditions.AddEffectConditions(new AfterCombatDamageEffect(unit, 7), extraConditions);
+        }
         else if (_skillName == "Scendscale")
         {
             extraConditions.AddSingleCondition(new UnitHasAttacked(unit, _roundInfo));
@@ -1037,6 +1048,16 @@ public class SkillBuilder
                 Convert.ToInt32(rival.CharacterInfo.Atk))), EffectDuration.FullRound), conditions);
             effectsConditions.AddEffectConditions(new AfterCombatDamageEffect(unit, -7), extraConditions);
             
+        }
+        else if (_skillName == "Mastermind")
+        {
+
+            conditions.AddSingleCondition(new HpRespectNumber(unit, 2, ComparisonType.Greater));
+            extraConditions.AddSingleCondition(new UnitStartCombat(unit, _roundInfo));
+            effectsConditions.AddEffectConditions(new BeforeCombatDamageEffect(unit, -1),conditions);
+            effectsConditions.AddEffectConditions(new BonusEffect(unit, "Atk", 9), extraConditions);
+            effectsConditions.AddEffectConditions(new BonusEffect(unit, "Spd", 9), extraConditions);
+            effectsConditions.AddEffectConditions(new MasterMindEffect(unit, rival, EffectDuration.FullRound), extraConditions);
         }
         else
         {

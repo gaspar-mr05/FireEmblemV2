@@ -29,7 +29,7 @@ public class BonusEffect : NormalEffect
         activeEffectsInfo.BonusEffects.RemoveEffect(this);
     }
 
-    public void RegisterEffect()
+    private void RegisterEffect()
     {
         EffectsSummary effectsSummary = Unit.EffectsSummary;
         if (effectsSummary.BonusesInfo.IsContainingStatName(StatName))

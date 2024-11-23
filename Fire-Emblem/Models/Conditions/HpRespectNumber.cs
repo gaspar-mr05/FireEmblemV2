@@ -11,8 +11,8 @@ public class HpRespectNumber: ICondition
 
     public HpRespectNumber(Unit unit, int number, ComparisonType comparisonType)
     {
-        _number = number;
         _unit= unit;
+        _number = number;
         _comparisonType = comparisonType;
 
     }

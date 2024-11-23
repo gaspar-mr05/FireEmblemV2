@@ -43,6 +43,17 @@ public class NormalEffectInfo
     public void SaveChange(string statName, int change) 
         => _normalEffectInfo[statName].Change += change;
 
+    public int GetAllEffects()
+    {
+        int sum = 0;
+        foreach (KeyValuePair<string, StatEffectStatus> effect in _normalEffectInfo)
+        {
+            sum += Math.Abs(effect.Value.Change);
+        }
+
+        return sum;
+    }
+
 
     public bool IsContainingStatName(string statName) => _normalEffectInfo.ContainsKey(statName);
 }

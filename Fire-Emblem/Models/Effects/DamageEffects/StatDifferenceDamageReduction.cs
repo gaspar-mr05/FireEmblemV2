@@ -8,13 +8,15 @@ public class StatDifferenceDamageReduction: DamageEffect
     private Unit _rival;
     private string _statName;
     private double _percentage;
+    private double _multiplier;
 
-    public StatDifferenceDamageReduction(Unit unit, Unit rival, string statName, EffectDuration effectDuration)
+    public StatDifferenceDamageReduction(Unit unit, Unit rival, string statName, EffectDuration effectDuration, double multiplier)
     {
         base.Unit = unit;
         base.EffectDuration = effectDuration;
         _rival = rival;
         _statName = statName;
+        _multiplier = multiplier;
     }
 
     public override void ApplyEffect()
@@ -28,10 +30,10 @@ public class StatDifferenceDamageReduction: DamageEffect
 
 
     }
-    public void CalculatePercentage()
+    private void CalculatePercentage()
     {
-        _percentage = Math.Min(0.4,
-            (Unit.Stats.GetStat(_statName) - _rival.Stats.GetStat(_statName)) * 0.04);
+        _percentage = Math.Min(_multiplier/10,
+            (Unit.Stats.GetStat(_statName) - _rival.Stats.GetStat(_statName)) * _multiplier/100);
     }
 
     public override void RevertEffect()
