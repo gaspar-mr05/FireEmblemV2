@@ -3,21 +3,21 @@ using Fire_Emblem.Conditions;
 
 namespace Fire_Emblem.Effects.NegationEffects;
 
-public class NegationEffect: Effect
+public class GuaranteeFollowUpEffect: Effect
 {
+
     protected AttackType AttackType;
 
-    public NegationEffect(Unit unit, AttackType attackType)
+    public GuaranteeFollowUpEffect(Unit unit)
     {
-
         Unit = unit;
-        AttackType = attackType;
+        AttackType = AttackType.FollowUpAttack;
     }
 
     public override void ApplyEffect()
     {
         EffectsSummary effectsSummary = Unit.EffectsSummary;
-        effectsSummary.PermitedAttackInfo.NegateAttack(AttackType);
+        effectsSummary.PermitedAttackInfo.GuaranteeAttack(AttackType);
     }
 
     public override void RevertEffect()

@@ -38,7 +38,7 @@ public class AttackExecutor
     protected bool IsNegatedCounterAttack(Unit attacker)
     {
         EffectsSummary effectsSummary = attacker.EffectsSummary;
-        return effectsSummary.NegationInfo.IsNegated(AttackType.CounterAttack);
+        return effectsSummary.PermitedAttackInfo.IsNegated(AttackType.CounterAttack);
 
     }
     

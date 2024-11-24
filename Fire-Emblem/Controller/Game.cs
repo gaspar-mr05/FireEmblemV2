@@ -22,6 +22,6 @@ public class Game
     public void Play()
     {
         Simulation simulation = new Simulation(_view, _teamsFolder);
-        simulation.StartSimulation();
-}
+        simulation.StartSimulation(); 
+    }
 }

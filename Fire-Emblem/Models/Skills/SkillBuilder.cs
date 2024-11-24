@@ -1089,6 +1089,12 @@ public class SkillBuilder
             effectsConditions.AddEffectConditions(new AfterCombatDamageEffect(unit, 7), conditions);
 
         }
+        else if (_skillName == "Quick Riposte")
+        {
+            conditions.AddSingleCondition(new HpRespectPercentage(unit, 0.6, ComparisonType.Greater, _roundInfo));
+            conditions.AddSingleCondition((new UnitStartCombat(rival, _roundInfo)));
+            effectsConditions.AddEffectConditions(new GuaranteeFollowUpEffect(unit), conditions);
+        }
         else
         {
             throw new NoSkillException();

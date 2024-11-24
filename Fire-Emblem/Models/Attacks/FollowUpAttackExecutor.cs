@@ -22,45 +22,51 @@ public class FollowUpAttackExecutor : AttackExecutor
             return string.Empty;
 
         if (IsFollowUpPossible(attacker, defender))
-            return base.ExecuteAttack(attacker, defender);
+            return ExecuteFollowUp(attacker, defender);
 
         if (IsNegatedCounterAttack(defender))
             return $"{attacker.CharacterInfo.Name} no puede hacer un follow up";
 
         if (IsFollowUpPossible(defender, attacker))
-            return base.ExecuteAttack(defender, attacker);
+            return ExecuteFollowUp(defender, attacker);
 
         return "Ninguna unidad puede hacer un follow up";
     }
-
-
-    private bool IsFollowUpPossible(Unit attacker, Unit defender) =>
-        attacker.Stats.GetSpd() - defender.Stats.GetSpd() >= 5 && defender.Stats.GetHp() > 0 && 
-        !IsNegatedFollowUp(attacker);
     
+    private bool IsFollowUpPossible(Unit attacker, Unit defender) =>
+        (attacker.Stats.GetSpd() - defender.Stats.GetSpd() >= 5 && defender.Stats.GetHp() > 0 && 
+        !IsNegatedFollowUp(attacker)) || HasFollowUpGuaranteed(attacker);
     
     private bool IsNegatedFollowUp(Unit attacker)
     {
         
         EffectsSummary effectsSummary = attacker.EffectsSummary;
-        if (effectsSummary.NegationInfo.IsNegated(AttackType.FollowUpAttack))
+        if (effectsSummary.PermitedAttackInfo.IsNegated(AttackType.FollowUpAttack))
             return true;
-        if (effectsSummary.NegationInfo.IsNegated(AttackType.CounterAttack))
+        if (effectsSummary.PermitedAttackInfo.IsNegated(AttackType.CounterAttack))
             return !RoundInfo.UnitAttacksCount.HasUnitAttacked(attacker);
         return false;
     }
 
-    private void ApplyAfterCombatDamage(Unit unit)
+    private string ExecuteFollowUp(Unit firstAttacker, Unit secondDefender)
+    {
+        string message = base.ExecuteAttack(firstAttacker, secondDefender);
+
+        if (HasFollowUpGuaranteed(secondDefender))
+        {
+            message += $"\n{base.ExecuteAttack(secondDefender, firstAttacker)}";
+        }
+
+        return message;
+    }
+    
+
+    private bool HasFollowUpGuaranteed(Unit unit)
     {
         EffectsSummary effectsSummary = unit.EffectsSummary;
-        DamageEffectStatus damageEffectStatus =
-            effectsSummary.OutOfCombatDamageInfo.GetDamageInfo(EffectDuration.AfterCombat);
-        if (damageEffectStatus.Active)
-            if (unit.IsAlive())
-                unit.Stats.SetStat("HP", Math.Max(unit.Stats.GetHp() - damageEffectStatus.Damage, 1));
-            else
-                damageEffectStatus.Active = false;
+        return effectsSummary.PermitedAttackInfo.IsGuaranteed(AttackType.FollowUpAttack);
     }
+    
     
 
 }

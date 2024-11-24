@@ -47,6 +47,7 @@ public class EffectSummaryView
         ShowHealingEffectMessage(unit);
         ShowNegationEffectMessage(unit, AttackType.CounterAttack);
         ShowNegationOfNegationEffectMessage(unit, AttackType.CounterAttack);
+        ShowGuaranteeEffectMessage(unit, AttackType.FollowUpAttack);
         
     }
 
@@ -217,8 +218,8 @@ public class EffectSummaryView
     private void ShowNegationEffectMessage(Unit unit, AttackType attackType)
     {
         EffectsSummary effectsSummary = unit.EffectsSummary;
-        bool isNegated = effectsSummary.NegationInfo.IsNegated(attackType);
-        int amount = effectsSummary.NegationInfo.GetAmount(attackType);
+        bool isNegated = effectsSummary.PermitedAttackInfo.IsNegated(attackType);
+        int amount = effectsSummary.PermitedAttackInfo.GetAmountNegated(attackType);
         if (isNegated)
         {
             if (attackType == AttackType.CounterAttack)
@@ -227,6 +228,7 @@ public class EffectSummaryView
                 _view.WriteLine($"{unit.CharacterInfo.Name} tiene {amount} efecto(s) que neutraliza(n) su followup activo(s)");
         }
     }
+    
     
     private void ShowNegationOfNegationEffectMessage(Unit unit, AttackType attackType)
     {
@@ -237,7 +239,19 @@ public class EffectSummaryView
             if (attackType == AttackType.CounterAttack)
                 _view.WriteLine($"{unit.CharacterInfo.Name} neutraliza los efectos que previenen sus contraataques");
             if (attackType == AttackType.FollowUpAttack)
-                _view.WriteLine($"{unit.CharacterInfo.Name} tiene 1 efecto(s) que neutraliza(n) su followup activo(s)");
+                _view.WriteLine($"{unit.CharacterInfo.Name} tiene 1 efecto(s) que neutraliza(n) su follow up activo(s)");
+        }
+    }
+    
+    private void ShowGuaranteeEffectMessage(Unit unit, AttackType attackType)
+    {
+        EffectsSummary effectsSummary = unit.EffectsSummary;
+        bool isGuarantee = effectsSummary.PermitedAttackInfo.IsGuaranteed(attackType);
+        int amount = effectsSummary.PermitedAttackInfo.GetAmountGuaranteed(attackType);
+        if (isGuarantee)
+        {
+            if (attackType == AttackType.FollowUpAttack)
+                _view.WriteLine($"{unit.CharacterInfo.Name} tiene {amount} efecto(s) que garantiza(n) su follow up activo(s)");
         }
     }
 }
