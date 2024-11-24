@@ -1130,6 +1130,81 @@ public class SkillBuilder
             effectsConditions.AddEffectConditions(new GuaranteeFollowUpEffect(unit), conditions);
             effectsConditions.AddEffectConditions(new NegationEffect(rival, AttackType.FollowUpAttack), conditions);
         }
+        else if (_skillName == "Null Follow-Up")
+        {
+            effectsConditions.AddEffectConditions(new NegationOfNegationEffect(unit, AttackType.FollowUpAttack), conditions);
+            effectsConditions.AddEffectConditions(new NegationOfGuaranteeEffect(unit, AttackType.FollowUpAttack), conditions);
+        }
+        else if (_skillName == "Sturdy Impact")
+        {
+            conditions.AddSingleCondition(new UnitStartCombat(unit, _roundInfo));
+            effectsConditions.AddEffectConditions(new BonusEffect(unit, "Atk", 6), conditions);
+            effectsConditions.AddEffectConditions(new BonusEffect(unit, "Def", 10), conditions);
+            effectsConditions.AddEffectConditions(new NegationEffect(rival, AttackType.FollowUpAttack), conditions);
+        }
+        else if (_skillName == "Mirror Impact")
+        {
+            conditions.AddSingleCondition(new UnitStartCombat(unit, _roundInfo));
+            effectsConditions.AddEffectConditions(new BonusEffect(unit, "Atk", 6), conditions);
+            effectsConditions.AddEffectConditions(new BonusEffect(unit, "Res", 10), conditions);
+            effectsConditions.AddEffectConditions(new NegationEffect(rival, AttackType.FollowUpAttack), conditions);
+        }
+        else if (_skillName == "Swift Impact")
+        {
+            conditions.AddSingleCondition(new UnitStartCombat(unit, _roundInfo));
+            effectsConditions.AddEffectConditions(new BonusEffect(unit, "Spd", 6), conditions);
+            effectsConditions.AddEffectConditions(new BonusEffect(unit, "Res", 10), conditions);
+            effectsConditions.AddEffectConditions(new NegationEffect(rival, AttackType.FollowUpAttack), conditions);
+        }
+        else if (_skillName == "Steady Impact")
+        {
+            conditions.AddSingleCondition(new UnitStartCombat(unit, _roundInfo));
+            effectsConditions.AddEffectConditions(new BonusEffect(unit, "Spd", 6), conditions);
+            effectsConditions.AddEffectConditions(new BonusEffect(unit, "Def", 10), conditions);
+            effectsConditions.AddEffectConditions(new NegationEffect(rival, AttackType.FollowUpAttack), conditions);
+        }
+        else if (_skillName == "Slick Fighter")
+        {
+            conditions.AddSingleCondition(new HpRespectPercentage(unit, 0.25, ComparisonType.Greater, _roundInfo));
+            conditions.AddSingleCondition(new UnitStartCombat(rival, _roundInfo));
+            effectsConditions.AddEffectConditions(new PenaltyNeutralizationEffect(unit, "Atk"), conditions);
+            effectsConditions.AddEffectConditions(new PenaltyNeutralizationEffect(unit, "Spd"), conditions);
+            effectsConditions.AddEffectConditions(new PenaltyNeutralizationEffect(unit, "Res"), conditions);
+            effectsConditions.AddEffectConditions(new PenaltyNeutralizationEffect(unit, "Def"), conditions);
+            effectsConditions.AddEffectConditions(new GuaranteeFollowUpEffect(unit), conditions);
+        }
+        
+        else if (_skillName == "Wily Fighter")
+        {
+            conditions.AddSingleCondition(new HpRespectPercentage(unit, 0.25, ComparisonType.Greater, _roundInfo));
+            conditions.AddSingleCondition(new UnitStartCombat(rival, _roundInfo));
+            effectsConditions.AddEffectConditions(new BonusNeutralizationEffect(rival, "Atk"), conditions);
+            effectsConditions.AddEffectConditions(new BonusNeutralizationEffect(rival, "Spd"), conditions);
+            effectsConditions.AddEffectConditions(new BonusNeutralizationEffect(rival, "Res"), conditions);
+            effectsConditions.AddEffectConditions(new BonusNeutralizationEffect(rival, "Def"), conditions);
+            effectsConditions.AddEffectConditions(new GuaranteeFollowUpEffect(unit), conditions);
+        }
+            
+        else if (_skillName == "Savvy Fighter")
+        {
+            
+            conditions.AddSingleCondition(new UnitStartCombat(rival, _roundInfo));
+            extraConditions.AddSingleCondition(new UnitStartCombat(rival, _roundInfo));
+            extraConditions.AddSingleCondition((new StatComparison(unit, rival, "Spd", "Spd", -4, 
+                ComparisonType.Greater)));
+            effectsConditions.AddEffectConditions(new NegationOfGuaranteeEffect(rival, AttackType.FollowUpAttack), conditions);
+            effectsConditions.AddEffectConditions(new NegationOfNegationEffect(unit, AttackType.FollowUpAttack), conditions);
+            effectsConditions.AddEffectConditions(new PercentageDamageReduction(unit, 0.3, EffectDuration.FirstAttack), 
+                conditions);
+        }
+        else if (_skillName == "Flow Force")
+        {
+            conditions.AddSingleCondition(new UnitStartCombat(unit, _roundInfo));
+            effectsConditions.AddEffectConditions(new NegationOfNegationEffect(unit, AttackType.FollowUpAttack), conditions);
+            effectsConditions.AddEffectConditions(new PenaltyNeutralizationEffect(unit, "Atk"), conditions);
+            effectsConditions.AddEffectConditions(new PenaltyNeutralizationEffect(unit, "Spd"), conditions);
+        }
+        
         else
         {
             throw new NoSkillException();
