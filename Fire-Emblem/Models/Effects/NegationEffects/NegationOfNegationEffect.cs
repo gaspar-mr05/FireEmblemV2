@@ -16,19 +16,27 @@ public class NegationOfNegationEffect: Effect
 
     public override void ApplyEffect()
     {
-        EffectsSummary effectsSummary = Unit.EffectsSummary;
-        if (IsAttackNegated())
+        if (IsAttackNegated() && AttackType == AttackType.CounterAttack)
         {
-            effectsSummary.PermitedAttackInfo.NegateNegation(AttackType);
-            effectsSummary.NegationOfNegationInfo.NegateNegation(AttackType);
+            NegateNegationAttackEffects(AttackType);
         }
-        
+        else if (AttackType == AttackType.FollowUpAttack)
+        {
+            NegateNegationAttackEffects(AttackType);
+        }
     }
-
+    
+    
     private bool IsAttackNegated()
     {
         EffectsSummary effectsSummary = Unit.EffectsSummary;
         return (effectsSummary.PermitedAttackInfo.IsNegated(AttackType)) ;
+    }
+    
+    private void NegateNegationAttackEffects(AttackType attackType)
+    {
+        EffectsSummary effectsSummary = Unit.EffectsSummary;
+        effectsSummary.PermitedAttackInfo.NegateNegation(attackType);
     }
 
     public override void RevertEffect()

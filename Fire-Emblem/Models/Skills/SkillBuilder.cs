@@ -1095,6 +1095,41 @@ public class SkillBuilder
             conditions.AddSingleCondition((new UnitStartCombat(rival, _roundInfo)));
             effectsConditions.AddEffectConditions(new GuaranteeFollowUpEffect(unit), conditions);
         }
+        else if (_skillName == "Follow-Up Ring")
+        {
+            conditions.AddSingleCondition(new HpRespectPercentage(unit, 0.5, ComparisonType.Greater, _roundInfo));
+            effectsConditions.AddEffectConditions(new GuaranteeFollowUpEffect(unit), conditions);
+        }
+        else if (_skillName == "Wary Fighter")
+        {
+            conditions.AddSingleCondition(new HpRespectPercentage(unit, 0.5, ComparisonType.Greater, _roundInfo));
+            effectsConditions.AddEffectConditions(new NegationEffect(unit, AttackType.FollowUpAttack), conditions);
+            effectsConditions.AddEffectConditions(new NegationEffect(rival, AttackType.FollowUpAttack), conditions);
+        }
+        else if (_skillName == "Piercing Tribute")
+        {
+            effectsConditions.AddEffectConditions(new NegationOfGuaranteeEffect(rival, AttackType.FollowUpAttack), conditions);
+        }
+        else if (_skillName == "Mjölnir")
+        {
+            effectsConditions.AddEffectConditions(new NegationOfNegationEffect(unit, AttackType.FollowUpAttack), conditions);
+        }
+        else if (_skillName == "Melee Breaker")
+        {
+            weapons.AddWeapons(["Lance", "Sword", "Axe"]);
+            conditions.AddSingleCondition(new HpRespectPercentage(unit, 0.5, ComparisonType.Greater, _roundInfo));
+            conditions.AddSingleCondition(new UnitUseWeaponType(rival, weapons));
+            effectsConditions.AddEffectConditions(new GuaranteeFollowUpEffect(unit), conditions);
+            effectsConditions.AddEffectConditions(new NegationEffect(rival, AttackType.FollowUpAttack), conditions);
+        }
+        else if (_skillName == "Range Breaker")
+        {
+            weapons.AddWeapons(["Magic", "Bow"]);
+            conditions.AddSingleCondition(new HpRespectPercentage(unit, 0.5, ComparisonType.Greater, _roundInfo));
+            conditions.AddSingleCondition(new UnitUseWeaponType(rival, weapons));
+            effectsConditions.AddEffectConditions(new GuaranteeFollowUpEffect(unit), conditions);
+            effectsConditions.AddEffectConditions(new NegationEffect(rival, AttackType.FollowUpAttack), conditions);
+        }
         else
         {
             throw new NoSkillException();

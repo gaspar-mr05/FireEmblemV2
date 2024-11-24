@@ -1,17 +1,25 @@
 namespace Fire_Emblem.Effects;
 
-public class NegationEffectStatus
+public class PermitedAttackStatus
 {
     public int AmountNegated;
     public int AmountGuaranteed;
     public bool Guaranteed;
     public bool Negated;
+    public bool NegationNegated;
+    public bool GuaranteeNegated;
 
-    public NegationEffectStatus()
+    public PermitedAttackStatus()
     {
         AmountNegated = 0;
         AmountGuaranteed = 0;
         Guaranteed = false;
         Negated = false;
+        NegationNegated = false;
+        GuaranteeNegated = false;
+
+
+
+
     }
 }

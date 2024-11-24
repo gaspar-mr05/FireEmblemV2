@@ -45,9 +45,12 @@ public class EffectSummaryView
         ShowPercentageDamageReduction(unit, EffectDuration.FollowUp);
         ShowAbsoluteDamageReduction(unit, EffectDuration.FullRound);
         ShowHealingEffectMessage(unit);
-        ShowNegationEffectMessage(unit, AttackType.CounterAttack);
         ShowNegationOfNegationEffectMessage(unit, AttackType.CounterAttack);
         ShowGuaranteeEffectMessage(unit, AttackType.FollowUpAttack);
+        ShowNegationEffectMessage(unit, AttackType.FollowUpAttack);
+        ShowNegationOfNegationEffectMessage(unit, AttackType.FollowUpAttack);
+        ShowNegationOfGuaranteeEffectMessage(unit, AttackType.FollowUpAttack);
+        ShowNegationEffectMessage(unit, AttackType.CounterAttack);
         
     }
 
@@ -214,35 +217,19 @@ public class EffectSummaryView
                             $"{percentageToShow}% del daño realizado en cada ataque");
         }
     }
-
-    private void ShowNegationEffectMessage(Unit unit, AttackType attackType)
-    {
-        EffectsSummary effectsSummary = unit.EffectsSummary;
-        bool isNegated = effectsSummary.PermitedAttackInfo.IsNegated(attackType);
-        int amount = effectsSummary.PermitedAttackInfo.GetAmountNegated(attackType);
-        if (isNegated)
-        {
-            if (attackType == AttackType.CounterAttack)
-                _view.WriteLine($"{unit.CharacterInfo.Name} no podrá contraatacar");
-            if (attackType == AttackType.FollowUpAttack)
-                _view.WriteLine($"{unit.CharacterInfo.Name} tiene {amount} efecto(s) que neutraliza(n) su followup activo(s)");
-        }
-    }
-    
     
     private void ShowNegationOfNegationEffectMessage(Unit unit, AttackType attackType)
     {
         EffectsSummary effectsSummary = unit.EffectsSummary;
-        bool isNegationNegated = effectsSummary.NegationOfNegationInfo.IsNegationNegated(attackType);
+        bool isNegationNegated = effectsSummary.PermitedAttackInfo.IsNegationNegated(attackType);
         if (isNegationNegated)
         {
             if (attackType == AttackType.CounterAttack)
                 _view.WriteLine($"{unit.CharacterInfo.Name} neutraliza los efectos que previenen sus contraataques");
             if (attackType == AttackType.FollowUpAttack)
-                _view.WriteLine($"{unit.CharacterInfo.Name} tiene 1 efecto(s) que neutraliza(n) su follow up activo(s)");
+                _view.WriteLine($"{unit.CharacterInfo.Name} es inmune a los efectos que neutralizan su follow up");
         }
     }
-    
     private void ShowGuaranteeEffectMessage(Unit unit, AttackType attackType)
     {
         EffectsSummary effectsSummary = unit.EffectsSummary;
@@ -254,4 +241,34 @@ public class EffectSummaryView
                 _view.WriteLine($"{unit.CharacterInfo.Name} tiene {amount} efecto(s) que garantiza(n) su follow up activo(s)");
         }
     }
+
+    private void ShowNegationEffectMessage(Unit unit, AttackType attackType)
+    {
+        EffectsSummary effectsSummary = unit.EffectsSummary;
+        bool isNegated = effectsSummary.PermitedAttackInfo.IsNegated(attackType);
+        int amount = effectsSummary.PermitedAttackInfo.GetAmountNegated(attackType);
+        if (isNegated)
+        {
+            if (attackType == AttackType.CounterAttack)
+                _view.WriteLine($"{unit.CharacterInfo.Name} no podrá contraatacar");
+            if (attackType == AttackType.FollowUpAttack)
+                _view.WriteLine($"{unit.CharacterInfo.Name} tiene {amount} efecto(s) que neutraliza(n) su follow up activo(s)");
+        }
+    }
+    
+    
+
+    
+    private void ShowNegationOfGuaranteeEffectMessage(Unit unit, AttackType attackType)
+    {
+        EffectsSummary effectsSummary = unit.EffectsSummary;
+        bool isGuaranteeNegated = effectsSummary.PermitedAttackInfo.IsGuaranteeNegated(attackType);
+        if (isGuaranteeNegated)
+        {
+            if (attackType == AttackType.FollowUpAttack)
+                _view.WriteLine($"{unit.CharacterInfo.Name} es inmune a los efectos que garantizan su follow up");
+        }
+    }
+    
+
 }

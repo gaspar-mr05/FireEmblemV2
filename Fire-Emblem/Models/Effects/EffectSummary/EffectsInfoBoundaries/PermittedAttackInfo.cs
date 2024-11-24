@@ -4,18 +4,22 @@ namespace Fire_Emblem.Effects.EffectsInfoBoundaries;
 
 public class PermittedAttackInfo
 {
-    private Dictionary<AttackType, NegationEffectStatus> _permitedAttackInfo;
+    private Dictionary<AttackType, PermitedAttackStatus> _permitedAttackInfo;
 
     public PermittedAttackInfo()
     {
-        _permitedAttackInfo = new Dictionary<AttackType, NegationEffectStatus>
+        _permitedAttackInfo = new Dictionary<AttackType, PermitedAttackStatus>
         {
-            { AttackType.CounterAttack, new NegationEffectStatus() },
-            { AttackType.FollowUpAttack, new NegationEffectStatus() },
+            { AttackType.CounterAttack, new PermitedAttackStatus() },
+            { AttackType.FollowUpAttack, new PermitedAttackStatus() },
         };
     }
 
     public bool IsNegated(AttackType attackType) => _permitedAttackInfo[attackType].Negated;
+
+    public bool IsNegationNegated(AttackType attackType) => _permitedAttackInfo[attackType].NegationNegated;
+    
+    public bool IsGuaranteeNegated(AttackType attackType) => _permitedAttackInfo[attackType].GuaranteeNegated;
 
     public bool IsGuaranteed(AttackType attackType) => _permitedAttackInfo[attackType].Guaranteed;
 
@@ -32,7 +36,19 @@ public class PermittedAttackInfo
         
     }
 
-    public void NegateNegation(AttackType attackType) => _permitedAttackInfo[attackType].Negated = false;
+    public void NegateNegation(AttackType attackType)
+    {
+        _permitedAttackInfo[attackType].Negated = false;
+        _permitedAttackInfo[attackType].NegationNegated = true;
+
+    }
+    
+    public void NegateGuarantee(AttackType attackType)
+    {
+        _permitedAttackInfo[attackType].Guaranteed = false;
+        _permitedAttackInfo[attackType].GuaranteeNegated = true;
+
+    }
 
     public int GetAmountNegated(AttackType attackType) => _permitedAttackInfo[attackType].AmountNegated;
     

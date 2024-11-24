@@ -19,7 +19,6 @@ public class EffectsSummary
     public PercentageEffectStatus ActiveHealingInfo = new();
     public DamageEffectInfo OutOfCombatDamageInfo = new();
     public PermittedAttackInfo PermitedAttackInfo = new();
-    public NegationOfNegationEffectInfo NegationOfNegationInfo = new();
     
 
 
