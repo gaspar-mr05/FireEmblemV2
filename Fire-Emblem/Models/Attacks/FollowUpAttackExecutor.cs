@@ -78,13 +78,20 @@ public class FollowUpAttackExecutor : AttackExecutor
         if (HasFollowUpNegated(attacker))
             sum -= effectsSummary.PermitedAttackInfo.GetAmountNegated(AttackType.FollowUpAttack);
         return sum > 0;
-        return attacker.Stats.GetSpd() - defender.Stats.GetSpd() >= 5 && defender.Stats.GetHp() > 0 &&
-            !HasFollowUpNegated(attacker);
+
     }
 
 
-    private bool IsCheckSpeedConditionMet(Unit attacker, Unit defender) 
-        => attacker.Stats.GetSpd() - defender.Stats.GetSpd() >= 5 && defender.Stats.GetHp() > 0;
+    private bool IsCheckSpeedConditionMet(Unit attacker, Unit defender)
+    {
+        EffectsSummary effectsSummary = attacker.EffectsSummary;
+        if (attacker.Stats.GetSpd() - defender.Stats.GetSpd() >= 5 && defender.Stats.GetHp() > 0
+            && !(!RoundInfo.UnitAttacksCount.HasUnitAttacked(attacker) &&
+                 effectsSummary.PermitedAttackInfo.IsNegated(AttackType.CounterAttack)))
+            return true;
+        return false;
+    }
+       
     
     
     

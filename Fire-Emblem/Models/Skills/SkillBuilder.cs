@@ -543,7 +543,7 @@ public class SkillBuilder
         {
             conditions.AddSingleCondition(new StatComparison(unit, rival, "Res", "Res", 0, 
             ComparisonType.StrictlyGreater));
-            effectsConditions.AddEffectConditions(new StatDifferenceDamageReduction(unit, rival, "Res", 
+            effectsConditions.AddEffectConditions(new PercentageDamageReductionBasedOndDifference(unit, rival, "Res", 
                     EffectDuration.FullRound, 4), 
                 conditions);
         }
@@ -551,7 +551,7 @@ public class SkillBuilder
         {
             conditions.AddSingleCondition(new StatComparison(unit, rival, "Spd", "Spd", 0, 
             ComparisonType.StrictlyGreater));
-            effectsConditions.AddEffectConditions(new StatDifferenceDamageReduction(unit, rival, "Spd", 
+            effectsConditions.AddEffectConditions(new PercentageDamageReductionBasedOndDifference(unit, rival, "Spd", 
                     EffectDuration.FullRound, 4), 
                 conditions);
         
@@ -630,7 +630,7 @@ public class SkillBuilder
             weapons.AddWeapons(["Sword", "Axe", "Lance", "Bow"]);
             extraConditions.AddSingleCondition(new UnitStartCombat(unit, _roundInfo));
             extraConditions.AddSingleCondition(new UnitUseWeaponType(unit, weapons));
-            effectsConditions.AddEffectConditions(new ExtraDamageBasedOnStat(unit, rival, "Def", 0.3, EffectDuration.FullRound, 
+            effectsConditions.AddEffectConditions(new ExtraDamageBasedOnPercentage(unit, rival, "Def", 0.3, EffectDuration.FullRound, 
                     BasedOn.Rival), 
                 extraConditions);
         }
@@ -644,7 +644,7 @@ public class SkillBuilder
             extraConditions.AddSingleCondition(new StatComparison(unit, rival, "Spd", "Spd", 0, 
             ComparisonType.StrictlyGreater));
             effectsConditions.AddEffectConditions(new ExtraDamageEffect(unit, 7, EffectDuration.FullRound), conditions);
-            effectsConditions.AddEffectConditions(new StatDifferenceDamageReduction(unit, rival, "Spd", 
+            effectsConditions.AddEffectConditions(new PercentageDamageReductionBasedOndDifference(unit, rival, "Spd", 
                     EffectDuration.FullRound, 4), extraConditions);
         }
         
@@ -658,7 +658,7 @@ public class SkillBuilder
             extraConditions.AddSingleCondition(new HpRespectPercentage(unit, 0.25, ComparisonType.Greater, _roundInfo));
             effectsConditions.AddEffectConditions(new PenaltyEffect(rival, "Atk", 5), conditions);
             effectsConditions.AddEffectConditions(new PenaltyEffect(rival, "Spd", 5), conditions);
-            effectsConditions.AddEffectConditions(new StatDifferenceDamageReduction(unit, rival, "Spd", 
+            effectsConditions.AddEffectConditions(new PercentageDamageReductionBasedOndDifference(unit, rival, "Spd", 
                     EffectDuration.FullRound, 4), extraConditions);
 
         }
@@ -796,7 +796,7 @@ public class SkillBuilder
         else if (_skillName == "Poetic Justice")
         {
             effectsConditions.AddEffectConditions(new PenaltyEffect(rival, "Spd", 4), conditions);
-            effectsConditions.AddEffectConditions(new ExtraDamageBasedOnStat(unit, rival, "Atk", 0.15, EffectDuration.FullRound, 
+            effectsConditions.AddEffectConditions(new ExtraDamageBasedOnPercentage(unit, rival, "Atk", 0.15, EffectDuration.FullRound, 
                     BasedOn.Rival), 
                 extraConditions);
         }
@@ -938,7 +938,7 @@ public class SkillBuilder
             conditions.AddSingleCondition(new UnitStartCombat(unit, _roundInfo));
             conditions.AddSingleCondition(new UnitUseWeaponType(unit, weapons));
             extraConditions.AddSingleCondition(new UnitStartCombat(unit, _roundInfo));
-            effectsConditions.AddEffectConditions(new ExtraDamageBasedOnStat(unit, rival, "Def", 0.3, EffectDuration.FullRound, 
+            effectsConditions.AddEffectConditions(new ExtraDamageBasedOnPercentage(unit, rival, "Def", 0.3, EffectDuration.FullRound, 
                     BasedOn.Rival),
                 conditions);
             effectsConditions.AddEffectConditions(new HealingEffect(unit, 0.5), extraConditions);
@@ -1043,16 +1043,16 @@ public class SkillBuilder
             conditions.AddSingleCondition(new StatComparison(unit, rival, "Res", "Res", 0, 
                 ComparisonType.Greater));
             extraConditions.AddSingleCondition(new AllyWithWeaponType(unit, weapons));
-            effectsConditions.AddEffectConditions(new StatDifferenceDamageReduction(unit, rival, "Res", 
+            effectsConditions.AddEffectConditions(new PercentageDamageReductionBasedOndDifference(unit, rival, "Res", 
                     EffectDuration.FirstAttack, 6), conditions);
-            effectsConditions.AddEffectConditions(new StatDifferenceDamageReduction(unit, rival, "Res", 
+            effectsConditions.AddEffectConditions(new PercentageDamageReductionBasedOndDifference(unit, rival, "Res", 
                 EffectDuration.FollowUp, 4), conditions);
             effectsConditions.AddEffectConditions(new AfterCombatDamageEffect(unit, 7), extraConditions);
         }
         else if (_skillName == "Scendscale")
         {
             extraConditions.AddSingleCondition(new UnitHasAttacked(unit, _roundInfo));
-            effectsConditions.AddEffectConditions(new ExtraDamageBasedOnStat(unit, rival, "Atk", 0.25, 
+            effectsConditions.AddEffectConditions(new ExtraDamageBasedOnPercentage(unit, rival, "Atk", 0.25, 
                 EffectDuration.FullRound, BasedOn.Unit), conditions);
             effectsConditions.AddEffectConditions(new AfterCombatDamageEffect(unit, -7), extraConditions);
             
@@ -1146,7 +1146,7 @@ public class SkillBuilder
         }
         else if (_skillName == "Pegasus Flight")
         {
-            int resDifference = unit.Stats.GetRes() - rival.Stats.GetRes();
+            int resDifference = Convert.ToInt32(unit.CharacterInfo.Res) - Convert.ToInt32(rival.CharacterInfo.Res);
             int penalty = Math.Max(0, Math.Min(Convert.ToInt32(Math.Floor
                 (0.8 * resDifference)), 8));
             ConditionsCollection noConditions = new ConditionsCollection();
@@ -1165,7 +1165,7 @@ public class SkillBuilder
 
         else if (_skillName == "Wyvern Flight")
         {
-            int defDifference = unit.Stats.GetDef() - rival.Stats.GetDef();
+            int defDifference = Convert.ToInt32(unit.CharacterInfo.Def) - Convert.ToInt32(rival.CharacterInfo.Def);
             int penalty = Math.Max(0, Math.Min(Convert.ToInt32(Math.Floor
                 (0.8 * defDifference)), 8));
             ConditionsCollection noConditions = new ConditionsCollection();
@@ -1185,7 +1185,7 @@ public class SkillBuilder
         else if (_skillName == "Null Follow-Up")
         {
             effectsConditions.AddEffectConditions(new NegationOfNegationEffect(unit, AttackType.FollowUpAttack), conditions);
-            effectsConditions.AddEffectConditions(new NegationOfGuaranteeEffect(unit, AttackType.FollowUpAttack), conditions);
+            effectsConditions.AddEffectConditions(new NegationOfGuaranteeEffect(rival, AttackType.FollowUpAttack), conditions);
         }
         else if (_skillName == "Sturdy Impact")
         {
@@ -1265,31 +1265,28 @@ public class SkillBuilder
         }
         else if (_skillName == "Flow Feather")
         {
-            int resDifference = unit.Stats.GetRes() - rival.Stats.GetRes();
-            int damage = Math.Max(0, Math.Min(Convert.ToInt32(Math.Floor
-                (0.7 * resDifference)), 7));
+
             conditions.AddSingleCondition(new UnitStartCombat(unit, _roundInfo));
             extraConditions.AddSingleCondition(new UnitStartCombat(unit, _roundInfo));
             extraConditions.AddSingleCondition(new StatComparison(unit, rival, "Spd", "Spd", -10,
                 ComparisonType.Greater));
             effectsConditions.AddEffectConditions(new NegationOfNegationEffect(unit, AttackType.FollowUpAttack), conditions);
-            effectsConditions.AddEffectConditions(new ExtraDamageEffect(unit, damage, EffectDuration.FullRound), extraConditions);
-            effectsConditions.AddEffectConditions(new AbsoluteDamageReduction(unit, damage, EffectDuration.FullRound),
-                extraConditions);
+            effectsConditions.AddEffectConditions(new ExtraDamageBasedOnDifference(unit, rival, "Res", 0.7, 
+                7, EffectDuration.FullRound), extraConditions);
+            effectsConditions.AddEffectConditions(new AbsoluteDamageReductionBasedOnDifference(unit, rival, "Res", 0.7, 
+                    7, EffectDuration.FullRound), extraConditions);
         }
         else if (_skillName == "Flow Flight")
         {
-            int defDifference = unit.Stats.GetDef() - rival.Stats.GetDef();
-            int damage = Math.Max(0, Math.Min(Convert.ToInt32(Math.Floor
-                (0.7 * defDifference)), 7));
             conditions.AddSingleCondition(new UnitStartCombat(unit, _roundInfo));
             extraConditions.AddSingleCondition(new UnitStartCombat(unit, _roundInfo));
             extraConditions.AddSingleCondition(new StatComparison(unit, rival, "Spd", "Spd", -10,
                 ComparisonType.Greater));
             effectsConditions.AddEffectConditions(new NegationOfNegationEffect(unit, AttackType.FollowUpAttack), conditions);
-            effectsConditions.AddEffectConditions(new ExtraDamageEffect(unit, damage, EffectDuration.FullRound), extraConditions);
-            effectsConditions.AddEffectConditions(new AbsoluteDamageReduction(unit, damage, EffectDuration.FullRound),
-                extraConditions);
+            effectsConditions.AddEffectConditions(new ExtraDamageBasedOnDifference(unit, rival, "Def", 0.7, 
+                7, EffectDuration.FullRound), extraConditions);
+            effectsConditions.AddEffectConditions(new AbsoluteDamageReductionBasedOnDifference(unit, rival, "Def", 
+                0.7, 7, EffectDuration.FullRound), extraConditions);
         }
         else if (_skillName == "Binding Shield")
         {
@@ -1341,7 +1338,7 @@ public class SkillBuilder
             conditions.AddSingleCondition(new StatComparison(unit, rival, "Def", "Def", 0, 
                 ComparisonType.StrictlyGreater));
             extraConditions.AddSingleCondition(new UnitStartCombat(rival, _roundInfo));
-            effectsConditions.AddEffectConditions(new StatDifferenceDamageReduction(unit, rival, "Def", 
+            effectsConditions.AddEffectConditions(new PercentageDamageReductionBasedOndDifference(unit, rival, "Def", 
                 EffectDuration.FullRound, 4), conditions);
             effectsConditions.AddEffectConditions(new GuaranteeFollowUpEffect(unit), extraConditions);
         }
@@ -1357,7 +1354,7 @@ public class SkillBuilder
             effectsConditions.AddEffectConditions(new NegationEffect(rival, AttackType.FollowUpAttack), exceptionalConditions);
             effectsConditions.AddEffectConditions(new PenaltyEffect(rival, "Atk", 5), conditions);
             effectsConditions.AddEffectConditions(new PenaltyEffect(rival, "Res", 5), conditions);
-            effectsConditions.AddEffectConditions(new StatDifferenceDamageReduction(unit, rival, "Res", 
+            effectsConditions.AddEffectConditions(new PercentageDamageReductionBasedOndDifference(unit, rival, "Res", 
                 EffectDuration.FullRound, 4), extraConditions);
             
             

@@ -23,9 +23,6 @@ public abstract class NeutralizationEffect: Effect
         
     }
 
-    public override int GetPriority()
-    {
-        return 2;
-    }
-    
+    public override int GetPriority() => 2;
+
 }

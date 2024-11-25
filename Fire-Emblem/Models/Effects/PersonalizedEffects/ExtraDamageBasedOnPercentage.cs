@@ -4,7 +4,7 @@ using Fire_Emblem.Exceptions;
 
 namespace Fire_Emblem.Effects.DamageEffects;
 
-public class ExtraDamageBasedOnStat: DamageEffect
+public class ExtraDamageBasedOnPercentage: DamageEffect
 {
     
     private Unit _rival;
@@ -13,7 +13,7 @@ public class ExtraDamageBasedOnStat: DamageEffect
     private BasedOn _basedOn;
 
 
-    public ExtraDamageBasedOnStat(Unit unit, Unit rival, string statName, double percentage, EffectDuration effectDuration, 
+    public ExtraDamageBasedOnPercentage(Unit unit, Unit rival, string statName, double percentage, EffectDuration effectDuration, 
         BasedOn basedOn)
     {
 

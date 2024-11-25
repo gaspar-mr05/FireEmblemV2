@@ -3,14 +3,14 @@ using Fire_Emblem.Conditions;
 
 namespace Fire_Emblem.Effects.DamageEffects;
 
-public class StatDifferenceDamageReduction: DamageEffect
+public class PercentageDamageReductionBasedOndDifference: DamageEffect
 {
     private Unit _rival;
     private string _statName;
     private double _percentage;
     private double _multiplier;
 
-    public StatDifferenceDamageReduction(Unit unit, Unit rival, string statName, EffectDuration effectDuration, double multiplier)
+    public PercentageDamageReductionBasedOndDifference(Unit unit, Unit rival, string statName, EffectDuration effectDuration, double multiplier)
     {
         base.Unit = unit;
         base.EffectDuration = effectDuration;
