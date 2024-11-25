@@ -233,9 +233,8 @@ public class EffectSummaryView
     private void ShowGuaranteeEffectMessage(Unit unit, AttackType attackType)
     {
         EffectsSummary effectsSummary = unit.EffectsSummary;
-        bool isGuarantee = effectsSummary.PermitedAttackInfo.IsGuaranteed(attackType);
         int amount = effectsSummary.PermitedAttackInfo.GetAmountGuaranteed(attackType);
-        if (isGuarantee)
+        if (amount > 0)
         {
             if (attackType == AttackType.FollowUpAttack)
                 _view.WriteLine($"{unit.CharacterInfo.Name} tiene {amount} efecto(s) que garantiza(n) su follow up activo(s)");
@@ -245,12 +244,12 @@ public class EffectSummaryView
     private void ShowNegationEffectMessage(Unit unit, AttackType attackType)
     {
         EffectsSummary effectsSummary = unit.EffectsSummary;
-        bool isNegated = effectsSummary.PermitedAttackInfo.IsNegated(attackType);
         int amount = effectsSummary.PermitedAttackInfo.GetAmountNegated(attackType);
-        if (isNegated)
+        if (amount > 0)
         {
             if (attackType == AttackType.CounterAttack)
-                _view.WriteLine($"{unit.CharacterInfo.Name} no podrá contraatacar");
+                if (effectsSummary.PermitedAttackInfo.IsNegated(attackType))
+                    _view.WriteLine($"{unit.CharacterInfo.Name} no podrá contraatacar");
             if (attackType == AttackType.FollowUpAttack)
                 _view.WriteLine($"{unit.CharacterInfo.Name} tiene {amount} efecto(s) que neutraliza(n) su follow up activo(s)");
         }

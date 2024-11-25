@@ -1247,7 +1247,7 @@ public class SkillBuilder
             effectsConditions.AddEffectConditions(new NegationOfGuaranteeEffect(rival, AttackType.FollowUpAttack), conditions);
             effectsConditions.AddEffectConditions(new NegationOfNegationEffect(unit, AttackType.FollowUpAttack), conditions);
             effectsConditions.AddEffectConditions(new PercentageDamageReduction(unit, 0.3, EffectDuration.FirstAttack), 
-                conditions);
+                extraConditions);
         }
         else if (_skillName == "Flow Force")
         {

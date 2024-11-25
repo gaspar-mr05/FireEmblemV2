@@ -47,7 +47,7 @@ public class FollowUpAttackExecutor : AttackExecutor
 
         if (RoundInfo.AreBothUnitsAlive())
         {
-            if (HasFollowUpGuaranteed(attacker) || IsFollowUpPossible(attacker, defender))
+            if (IsFollowUpPossible(attacker, defender))
                 return base.ExecuteAttack(attacker, defender);
 
             EffectsSummary effectsSummary = defender.EffectsSummary;
@@ -66,12 +66,29 @@ public class FollowUpAttackExecutor : AttackExecutor
         EffectsSummary effectsSummary = unit.EffectsSummary;
         return effectsSummary.PermitedAttackInfo.IsGuaranteed(AttackType.FollowUpAttack);
     }
+
+    private bool IsFollowUpPossible(Unit attacker, Unit defender)
+    {
+        EffectsSummary effectsSummary = attacker.EffectsSummary;
+        int sum = 0;
+        if (IsCheckSpeedConditionMet(attacker, defender))
+            sum += 1;
+        if (HasFollowUpGuaranteed(attacker))
+            sum += effectsSummary.PermitedAttackInfo.GetAmountGuaranteed(AttackType.FollowUpAttack);
+        if (HasFollowUpNegated(attacker))
+            sum -= effectsSummary.PermitedAttackInfo.GetAmountNegated(AttackType.FollowUpAttack);
+        return sum > 0;
+        return attacker.Stats.GetSpd() - defender.Stats.GetSpd() >= 5 && defender.Stats.GetHp() > 0 &&
+            !HasFollowUpNegated(attacker);
+    }
+
+
+    private bool IsCheckSpeedConditionMet(Unit attacker, Unit defender) 
+        => attacker.Stats.GetSpd() - defender.Stats.GetSpd() >= 5 && defender.Stats.GetHp() > 0;
     
-    private bool IsFollowUpPossible(Unit attacker, Unit defender) =>
-        attacker.Stats.GetSpd() - defender.Stats.GetSpd() >= 5 && defender.Stats.GetHp() > 0 && 
-        !IsNegatedFollowUp(attacker);
     
-    private bool IsNegatedFollowUp(Unit attacker)
+    
+    private bool HasFollowUpNegated(Unit attacker)
     {
         
         EffectsSummary effectsSummary = attacker.EffectsSummary;
