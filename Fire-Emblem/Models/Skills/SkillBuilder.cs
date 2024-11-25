@@ -1112,7 +1112,21 @@ public class SkillBuilder
         }
         else if (_skillName == "Mjölnir")
         {
-            effectsConditions.AddEffectConditions(new NegationOfNegationEffect(unit, AttackType.FollowUpAttack), conditions);
+            effectsConditions.AddEffectConditions(new NegationOfNegationEffect(unit, AttackType.FollowUpAttack),
+                conditions);
+        }
+        else if (_skillName == "Brash Assaulta")
+        {
+            OrConditions orConditions = new OrConditions();
+            orConditions.AddCondition(new HpRespectPercentage(unit, 0.99, ComparisonType.Less, _roundInfo));
+            orConditions.AddCondition(new HpRespectPercentage(rival, 1, ComparisonType.Greater, _roundInfo));
+            conditions.AddSingleCondition(new UnitStartCombat(unit, _roundInfo));
+            conditions.AddOrConditions(orConditions);
+            effectsConditions.AddEffectConditions(new PenaltyEffect(rival, "Def", 4), conditions);
+            effectsConditions.AddEffectConditions(new PenaltyEffect(rival, "Res", 4), conditions);
+            effectsConditions.AddEffectConditions(new PercentageDamageReduction(unit, 0.3, EffectDuration.FirstAttack),
+                conditions);
+            effectsConditions.AddEffectConditions(new GuaranteeFollowUpEffect(unit), conditions);
         }
         else if (_skillName == "Melee Breaker")
         {
@@ -1129,6 +1143,44 @@ public class SkillBuilder
             conditions.AddSingleCondition(new UnitUseWeaponType(rival, weapons));
             effectsConditions.AddEffectConditions(new GuaranteeFollowUpEffect(unit), conditions);
             effectsConditions.AddEffectConditions(new NegationEffect(rival, AttackType.FollowUpAttack), conditions);
+        }
+        else if (_skillName == "Pegasus Flight")
+        {
+            int resDifference = unit.Stats.GetRes() - rival.Stats.GetRes();
+            int penalty = Math.Max(0, Math.Min(Convert.ToInt32(Math.Floor
+                (0.8 * resDifference)), 8));
+            ConditionsCollection noConditions = new ConditionsCollection();
+            conditions.AddSingleCondition(new StatBaseComparison(unit, rival, "Spd", "Spd", -10
+                ,ComparisonType.Greater));
+            extraConditions.AddSingleCondition(new StatBaseComparison(unit, rival, "Spd", "Spd", -10
+                ,ComparisonType.Greater));
+            extraConditions.AddSingleCondition(new SumOfStatsComparison(unit, rival, "Spd", "Res"));
+            effectsConditions.AddEffectConditions(new PenaltyEffect(rival, "Atk", 4), noConditions);
+            effectsConditions.AddEffectConditions(new PenaltyEffect(rival, "Def", 4), noConditions);
+            effectsConditions.AddEffectConditions(new PenaltyEffect(rival, "Atk", penalty), conditions);
+            effectsConditions.AddEffectConditions(new PenaltyEffect(rival, "Def", penalty), conditions);
+            effectsConditions.AddEffectConditions(new NegationEffect(rival, AttackType.FollowUpAttack), extraConditions);
+            
+        }
+
+        else if (_skillName == "Wyvern Flight")
+        {
+            int defDifference = unit.Stats.GetDef() - rival.Stats.GetDef();
+            int penalty = Math.Max(0, Math.Min(Convert.ToInt32(Math.Floor
+                (0.8 * defDifference)), 8));
+            ConditionsCollection noConditions = new ConditionsCollection();
+            conditions.AddSingleCondition(new StatBaseComparison(unit, rival, "Spd", "Spd", -10
+                ,ComparisonType.Greater));
+            extraConditions.AddSingleCondition(new StatBaseComparison(unit, rival, "Spd", "Spd", -10
+                ,ComparisonType.Greater));
+            extraConditions.AddSingleCondition(new SumOfStatsComparison(unit, rival, "Spd", "Def"));
+            effectsConditions.AddEffectConditions(new PenaltyEffect(rival, "Atk", 4), noConditions);
+            effectsConditions.AddEffectConditions(new PenaltyEffect(rival, "Def", 4), noConditions);
+            effectsConditions.AddEffectConditions(new PenaltyEffect(rival, "Atk", penalty), conditions);
+            effectsConditions.AddEffectConditions(new PenaltyEffect(rival, "Def", penalty), conditions);
+            effectsConditions.AddEffectConditions(new NegationEffect(rival, AttackType.FollowUpAttack), extraConditions);
+            
+            
         }
         else if (_skillName == "Null Follow-Up")
         {
@@ -1283,6 +1335,32 @@ public class SkillBuilder
             effectsConditions.AddEffectConditions(new GuaranteeFollowUpEffect(unit), conditions);
             effectsConditions.AddEffectConditions(new PercentageDamageReduction(unit, 0.8, EffectDuration.FollowUp), 
                 extraConditions);
+        }
+        else if (_skillName == "Blue Lion Rule")
+        {
+            conditions.AddSingleCondition(new StatComparison(unit, rival, "Def", "Def", 0, 
+                ComparisonType.StrictlyGreater));
+            extraConditions.AddSingleCondition(new UnitStartCombat(rival, _roundInfo));
+            effectsConditions.AddEffectConditions(new StatDifferenceDamageReduction(unit, rival, "Def", 
+                EffectDuration.FullRound, 4), conditions);
+            effectsConditions.AddEffectConditions(new GuaranteeFollowUpEffect(unit), extraConditions);
+        }
+        else if (_skillName == "New Divinity")
+        {
+            ConditionsCollection exceptionalConditions = new ConditionsCollection();
+            exceptionalConditions.AddSingleCondition(new HpRespectPercentage(unit, 0.4, ComparisonType.Greater,
+                _roundInfo));
+            conditions.AddSingleCondition(new HpRespectPercentage(unit, 0.25, ComparisonType.Greater, _roundInfo));
+            extraConditions.AddSingleCondition(new HpRespectPercentage(unit, 0.25, ComparisonType.Greater, _roundInfo));
+            extraConditions.AddSingleCondition(new StatComparison(unit, rival, "Res", "Res", 0,
+                ComparisonType.StrictlyGreater));
+            effectsConditions.AddEffectConditions(new NegationEffect(rival, AttackType.FollowUpAttack), exceptionalConditions);
+            effectsConditions.AddEffectConditions(new PenaltyEffect(rival, "Atk", 5), conditions);
+            effectsConditions.AddEffectConditions(new PenaltyEffect(rival, "Res", 5), conditions);
+            effectsConditions.AddEffectConditions(new StatDifferenceDamageReduction(unit, rival, "Res", 
+                EffectDuration.FullRound, 4), extraConditions);
+            
+            
         }
         
         else
