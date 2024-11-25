@@ -1204,6 +1204,76 @@ public class SkillBuilder
             effectsConditions.AddEffectConditions(new PenaltyNeutralizationEffect(unit, "Atk"), conditions);
             effectsConditions.AddEffectConditions(new PenaltyNeutralizationEffect(unit, "Spd"), conditions);
         }
+            
+        else if (_skillName == "Flow Refresh")
+        {
+            conditions.AddSingleCondition(new UnitStartCombat(unit, _roundInfo));
+            effectsConditions.AddEffectConditions(new NegationOfNegationEffect(unit, AttackType.FollowUpAttack), conditions);
+            effectsConditions.AddEffectConditions(new AfterCombatDamageEffect(unit, 10), conditions);
+        }
+        else if (_skillName == "Flow Feather")
+        {
+            int resDifference = unit.Stats.GetRes() - rival.Stats.GetRes();
+            int damage = Math.Max(0, Math.Min(Convert.ToInt32(Math.Floor
+                (0.7 * resDifference)), 7));
+            conditions.AddSingleCondition(new UnitStartCombat(unit, _roundInfo));
+            extraConditions.AddSingleCondition(new UnitStartCombat(unit, _roundInfo));
+            extraConditions.AddSingleCondition(new StatComparison(unit, rival, "Spd", "Spd", -10,
+                ComparisonType.Greater));
+            effectsConditions.AddEffectConditions(new NegationOfNegationEffect(unit, AttackType.FollowUpAttack), conditions);
+            effectsConditions.AddEffectConditions(new ExtraDamageEffect(unit, damage, EffectDuration.FullRound), extraConditions);
+            effectsConditions.AddEffectConditions(new AbsoluteDamageReduction(unit, damage, EffectDuration.FullRound),
+                extraConditions);
+        }
+        else if (_skillName == "Flow Flight")
+        {
+            int defDifference = unit.Stats.GetDef() - rival.Stats.GetDef();
+            int damage = Math.Max(0, Math.Min(Convert.ToInt32(Math.Floor
+                (0.7 * defDifference)), 7));
+            conditions.AddSingleCondition(new UnitStartCombat(unit, _roundInfo));
+            extraConditions.AddSingleCondition(new UnitStartCombat(unit, _roundInfo));
+            extraConditions.AddSingleCondition(new StatComparison(unit, rival, "Spd", "Spd", -10,
+                ComparisonType.Greater));
+            effectsConditions.AddEffectConditions(new NegationOfNegationEffect(unit, AttackType.FollowUpAttack), conditions);
+            effectsConditions.AddEffectConditions(new ExtraDamageEffect(unit, damage, EffectDuration.FullRound), extraConditions);
+            effectsConditions.AddEffectConditions(new AbsoluteDamageReduction(unit, damage, EffectDuration.FullRound),
+                extraConditions);
+        }
+        else if (_skillName == "Binding Shield")
+        {
+            conditions.AddSingleCondition(new StatComparison(unit, rival, "Spd", "Spd", 5, 
+                ComparisonType.Greater));
+            extraConditions.AddSingleCondition(new StatComparison(unit, rival, "Spd", "Spd", 5, 
+                ComparisonType.Greater));
+            extraConditions.AddSingleCondition(new UnitStartCombat(unit, _roundInfo));
+            effectsConditions.AddEffectConditions(new GuaranteeFollowUpEffect(unit), conditions);
+            effectsConditions.AddEffectConditions(new NegationEffect(rival, AttackType.FollowUpAttack), conditions);
+            effectsConditions.AddEffectConditions(new NegationEffect(rival, AttackType.CounterAttack), extraConditions);
+            
+        }
+        else if (_skillName == "Sun-Twin Wing")
+        {
+            conditions.AddSingleCondition(new HpRespectPercentage(unit, 0.25, ComparisonType.Greater, 
+                _roundInfo));
+            effectsConditions.AddEffectConditions(new PenaltyEffect(rival, "Spd", 5), conditions);
+            effectsConditions.AddEffectConditions(new PenaltyEffect(rival, "Def", 5), conditions);
+            effectsConditions.AddEffectConditions(new NegationOfGuaranteeEffect(rival, AttackType.FollowUpAttack), conditions);
+            effectsConditions.AddEffectConditions(new NegationOfNegationEffect(unit, AttackType.FollowUpAttack), conditions);
+        }
+        else if (_skillName == "Dragon's Ire")
+        {
+            conditions.AddSingleCondition(new HpRespectPercentage(unit, 0.25, ComparisonType.Greater, 
+                _roundInfo));
+            extraConditions.AddSingleCondition(new HpRespectPercentage(unit, 0.25, ComparisonType.Greater, 
+                _roundInfo));
+            extraConditions.AddSingleCondition(new UnitStartCombat(rival, _roundInfo));
+            effectsConditions.AddEffectConditions(new PenaltyEffect(rival, "Atk", 4), conditions);
+            effectsConditions.AddEffectConditions(new PenaltyEffect(rival, "Res", 4), conditions);
+            effectsConditions.AddEffectConditions(new GuaranteeFollowUpEffect(unit), conditions);
+            effectsConditions.AddEffectConditions(new NegationOfNegationEffect(unit, AttackType.FollowUpAttack), extraConditions);
+            
+            
+        }
         
         else
         {

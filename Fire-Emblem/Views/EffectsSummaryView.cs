@@ -47,10 +47,10 @@ public class EffectSummaryView
         ShowHealingEffectMessage(unit);
         ShowNegationOfNegationEffectMessage(unit, AttackType.CounterAttack);
         ShowGuaranteeEffectMessage(unit, AttackType.FollowUpAttack);
+        ShowNegationEffectMessage(unit, AttackType.CounterAttack);
         ShowNegationEffectMessage(unit, AttackType.FollowUpAttack);
         ShowNegationOfNegationEffectMessage(unit, AttackType.FollowUpAttack);
         ShowNegationOfGuaranteeEffectMessage(unit, AttackType.FollowUpAttack);
-        ShowNegationEffectMessage(unit, AttackType.CounterAttack);
         
     }
 
