@@ -16,25 +16,28 @@ public class FollowUpAttackExecutor : AttackExecutor
     
     public string ExecuteAttack(Unit attacker, Unit defender)
     {
-        string message = string.Empty;
+        if (!RoundInfo.AreBothUnitsAlive())
+            return string.Empty;
+
         RoundInfo.AttackType = AttackType.FollowUpAttack;
 
-        if (!RoundInfo.AreBothUnitsAlive())
-            return message;
+        string message = ConcatenateMessage(string.Empty, ExecuteFollowUp(attacker, defender));
+        message = ConcatenateMessage(message, ExecuteFollowUp(defender, attacker));
 
-        message += string.IsNullOrEmpty(message) 
-            ? ExecuteFollowUp(attacker, defender) 
-            : $"\n{ExecuteFollowUp(attacker, defender)}";
-
-        message += string.IsNullOrEmpty(message) 
-            ? ExecuteFollowUp(defender, attacker) 
-            : $"\n{ExecuteFollowUp(defender, attacker)}";
-
-        if (string.IsNullOrEmpty(message))
-            return "Ninguna unidad puede hacer un follow up";
-        
-        return message.TrimEnd('\n');
+        return string.IsNullOrEmpty(message) 
+            ? "Ninguna unidad puede hacer un follow up" 
+            : message;
     }
+
+    private string ConcatenateMessage(string currentMessage, string newMessage)
+    {
+        return string.IsNullOrEmpty(newMessage) 
+            ? currentMessage 
+            : string.IsNullOrEmpty(currentMessage) 
+                ? newMessage 
+                : $"{currentMessage}\n{newMessage}";
+    }
+
     
     
 
@@ -42,17 +45,17 @@ public class FollowUpAttackExecutor : AttackExecutor
     {
         string message = string.Empty;
 
-        if (HasFollowUpGuaranteed(attacker))
-            return base.ExecuteAttack(attacker, defender);
+        if (RoundInfo.AreBothUnitsAlive())
+        {
+            if (HasFollowUpGuaranteed(attacker) || IsFollowUpPossible(attacker, defender))
+                return base.ExecuteAttack(attacker, defender);
 
-        if (IsFollowUpPossible(attacker, defender))
-            return base.ExecuteAttack(attacker, defender);
-
-        EffectsSummary effectsSummary = defender.EffectsSummary;
-        if (!RoundInfo.UnitAttacksCount.HasUnitAttacked(defender) &&
-            effectsSummary.PermitedAttackInfo.IsNegated(AttackType.CounterAttack))
-            return $"{attacker.CharacterInfo.Name} no puede hacer un follow up";
-
+            EffectsSummary effectsSummary = defender.EffectsSummary;
+            if (!RoundInfo.UnitAttacksCount.HasUnitAttacked(defender) &&
+                effectsSummary.PermitedAttackInfo.IsNegated(AttackType.CounterAttack))
+                return $"{attacker.CharacterInfo.Name} no puede hacer un follow up";
+        }
+        
         return message;
     }
     

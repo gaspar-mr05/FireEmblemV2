@@ -1270,9 +1270,19 @@ public class SkillBuilder
             effectsConditions.AddEffectConditions(new PenaltyEffect(rival, "Atk", 4), conditions);
             effectsConditions.AddEffectConditions(new PenaltyEffect(rival, "Res", 4), conditions);
             effectsConditions.AddEffectConditions(new GuaranteeFollowUpEffect(unit), conditions);
-            effectsConditions.AddEffectConditions(new NegationOfNegationEffect(unit, AttackType.FollowUpAttack), extraConditions);
-            
-            
+            effectsConditions.AddEffectConditions(new NegationOfNegationEffect(unit, AttackType.FollowUpAttack),
+                extraConditions);
+        }
+        else if (_skillName == "Black Eagle Rule")
+        {
+            conditions.AddSingleCondition(new HpRespectPercentage(unit, 0.25, ComparisonType.Greater, 
+                _roundInfo));
+            extraConditions.AddSingleCondition(new HpRespectPercentage(unit, 0.25, ComparisonType.Greater, 
+                _roundInfo));
+            extraConditions.AddSingleCondition(new UnitStartCombat(rival, _roundInfo));
+            effectsConditions.AddEffectConditions(new GuaranteeFollowUpEffect(unit), conditions);
+            effectsConditions.AddEffectConditions(new PercentageDamageReduction(unit, 0.8, EffectDuration.FollowUp), 
+                extraConditions);
         }
         
         else
