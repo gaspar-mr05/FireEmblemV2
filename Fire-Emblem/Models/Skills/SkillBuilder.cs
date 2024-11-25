@@ -1356,8 +1356,23 @@ public class SkillBuilder
             effectsConditions.AddEffectConditions(new PenaltyEffect(rival, "Res", 5), conditions);
             effectsConditions.AddEffectConditions(new PercentageDamageReductionBasedOndDifference(unit, rival, "Res", 
                 EffectDuration.FullRound, 4), extraConditions);
+        }
+        else if (_skillName == "Phys. Null Follow")
+        {
+            effectsConditions.AddEffectConditions(new PenaltyEffect(rival, "Spd", 4), conditions);
+            effectsConditions.AddEffectConditions(new PenaltyEffect(rival, "Def", 4), conditions);
+            effectsConditions.AddEffectConditions(new NegationOfNegationEffect(unit, AttackType.FollowUpAttack), conditions);
+            effectsConditions.AddEffectConditions(new NegationOfGuaranteeEffect(rival, AttackType.FollowUpAttack), conditions);
+            effectsConditions.AddEffectConditions(new ReductionOfReductionDamageEffect(rival, 0.5), conditions);
+        }
             
-            
+        else if (_skillName == "Mag. Null Follow")
+        {
+            effectsConditions.AddEffectConditions(new PenaltyEffect(rival, "Spd", 4), conditions);
+            effectsConditions.AddEffectConditions(new PenaltyEffect(rival, "Res", 4), conditions);
+            effectsConditions.AddEffectConditions(new NegationOfNegationEffect(unit, AttackType.FollowUpAttack), conditions);
+            effectsConditions.AddEffectConditions(new NegationOfGuaranteeEffect(rival, AttackType.FollowUpAttack), conditions);
+            effectsConditions.AddEffectConditions(new ReductionOfReductionDamageEffect(rival, 0.5), conditions);
         }
         
         else
