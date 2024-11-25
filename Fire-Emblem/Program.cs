@@ -1,5 +1,14 @@
 ﻿using Fire_Emblem;
 using Fire_Emblem_View;
+using Fire_Emblem;
+using Fire_Emblem_GUI;
+using Fire_Emblem_View;
+
+FireEmblemWindow window = new FireEmblemWindow () ;
+window . Start ( Main ) ;
+
+void Main () { }
+
 
 /* 
  * Este código permite replicar un test case. Primero pregunta por el grupo de test
@@ -28,6 +37,9 @@ AnnounceTestCase(test);
 var view = View.BuildManualTestingView(test);
 var game = new Game(view, teamsFolder);
 game.Play();
+
+
+
 
 string SelectTestFolder()
 {

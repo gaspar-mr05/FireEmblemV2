@@ -74,4 +74,10 @@
       <None Remove="Boundaries\**" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Reference Include="Fire-Emblem-GUI">
+        <HintPath>..\Fire-Emblem-View\GuiLib\Fire-Emblem-GUI.dll</HintPath>
+      </Reference>
+    </ItemGroup>
+
 </Project>
