@@ -12,5 +12,5 @@ public class AfterCombatDamageEffect: OutOfCombatDamageEffect
         EffectDuration = EffectDuration.AfterCombat;
     }
     
-    public override int GetPriority() => 7;
+    public override int GetPriority() => 8;
 }

@@ -26,7 +26,7 @@ public class SkillsManager
 
     public void ActivateEffects()
     {
-        int maxPriority = 6;
+        int maxPriority = 7;
         for (int priority = 1; priority <= maxPriority; priority++)
         {
             _defenderSkillsCollection.ApplyEffects(priority);
@@ -51,7 +51,7 @@ public class SkillsManager
 
     public void ActivateAfterCombatEffects()
     {
-        int afterCombatPriority = 7;
+        int afterCombatPriority = 8;
         _defenderSkillsCollection.ApplyEffects(afterCombatPriority);
         _attackerSkillsCollection.ApplyEffects(afterCombatPriority);
         

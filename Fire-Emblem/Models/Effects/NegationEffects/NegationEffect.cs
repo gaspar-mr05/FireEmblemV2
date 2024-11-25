@@ -26,5 +26,5 @@ public class NegationEffect: Effect
     }
 
 
-    public override int GetPriority() => 5;
+    public override int GetPriority() => 6;
 }

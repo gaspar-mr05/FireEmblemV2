@@ -32,4 +32,6 @@ public class AbsoluteDamageReduction : DamageEffect
     {
         throw new NotImplementedException();
     }
+
+    public override int GetPriority() => 5;
 }

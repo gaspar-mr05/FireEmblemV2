@@ -10,6 +10,7 @@ using Fire_Emblem.Exceptions;
 using Fire_Emblem.Models;
 using Fire_Emblem.Models.Effects.DamageEffects;
 using Fire_Emblem.Models.Effects.OutOfCombatDamageEffects;
+using Fire_Emblem.Models.Effects.PersonalizedEffects;
 using Fire_Emblem.Models.Skills;
 
 namespace Fire_Emblem.Conditions;
@@ -1115,7 +1116,7 @@ public class SkillBuilder
             effectsConditions.AddEffectConditions(new NegationOfNegationEffect(unit, AttackType.FollowUpAttack),
                 conditions);
         }
-        else if (_skillName == "Brash Assaulta")
+        else if (_skillName == "Brash Assault")
         {
             OrConditions orConditions = new OrConditions();
             orConditions.AddCondition(new HpRespectPercentage(unit, 0.99, ComparisonType.Less, _roundInfo));
@@ -1127,6 +1128,8 @@ public class SkillBuilder
             effectsConditions.AddEffectConditions(new PercentageDamageReduction(unit, 0.3, EffectDuration.FirstAttack),
                 conditions);
             effectsConditions.AddEffectConditions(new GuaranteeFollowUpEffect(unit), conditions);
+            effectsConditions.AddEffectConditions(new BrashAssaultEffect(unit, rival, _roundInfo), conditions);
+            
         }
         else if (_skillName == "Melee Breaker")
         {

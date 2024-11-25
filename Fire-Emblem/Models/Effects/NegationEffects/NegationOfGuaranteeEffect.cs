@@ -28,5 +28,5 @@ public class NegationOfGuaranteeEffect: Effect
     }
 
 
-    public override int GetPriority() => 6;
+    public override int GetPriority() => 7;
 }

@@ -48,7 +48,7 @@ public class DivineRecreationEffect: DamageEffect
     }
 
 
-    public override int GetPriority() => 4;
+    public override int GetPriority() => 6;
 
     
     public override void RevertEffect()
