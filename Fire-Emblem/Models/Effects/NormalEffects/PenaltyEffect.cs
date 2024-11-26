@@ -6,19 +6,15 @@ namespace Fire_Emblem.Effects;
 public class PenaltyEffect: NormalEffect
 {
 
-    public PenaltyEffect(Unit unit, string statName, int change)
-    {
-        base.Unit = unit;
-        base.StatName = statName;
-        base.Change = change;
-    }
+    public PenaltyEffect(Unit unit, string statName, int change): base(unit, statName, change)
+    {}
 
     public override void ApplyEffect()
     {
-            ActiveEffectsInfo activeEffectsInfo = Unit.ActiveEffectsInfo;
-            Unit.Stats.AddChange(StatName, -Change);
-            activeEffectsInfo.PenaltyEffects.AddEffect(this);
-            RegisterEffect();
+        ActiveEffectsInfo activeEffectsInfo = Unit.ActiveEffectsInfo;
+        Unit.Stats.AddChange(StatName, -Change);
+        activeEffectsInfo.PenaltyEffects.AddEffect(this);
+        RegisterEffect();
     }
 
     public override void RevertEffect()
@@ -33,7 +29,7 @@ public class PenaltyEffect: NormalEffect
         EffectsSummary effectsSummary = Unit.EffectsSummary;
         if (effectsSummary.PenaltiesInfo.IsContainingStatName(StatName))
         {
-            effectsSummary.PenaltiesInfo.SaveChange(StatName, Change);
+            effectsSummary.PenaltiesInfo.SaveChange(StatName, -Change);
             effectsSummary.PenaltiesInfo.SetActiveTrue(StatName);
         }
 

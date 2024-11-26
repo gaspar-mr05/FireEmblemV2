@@ -31,7 +31,8 @@ public class AttacksController
         string[] beforeCombatMessages = DamageOutOfCombatManager.ApplyDamageOutOfCombat(_attacker, _defender,
             EffectDuration.BeforeCombat);
         string[] attackMessages = ExecuteCombatAttacks(skillsManager);
-        string[] afterCombatMessages = DamageOutOfCombatManager.ApplyDamageOutOfCombat(_attacker, _defender, EffectDuration.AfterCombat);
+        string[] afterCombatMessages = DamageOutOfCombatManager.ApplyDamageOutOfCombat(_attacker, _defender, 
+            EffectDuration.AfterCombat);
 
         string[][] allMessages = new []{beforeCombatMessages, attackMessages, afterCombatMessages};
         ProcessAttackMessages(allMessages);

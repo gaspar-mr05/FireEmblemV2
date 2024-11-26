@@ -7,10 +7,8 @@ public class NegationEffect: Effect
 {
     protected AttackType AttackType;
 
-    public NegationEffect(Unit unit, AttackType attackType)
+    public NegationEffect(Unit unit, AttackType attackType): base(unit)
     {
-
-        Unit = unit;
         AttackType = attackType;
     }
 

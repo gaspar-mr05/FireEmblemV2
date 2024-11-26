@@ -28,150 +28,88 @@ public class EffectSummaryView
 
     private void ShowEffectsSummary(Unit unit)
     {
-        
-        ShowBonusEffectsSummary(unit);
-        ShowFirstAttackBonusSummary(unit);
-        ShowFollowUpAttackBonusSummary(unit);
-        ShowPenaltyEffectsSummary(unit);
-        ShowFirstAttackPenaltySummary(unit);
-        ShowFollowUpAttackPenaltySummary(unit);
-        ShowBonusNeutralizationSummary(unit);
-        ShowPenaltyNeutralizationSummary(unit);
-        ShowExtraDamage(unit, EffectDuration.FullRound);
-        ShowExtraDamage(unit, EffectDuration.FirstAttack);
-        ShowExtraDamage(unit, EffectDuration.FollowUp);
-        ShowPercentageDamageReduction(unit, EffectDuration.FullRound);
-        ShowPercentageDamageReduction(unit, EffectDuration.FirstAttack);
-        ShowPercentageDamageReduction(unit, EffectDuration.FollowUp);
-        ShowAbsoluteDamageReduction(unit, EffectDuration.FullRound);
-        ShowHealingEffectMessage(unit);
-        ShowNegationOfNegationEffectMessage(unit, AttackType.CounterAttack);
-        ShowGuaranteeEffectMessage(unit, AttackType.FollowUpAttack);
-        ShowNegationEffectMessage(unit, AttackType.CounterAttack);
-        ShowNegationEffectMessage(unit, AttackType.FollowUpAttack);
-        ShowNegationOfNegationEffectMessage(unit, AttackType.FollowUpAttack);
-        ShowNegationOfGuaranteeEffectMessage(unit, AttackType.FollowUpAttack);
+        EffectsSummary effectsSummary = unit.EffectsSummary;
+        ShowNormalEffectSummary(unit, effectsSummary.BonusesInfo);
+        ShowAttackEffectSummary(unit, effectsSummary.FirstAttackBonusesInfo, "primer ataque");
+        ShowAttackEffectSummary(unit, effectsSummary.FollowUpBonusesInfo, "Follow-Up");
+        ShowNormalEffectSummary(unit, effectsSummary.PenaltiesInfo);
+        ShowAttackEffectSummary(unit, effectsSummary.FirstAttackPenaltiesInfo, "primer ataque");
+        ShowAttackEffectSummary(unit, effectsSummary.FollowUpPenaltiesInfo, "Follow-Up");
+        ShowNeutralizationSummary(unit, effectsSummary.BonusNeutralizationsInfo, "bonus");
+        ShowNeutralizationSummary(unit, effectsSummary.PenaltyNeutralizationsInfo, "penalty");
+        ShowExtraDamage(unit, effectsSummary.ExtraDamageInfo, EffectDuration.FullRound);
+        ShowExtraDamage(unit, effectsSummary.ExtraDamageInfo, EffectDuration.FirstAttack);
+        ShowExtraDamage(unit, effectsSummary.ExtraDamageInfo, EffectDuration.FollowUp);
+        ShowPercentageDamageReduction(unit, effectsSummary.PercentageDamageReductionInfo, EffectDuration.FullRound);
+        ShowPercentageDamageReduction(unit, effectsSummary.PercentageDamageReductionInfo, EffectDuration.FirstAttack);
+        ShowPercentageDamageReduction(unit, effectsSummary.PercentageDamageReductionInfo, EffectDuration.FollowUp);
+        ShowAbsoluteDamageReduction(unit, effectsSummary.AbsoluteDamageReductionInfo);
+        ShowHealingEffectMessage(unit, effectsSummary.ActiveHealingInfo);
+        ShowNegationOfNegationEffectMessage(unit, effectsSummary.PermitedAttackInfo, AttackType.CounterAttack);
+        ShowGuaranteeEffectMessage(unit, effectsSummary.PermitedAttackInfo, AttackType.FollowUpAttack);
+        ShowNegationEffectMessage(unit, effectsSummary.PermitedAttackInfo, AttackType.CounterAttack);
+        ShowNegationEffectMessage(unit, effectsSummary.PermitedAttackInfo, AttackType.FollowUpAttack);
+        ShowNegationOfNegationEffectMessage(unit, effectsSummary.PermitedAttackInfo ,AttackType.FollowUpAttack);
+        ShowNegationOfGuaranteeEffectMessage(unit, effectsSummary.PermitedAttackInfo, AttackType.FollowUpAttack);
         
     }
 
-    private void ShowBonusEffectsSummary(Unit unit)
+    private void ShowNormalEffectSummary(Unit unit, NormalEffectInfo normalEffectInfo)
     {
-        EffectsSummary effectsSummary = unit.EffectsSummary;
-        NormalEffectInfo bonusEffectInfo = effectsSummary.BonusesInfo;
-        StatEffectStatus[] statEffectStatuses = bonusEffectInfo.GetEffectStatuses();
+        StatEffectStatus[] statEffectStatuses = normalEffectInfo.GetEffectStatuses();
         foreach (StatEffectStatus statEffectStatus in statEffectStatuses)
         {
-            if (statEffectStatus.Change!= 0) 
+            if (statEffectStatus.Change > 0) 
                 _view.WriteLine($"{unit.CharacterInfo.Name} obtiene {statEffectStatus.Stat}+{statEffectStatus.Change}");
+            else if (statEffectStatus.Change < 0) 
+                _view.WriteLine($"{unit.CharacterInfo.Name} obtiene {statEffectStatus.Stat}{statEffectStatus.Change}");
         }
     }
 
-    private void ShowPenaltyEffectsSummary(Unit unit)
-    {
-        EffectsSummary effectsSummary = unit.EffectsSummary;
-        NormalEffectInfo penaltyEffectInfo = effectsSummary.PenaltiesInfo;
-        StatEffectStatus[] statEffectStatuses = penaltyEffectInfo.GetEffectStatuses();
-        foreach (StatEffectStatus statEffectStatus in statEffectStatuses)
-        {
-            if (statEffectStatus.Change!= 0) 
-                _view.WriteLine($"{unit.CharacterInfo.Name} obtiene {statEffectStatus.Stat}-{statEffectStatus.Change}");
-        }
-    }
+ 
 
-    private void ShowBonusNeutralizationSummary(Unit unit)
+    private void ShowNeutralizationSummary(Unit unit, NeutralizationEffectInfo neutralizationEffectInfo, string type)
     {
-        EffectsSummary effectsSummary = unit.EffectsSummary;
-        NeutralizationEffectInfo bonusNeutralizationInfo = effectsSummary.BonusNeutralizationsInfo;
-        (string statName, bool active)[] bonusNeutralizationEffects = bonusNeutralizationInfo.GetNeutralizationEffectSummaries();
-        foreach ((string statName, bool active) in bonusNeutralizationEffects)
+
+        (string statName, bool active)[] neutralizationEffects = neutralizationEffectInfo.GetNeutralizationEffectSummaries();
+        foreach ((string statName, bool active) in neutralizationEffects)
         {
             if (active) 
-                _view.WriteLine($"Los bonus de {statName} de {unit.CharacterInfo.Name} fueron neutralizados");
+                _view.WriteLine($"Los {type} de {statName} de {unit.CharacterInfo.Name} fueron neutralizados");
         }
         
     }
 
-    private void ShowPenaltyNeutralizationSummary(Unit unit)
-    {
-        EffectsSummary effectsSummary = unit.EffectsSummary;
-        NeutralizationEffectInfo penaltyNeutralizationInfo = effectsSummary.PenaltyNeutralizationsInfo;
-        (string statName, bool active)[] penaltyNeutralizationEffects = penaltyNeutralizationInfo.GetNeutralizationEffectSummaries();
-        foreach ((string statName, bool active) in penaltyNeutralizationEffects)
-        {
-            if (active) 
-                _view.WriteLine($"Los penalty de {statName} de {unit.CharacterInfo.Name} fueron neutralizados");
-        }
-    }
+ 
 
-    private void ShowFirstAttackPenaltySummary(Unit unit)
+    private void ShowAttackEffectSummary(Unit unit, NormalEffectInfo normalEffectInfo, string type)
     {
-        EffectsSummary effectsSummary = unit.EffectsSummary;
-        NormalEffectInfo firstAttackPenaltyBonusInfo = effectsSummary.FirstAttackPenaltiesInfo;
-        StatEffectStatus[] statEffectStatuses = firstAttackPenaltyBonusInfo.GetEffectStatuses();
+        StatEffectStatus[] statEffectStatuses = normalEffectInfo.GetEffectStatuses();
         foreach (StatEffectStatus statEffectStatus in statEffectStatuses)
         {
-            if (statEffectStatus.Change != 0) 
-                _view.WriteLine($"{unit.CharacterInfo.Name} obtiene {statEffectStatus.Stat}{statEffectStatus.Change} " +
-                                $"en su primer ataque");
-
-        }
-    }
-
-    private void ShowFirstAttackBonusSummary(Unit unit)
-    {
-        EffectsSummary effectsSummary = unit.EffectsSummary;
-        NormalEffectInfo firstAttackBonusInfo = effectsSummary.FirstAttackBonusesInfo;
-        StatEffectStatus[] statEffectStatuses = firstAttackBonusInfo.GetEffectStatuses();
-        foreach (StatEffectStatus statEffectStatus in statEffectStatuses)
-        {
-            if (statEffectStatus.Change != 0) 
+            if (statEffectStatus.Change > 0) 
                 _view.WriteLine($"{unit.CharacterInfo.Name} obtiene {statEffectStatus.Stat}+{statEffectStatus.Change} " +
-                                $"en su primer ataque");
-
+                                $"en su {type}");
+            else if (statEffectStatus.Change < 0)
+                _view.WriteLine($"{unit.CharacterInfo.Name} obtiene {statEffectStatus.Stat}{statEffectStatus.Change} " +
+                                $"en su {type}");
+            
         }
     }
 
-    private void ShowFollowUpAttackPenaltySummary(Unit unit)
+    
+
+  
+    private void ShowAbsoluteDamageReduction(Unit unit, DamageEffectInfo damageEffectInfo)
     {
-        EffectsSummary effectsSummary = unit.EffectsSummary;
-        NormalEffectInfo followUpPenaltyInfo = effectsSummary.FollowUpPenaltiesInfo;
-        StatEffectStatus[] statEffectStatuses = followUpPenaltyInfo.GetEffectStatuses();
-        foreach (StatEffectStatus statEffectStatus in statEffectStatuses)
-        {
-            if (statEffectStatus.Change != 0)
-                _view.WriteLine($"{unit.CharacterInfo.Name} obtiene {statEffectStatus.Stat}{statEffectStatus.Change} en su Follow-Up");
-
-        }
-    }
-
-    private void ShowFollowUpAttackBonusSummary(Unit unit)
-    {
-        EffectsSummary effectsSummary = unit.EffectsSummary;
-        NormalEffectInfo followUpBonusInfo = effectsSummary.FollowUpBonusesInfo;
-        StatEffectStatus[] statEffectStatuses = followUpBonusInfo.GetEffectStatuses();
-        foreach (StatEffectStatus statEffectStatus in statEffectStatuses)
-        {
-            if (statEffectStatus.Change != 0) 
-                _view.WriteLine($"{unit.CharacterInfo.Name} obtiene {statEffectStatus.Stat}+{statEffectStatus.Change} en su Follow-Up");
-
-        }
-    }
-
-    private void ShowAbsoluteDamageReduction(Unit unit, EffectDuration effectDuration)
-    {
-        EffectsSummary effectsSummary = unit.EffectsSummary;
-        DamageEffectInfo damageEffectInfo = effectsSummary.AbsoluteDamageReductionInfo;
-        DamageEffectStatus damageEffectStatus = damageEffectInfo.GetDamageInfo(effectDuration);
+        DamageEffectStatus damageEffectStatus = damageEffectInfo.GetDamageInfo(EffectDuration.FullRound);
         if (damageEffectStatus.Damage != 0)
-            if (effectDuration == EffectDuration.FullRound)
-                _view.WriteLine($"{unit.CharacterInfo.Name} recibirá {damageEffectStatus.Damage} daño en cada ataque");
+            _view.WriteLine($"{unit.CharacterInfo.Name} recibirá {damageEffectStatus.Damage} daño en cada ataque");
         
     }
 
-    private void ShowExtraDamage(Unit unit, EffectDuration effectDuration)
+    private void ShowExtraDamage(Unit unit, DamageEffectInfo damageEffectInfo, EffectDuration effectDuration)
     {
-        EffectsSummary effectsSummary = unit.EffectsSummary;
-        DamageEffectInfo damageEffectInfo = effectsSummary.ExtraDamageInfo;
         DamageEffectStatus damageEffectStatus = damageEffectInfo.GetDamageInfo(effectDuration);
         if (damageEffectStatus.Damage != 0)
         {
@@ -182,14 +120,12 @@ public class EffectSummaryView
             
             if (effectDuration == EffectDuration.FollowUp)
                 _view.WriteLine($"{unit.CharacterInfo.Name} realizará +{damageEffectStatus.Damage} daño extra en su Follow-Up");
-                
         }
     }
 
-    private void ShowPercentageDamageReduction(Unit unit, EffectDuration effectDuration)
+    private void ShowPercentageDamageReduction(Unit unit, PercentageDamageEffectInfo percentageDamageEffectInfo, 
+        EffectDuration effectDuration)
     {
-        EffectsSummary effectsSummary = unit.EffectsSummary;
-        PercentageDamageEffectInfo percentageDamageEffectInfo = effectsSummary.PercentageDamageReductionInfo;
         PercentageEffectStatus percentageEffectStatus = percentageDamageEffectInfo.GetPercentageReduction(effectDuration);
         int percentageToShow = (int)Math.Round(percentageEffectStatus.Percentage * 100); 
         if (percentageToShow != 0)
@@ -207,21 +143,20 @@ public class EffectSummaryView
     }
 
 
-    private void ShowHealingEffectMessage(Unit unit)
+    private void ShowHealingEffectMessage(Unit unit, PercentageEffectStatus activeHealingInfo)
     {
-        EffectsSummary unitEffectsSummary = unit.EffectsSummary;
-        if (unitEffectsSummary.ActiveHealingInfo.Active)
+        if (activeHealingInfo.Active)
         {
-            int percentageToShow = (int)(unitEffectsSummary.ActiveHealingInfo.Percentage * 100);
+            int percentageToShow = (int)(activeHealingInfo.Percentage * 100);
             _view.WriteLine($"{unit.CharacterInfo.Name} recuperará HP igual al " + 
                             $"{percentageToShow}% del daño realizado en cada ataque");
         }
     }
     
-    private void ShowNegationOfNegationEffectMessage(Unit unit, AttackType attackType)
+    private void ShowNegationOfNegationEffectMessage(Unit unit, PermittedAttackInfo permittedAttackInfo, 
+        AttackType attackType)
     {
-        EffectsSummary effectsSummary = unit.EffectsSummary;
-        bool isNegationNegated = effectsSummary.PermitedAttackInfo.IsNegationNegated(attackType);
+        bool isNegationNegated = permittedAttackInfo.IsNegationNegated(attackType);
         if (isNegationNegated)
         {
             if (attackType == AttackType.CounterAttack)
@@ -230,10 +165,9 @@ public class EffectSummaryView
                 _view.WriteLine($"{unit.CharacterInfo.Name} es inmune a los efectos que neutralizan su follow up");
         }
     }
-    private void ShowGuaranteeEffectMessage(Unit unit, AttackType attackType)
+    private void ShowGuaranteeEffectMessage(Unit unit, PermittedAttackInfo permittedAttackInfo, AttackType attackType)
     {
-        EffectsSummary effectsSummary = unit.EffectsSummary;
-        int amount = effectsSummary.PermitedAttackInfo.GetAmountGuaranteed(attackType);
+        int amount = permittedAttackInfo.GetAmountGuaranteed(attackType);
         if (amount > 0)
         {
             if (attackType == AttackType.FollowUpAttack)
@@ -241,14 +175,14 @@ public class EffectSummaryView
         }
     }
 
-    private void ShowNegationEffectMessage(Unit unit, AttackType attackType)
+    private void ShowNegationEffectMessage(Unit unit, PermittedAttackInfo permittedAttackInfo, AttackType attackType)
     {
-        EffectsSummary effectsSummary = unit.EffectsSummary;
-        int amount = effectsSummary.PermitedAttackInfo.GetAmountNegated(attackType);
+
+        int amount = permittedAttackInfo.GetAmountNegated(attackType);
         if (amount > 0)
         {
             if (attackType == AttackType.CounterAttack)
-                if (effectsSummary.PermitedAttackInfo.IsNegated(attackType))
+                if (permittedAttackInfo.IsNegated(attackType))
                     _view.WriteLine($"{unit.CharacterInfo.Name} no podrá contraatacar");
             if (attackType == AttackType.FollowUpAttack)
                 _view.WriteLine($"{unit.CharacterInfo.Name} tiene {amount} efecto(s) que neutraliza(n) su follow up activo(s)");
@@ -258,10 +192,10 @@ public class EffectSummaryView
     
 
     
-    private void ShowNegationOfGuaranteeEffectMessage(Unit unit, AttackType attackType)
+    private void ShowNegationOfGuaranteeEffectMessage(Unit unit, PermittedAttackInfo permittedAttackInfo, 
+        AttackType attackType)
     {
-        EffectsSummary effectsSummary = unit.EffectsSummary;
-        bool isGuaranteeNegated = effectsSummary.PermitedAttackInfo.IsGuaranteeNegated(attackType);
+        bool isGuaranteeNegated = permittedAttackInfo.IsGuaranteeNegated(attackType);
         if (isGuaranteeNegated)
         {
             if (attackType == AttackType.FollowUpAttack)

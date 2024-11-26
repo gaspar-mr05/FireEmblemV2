@@ -15,7 +15,8 @@ public class StatComparison: ICondition
     private string _rivalStatName;
     private ComparisonType _comparisonType;
 
-    public StatComparison(Unit unit, Unit rival, string unitStatName, string rivalStatName, int plus, ComparisonType comparisonType)
+    public StatComparison(Unit unit, Unit rival, string unitStatName, string rivalStatName, int plus, 
+        ComparisonType comparisonType)
     {
         _plus = plus;
         _unit = unit;

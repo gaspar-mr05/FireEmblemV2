@@ -3,15 +3,14 @@ using Fire_Emblem.Characters;
 
 namespace Fire_Emblem.Effects;
 
-public class WrathEffect: NormalEffect
+public class WrathEffect: Effect
 {
     private int _change;
     private Effect _bonusEffect;
 
-    public WrathEffect(Unit unit, string statName)
+    public WrathEffect(Unit unit, string statName) : base(unit)
     {
-        base.Unit = unit;
-        base.StatName = statName;
+        StatName = statName;
     }
     public override void ApplyEffect()
     {
@@ -34,5 +33,6 @@ public class WrathEffect: NormalEffect
     {
         _bonusEffect.RevertEffect();
     }
-    
+
+    public override int GetPriority() => 1;
 }

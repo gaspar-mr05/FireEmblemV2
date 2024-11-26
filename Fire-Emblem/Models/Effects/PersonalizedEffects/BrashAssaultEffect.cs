@@ -11,9 +11,8 @@ public class BrashAssaultEffect: Effect
     private Characters.Unit _rival;
     private RoundInfo _roundInfo;
 
-    public BrashAssaultEffect(Characters.Unit unit, Characters.Unit rival, RoundInfo roundInfo)
+    public BrashAssaultEffect(Characters.Unit unit, Characters.Unit rival, RoundInfo roundInfo): base(unit)
     {
-        base.Unit = unit;
         _rival = rival;
         _roundInfo = roundInfo;
     }

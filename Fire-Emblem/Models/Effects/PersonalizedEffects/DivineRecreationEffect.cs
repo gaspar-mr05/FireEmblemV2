@@ -5,14 +5,13 @@ using Fire_Emblem.Effects.EffectsInfoBoundaries;
 
 namespace Fire_Emblem.Effects.DamageEffects;
 
-public class DivineRecreationEffect: DamageEffect
+public class DivineRecreationEffect: Effect
 {
     private Unit _rival;
     private RoundInfo _roundInfo;
 
-    public DivineRecreationEffect(Unit unit, Unit rival, RoundInfo roundInfo)
+    public DivineRecreationEffect(Unit unit, Unit rival, RoundInfo roundInfo): base(unit)
     {
-        base.Unit = unit;
         _rival = rival;
         _roundInfo = roundInfo;
     }

@@ -7,12 +7,10 @@ namespace Fire_Emblem.Combat;
 
 public class ReductionOfReductionDamageEffect: Effect
 {
-    private Unit _unit;
     private double _reduction;
 
-    public ReductionOfReductionDamageEffect(Unit unit, double reduction)
+    public ReductionOfReductionDamageEffect(Unit unit, double reduction): base(unit)
     {
-        _unit = unit;
         _reduction = reduction;
     }
     public override void ApplyEffect()
@@ -25,7 +23,7 @@ public class ReductionOfReductionDamageEffect: Effect
     private void ReduceReduction(EffectDuration effectDuration)
     {
         
-        PercentageDamageEffectInfo percentageDamageEffectInfo = _unit.EffectsSummary.PercentageDamageReductionInfo;
+        PercentageDamageEffectInfo percentageDamageEffectInfo = Unit.EffectsSummary.PercentageDamageReductionInfo;
         PercentageEffectStatus percentageEffectStatus =
             percentageDamageEffectInfo.GetPercentageReduction(effectDuration);
         percentageEffectStatus.Percentage *= _reduction;

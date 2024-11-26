@@ -8,10 +8,8 @@ public class ExtraDamageEffect: DamageEffect
 {
     private int _damage;
 
-    public ExtraDamageEffect(Unit unit, int damage, EffectDuration effectDuration)
+    public ExtraDamageEffect(Unit unit, int damage, EffectDuration effectDuration): base(unit, effectDuration)
     {
-        base.Unit = unit;
-        base.EffectDuration = effectDuration;
         _damage = damage;
 
     }

@@ -6,9 +6,8 @@ public class HealingEffect: Effect
 {
     private double _percentageToHeal;
 
-    public HealingEffect(Unit unit, double percentageToHeal)
+    public HealingEffect(Unit unit, double percentageToHeal): base(unit)
     {
-        Unit = unit;
         _percentageToHeal = percentageToHeal;
     }
     public override void ApplyEffect()

@@ -9,11 +9,8 @@ public abstract class FirstAttackEffect: NormalEffect
     protected abstract void RemoveFromEffectsSummary(EffectsSummary effectsSummary);
     protected abstract void UpdateChange(EffectsSummary effectsSummary);
 
-    public FirstAttackEffect(Unit unit, string statName, int change)
+    public FirstAttackEffect(Unit unit, string statName, int change): base(unit, statName, change)
     {
-        Unit = unit;
-        StatName = statName;
-        Change = change;
     }
 
     public override void ApplyEffect()

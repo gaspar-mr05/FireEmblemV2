@@ -22,6 +22,7 @@ public class TeamsBuilder
         Team currentTeam = _playerOneTeam;
         foreach (string line in _fileLines)
         {
+            
             if (line == "Player 1 Team")
                 currentTeam = _playerOneTeam;
             else if (line == "Player 2 Team")

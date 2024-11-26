@@ -57,7 +57,8 @@ public class RoundController
 
     private void ShowRoundStartView(Unit attacker, Unit defender)
     {
-        RoundStartView roundStartView = new RoundStartView(_view, attacker, defender, _roundNumber, _turnsManager.PlayerWhoStarts);
+        RoundStartView roundStartView = new RoundStartView(_view, attacker, defender, _roundNumber, 
+            _turnsManager.PlayerWhoStarts);
         roundStartView.ShowRoundStart();
     }
     

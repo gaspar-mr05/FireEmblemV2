@@ -9,12 +9,10 @@ public class PercentageDamageReduction: DamageEffect
     private double _percentage;
 
 
-    public PercentageDamageReduction(Unit unit, double percentage, EffectDuration effectDuration)
+    public PercentageDamageReduction(Unit unit, double percentage, EffectDuration effectDuration): base(unit, 
+        effectDuration)
     {
-        base.Unit = unit;
-        base.EffectDuration = effectDuration;
         _percentage = percentage;
-
     }
 
     public override void ApplyEffect()

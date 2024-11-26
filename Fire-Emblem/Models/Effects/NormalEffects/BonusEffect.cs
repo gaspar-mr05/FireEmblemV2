@@ -7,12 +7,7 @@ namespace Fire_Emblem.Effects;
 public class BonusEffect : NormalEffect
 {
 
-    public BonusEffect(Unit unit, string statName, int change)
-    {
-        base.Unit = unit;
-        base.StatName = statName;
-        base.Change = change;
-    }
+    public BonusEffect(Unit unit, string statName, int change): base(unit, statName, change){}
 
     public override void ApplyEffect()
     {

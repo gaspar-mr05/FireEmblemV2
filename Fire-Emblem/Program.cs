@@ -3,11 +3,17 @@ using Fire_Emblem_View;
 using Fire_Emblem;
 using Fire_Emblem_GUI;
 using Fire_Emblem_View;
+using Fire_Emblem.Characters;
+using Fire_Emblem.Teams;
 
 FireEmblemWindow window = new FireEmblemWindow () ;
 window . Start ( Main ) ;
 
-void Main () { }
+void Main()
+{
+    string team1Data = window . GetTeam1 () ;
+    string team2Data = window . GetTeam2 () ;
+}
 
 
 /* 

@@ -1,9 +1,10 @@
 using Fire_Emblem.Conditions;
 using Fire_Emblem.Effects;
+using Fire_Emblem.Effects.DamageEffects;
 
 namespace Fire_Emblem.Models.Effects.PersonalizedEffects;
 
-public abstract class EffectBasedOnDifference: Effect
+public abstract class EffectBasedOnDifference: DamageEffect
 {
     
     protected Characters.Unit Rival;
@@ -11,10 +12,10 @@ public abstract class EffectBasedOnDifference: Effect
     protected double Percentage;
     protected int Max;
 
-    protected EffectBasedOnDifference(Characters.Unit unit, Characters.Unit rival, string statName, double percentage, int max)
+    protected EffectBasedOnDifference(Characters.Unit unit, Characters.Unit rival, string statName, double percentage, 
+        int max, EffectDuration effectDuration): base(unit, effectDuration)
     {
-
-        base.Unit = unit;
+        
         Rival = rival;
         StatName = statName;
         Percentage = percentage;
@@ -30,10 +31,7 @@ public abstract class EffectBasedOnDifference: Effect
         return change;
     }
 
-    public override int GetPriority()
-    {
-        throw new NotImplementedException();
-    }
+    
 
     public override void RevertEffect()
     {

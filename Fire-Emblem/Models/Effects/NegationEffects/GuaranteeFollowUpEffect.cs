@@ -8,9 +8,8 @@ public class GuaranteeFollowUpEffect: Effect
 
     protected AttackType AttackType;
 
-    public GuaranteeFollowUpEffect(Unit unit)
+    public GuaranteeFollowUpEffect(Unit unit): base(unit)
     {
-        Unit = unit;
         AttackType = AttackType.FollowUpAttack;
     }
 
@@ -26,5 +25,5 @@ public class GuaranteeFollowUpEffect: Effect
     }
 
 
-    public override int GetPriority() => 5;
+    public override int GetPriority() => 6;
 }

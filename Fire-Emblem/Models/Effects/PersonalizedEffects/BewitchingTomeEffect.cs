@@ -13,14 +13,10 @@ public class BewitchingTomeEffect: DamageEffect
     private Unit _rival;
     private double _percentage;
 
-    public BewitchingTomeEffect(Unit unit, Unit rival, EffectDuration effectDuration)
+    public BewitchingTomeEffect(Unit unit, Unit rival, EffectDuration effectDuration): base(unit, effectDuration)
     {
-
-        Unit = unit;
         _rival = rival;
         _percentage = 0.2;
-        EffectDuration = effectDuration;
-
     }
     
     public override void ApplyEffect()

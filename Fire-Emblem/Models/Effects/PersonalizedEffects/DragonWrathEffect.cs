@@ -10,10 +10,8 @@ public class DragonWrathEffect: DamageEffect
     private string _rivalStatName;
 
     public DragonWrathEffect(Unit unit, Unit rival, string unitStatName, string rivalStatName, 
-    EffectDuration effectDuration)
+    EffectDuration effectDuration): base(unit, effectDuration)
     {
-        base.Unit = unit;
-        base.EffectDuration = effectDuration;
         _rival = rival;
         _unitStatName = unitStatName;
         _rivalStatName = rivalStatName;

@@ -10,5 +10,6 @@ public class BeforeCombatDamageEffect: OutOfCombatDamageEffect
     {
         EffectDuration = EffectDuration.BeforeCombat;
     }
-    
+
+    public override int GetPriority() => 3;
 }

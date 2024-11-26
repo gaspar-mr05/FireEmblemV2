@@ -4,14 +4,12 @@ namespace Fire_Emblem.Effects;
 
 public abstract class NeutralizationEffect: Effect
 {
-    protected Unit Unit;
-    protected string StatName;
+    
 
     protected abstract void NeutralizeEffect(ActiveEffectsInfo activeEffectsInfo);
     protected abstract void RegisterEffect();
-    public NeutralizationEffect(Unit unit, string statName)
+    public NeutralizationEffect(Unit unit, string statName): base(unit)
     {
-        Unit = unit;
         StatName = statName;
     }
 

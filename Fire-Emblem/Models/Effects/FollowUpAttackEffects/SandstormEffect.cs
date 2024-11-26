@@ -2,9 +2,11 @@ using Fire_Emblem.Characters;
 
 namespace Fire_Emblem.Effects;
 
-public class SandstormEffect: NormalEffect
+public class SandstormEffect: Effect
 {
-    public SandstormEffect(Unit unit, string statName)
+
+    private int _change;
+    public SandstormEffect(Unit unit, string statName): base(unit)
     {
         base.StatName = statName;
         base.Unit = unit;
@@ -13,9 +15,9 @@ public class SandstormEffect: NormalEffect
     {
         CalculateChange();
         ActiveEffectsInfo activeEffectsInfo = Unit.ActiveEffectsInfo;
-        if (Change >= 0)
+        if (_change >= 0)
             activeEffectsInfo.BonusEffects.AddEffect(this);
-        else if (Change < 0)
+        else if (_change < 0)
             activeEffectsInfo.PenaltyEffects.AddEffect(this);
         RegisterEffect();
     }
@@ -24,12 +26,12 @@ public class SandstormEffect: NormalEffect
     {
         ActiveEffectsInfo activeEffectsInfo = Unit.ActiveEffectsInfo;
         EffectsSummary effectsSummary = Unit.EffectsSummary;
-        if (Change >= 0)
+        if (_change >= 0)
         {
             activeEffectsInfo.BonusEffects.RemoveEffect(this);
             effectsSummary.FollowUpBonusesInfo.SetActiveFalse(StatName);
         }
-        else if (Change < 0)
+        else if (_change < 0)
         {
             activeEffectsInfo.PenaltyEffects.RemoveEffect(this);
             effectsSummary.FollowUpPenaltiesInfo.SetActiveFalse(StatName);
@@ -39,24 +41,26 @@ public class SandstormEffect: NormalEffect
 
     private void CalculateChange()
     {
-        base.Change = (int)Math.Floor(1.5 * Convert.ToInt32(Unit.CharacterInfo.Def) - 
+        _change = (int)Math.Floor(1.5 * Convert.ToInt32(Unit.CharacterInfo.Def) - 
         Convert.ToInt32(Unit.CharacterInfo.Atk));
     }
 
-    public void RegisterEffect()
+    private void RegisterEffect()
     {
         EffectsSummary effectsSummary = Unit.EffectsSummary;
-        if (Change >= 0)
+        if (_change >= 0)
         {
             effectsSummary.FollowUpBonusesInfo.SetActiveTrue(StatName);
-            effectsSummary.FollowUpBonusesInfo.SaveChange(StatName, Change);
+            effectsSummary.FollowUpBonusesInfo.SaveChange(StatName, _change);
 
         }
         else
         {
             effectsSummary.FollowUpPenaltiesInfo.SetActiveTrue(StatName);
-            effectsSummary.FollowUpPenaltiesInfo.SaveChange(StatName,Change);
+            effectsSummary.FollowUpPenaltiesInfo.SaveChange(StatName,_change);
         }
 
     }
+
+    public override int GetPriority() => 1;
 }

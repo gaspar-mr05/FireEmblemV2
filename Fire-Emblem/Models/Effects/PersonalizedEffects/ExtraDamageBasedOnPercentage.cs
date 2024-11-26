@@ -14,11 +14,9 @@ public class ExtraDamageBasedOnPercentage: DamageEffect
 
 
     public ExtraDamageBasedOnPercentage(Unit unit, Unit rival, string statName, double percentage, EffectDuration effectDuration, 
-        BasedOn basedOn)
+        BasedOn basedOn): base(unit, effectDuration)
     {
-
-        base.Unit = unit;
-        base.EffectDuration = effectDuration;
+        
         _rival = rival;
         _statName = statName;
         _percentage = percentage;

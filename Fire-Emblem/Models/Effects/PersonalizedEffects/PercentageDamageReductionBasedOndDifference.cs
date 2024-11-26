@@ -10,10 +10,9 @@ public class PercentageDamageReductionBasedOndDifference: DamageEffect
     private double _percentage;
     private double _multiplier;
 
-    public PercentageDamageReductionBasedOndDifference(Unit unit, Unit rival, string statName, EffectDuration effectDuration, double multiplier)
+    public PercentageDamageReductionBasedOndDifference(Unit unit, Unit rival, string statName, 
+        EffectDuration effectDuration, double multiplier): base(unit, effectDuration)
     {
-        base.Unit = unit;
-        base.EffectDuration = effectDuration;
         _rival = rival;
         _statName = statName;
         _multiplier = multiplier;

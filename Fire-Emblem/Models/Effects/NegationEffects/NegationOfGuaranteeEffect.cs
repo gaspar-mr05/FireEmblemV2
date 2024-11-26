@@ -7,7 +7,7 @@ public class NegationOfGuaranteeEffect: Effect
 {
     protected AttackType AttackType;
     
-    public NegationOfGuaranteeEffect(Unit unit, AttackType attackType)
+    public NegationOfGuaranteeEffect(Unit unit, AttackType attackType): base(unit)
     {
 
         Unit = unit;

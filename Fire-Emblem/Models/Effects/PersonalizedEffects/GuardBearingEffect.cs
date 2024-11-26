@@ -9,10 +9,8 @@ public class GuardBearingEffect: DamageEffect
     private RoundInfo _roundInfo;
 
 
-    public GuardBearingEffect(Unit unit, EffectDuration effectDuration, RoundInfo roundInfo)
+    public GuardBearingEffect(Unit unit, EffectDuration effectDuration, RoundInfo roundInfo): base(unit, effectDuration)
     {
-        base.Unit = unit;
-        base.EffectDuration = effectDuration;
         _roundInfo = roundInfo;
 
     }

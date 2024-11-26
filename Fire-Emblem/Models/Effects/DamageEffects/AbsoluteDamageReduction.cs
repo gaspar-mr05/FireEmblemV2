@@ -9,10 +9,8 @@ public class AbsoluteDamageReduction : DamageEffect
     private int _change;
     
 
-    public AbsoluteDamageReduction(Unit unit, int change, EffectDuration effectDuration)
+    public AbsoluteDamageReduction(Unit unit, int change, EffectDuration effectDuration): base(unit, effectDuration)
     {
-        base.Unit = unit;
-        base.EffectDuration = effectDuration;
         _change = change;
     }
         

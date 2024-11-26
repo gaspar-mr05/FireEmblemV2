@@ -3,24 +3,23 @@ using Fire_Emblem.Characters;
 
 namespace Fire_Emblem.Effects;
 
-public class SoulbladeEffect: NormalEffect
+public class SoulbladeEffect: Effect
 {
     private Effect _effect;
-    private Unit _rival;
+    private int _change;
 
 
-    public SoulbladeEffect(Unit rival, string statName)
+    public SoulbladeEffect(Unit unit, string statName) : base(unit)
     {
-        base.StatName = statName;
-        _rival = rival;
+        StatName = statName;
     }
     public override void ApplyEffect()
     {
         CalculateChange();
-        if (Change >= 0)
-            _effect = new BonusEffect(_rival, StatName, Change);
-        else if (Change < 0)
-            _effect = new PenaltyEffect(_rival, StatName, -1 * Change);
+        if (_change >= 0)
+            _effect = new BonusEffect(Unit, StatName, _change);
+        else if (_change < 0)
+            _effect = new PenaltyEffect(Unit, StatName, -1 * _change);
         _effect.ApplyEffect();
 
     }
@@ -32,9 +31,10 @@ public class SoulbladeEffect: NormalEffect
 
     private void CalculateChange()
     {
-        int averageRivalDefRes = (Convert.ToInt32(_rival.CharacterInfo.Def) + 
-        Convert.ToInt32(_rival.CharacterInfo.Res)) / 2;
-        base.Change = averageRivalDefRes - Convert.ToInt32(_rival.CharacterInfo.GetInfoByName(StatName));
+        int averageRivalDefRes = (Convert.ToInt32(Unit.CharacterInfo.Def) + 
+        Convert.ToInt32(Unit.CharacterInfo.Res)) / 2;
+        _change = averageRivalDefRes - Convert.ToInt32(Unit.CharacterInfo.GetInfoByName(StatName));
     }
-    
+
+    public override int GetPriority() => 1;
 }

@@ -1,3 +1,4 @@
+using Fire_Emblem_GUI;
 using Fire_Emblem.Conditions;
 using Fire_Emblem.Effects;
 using Fire_Emblem.Models.Unit;
@@ -5,9 +6,10 @@ using Fire_Emblem.Teams;
 
 namespace Fire_Emblem.Characters;
 
-public class Unit
-{
+using System.Collections.Generic;
 
+public class Unit : IUnit
+{
     public Team Team;
     public CharacterInfo CharacterInfo;
     public Stats Stats;
@@ -18,14 +20,31 @@ public class Unit
 
     public Unit(CharacterInfo characterInfo, Stats stats, string[] skillsNames)
     {
-
         CharacterInfo = characterInfo;
         Stats = stats;
         UnitRoundsInfo = new UnitRoundsInfo();
         SkillsNames = skillsNames;
         ActiveEffectsInfo = new ActiveEffectsInfo();
     }
-    
+
+    // Propiedades de la interfaz IUnit
+    public string Name => CharacterInfo.Name;
+
+    public string Weapon => CharacterInfo.Weapon;
+
+    public int Hp => Stats.GetHp();
+
+    public int Atk => Stats.GetAtk();
+
+    public int Spd => Stats.GetSpd();
+
+    public int Def => Stats.GetDef();
+
+    public int Res => Stats.GetRes();
+
+    public string[] Skills => SkillsNames;
+
+    // Métodos adicionales de Unit
     public bool HasUniqueSkills()
     {
         List<string> uniqueSkills = new List<string>();
@@ -38,10 +57,6 @@ public class Unit
         return true;
     }
 
-
-    public bool IsAlive()
-    {
-        return Stats.GetHp() > 0;
-    }
-
+    public bool IsAlive() => Stats.GetHp() > 0;
 }
+

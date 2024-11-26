@@ -8,13 +8,9 @@ public class MasterMindEffect: DamageEffect
     private Unit _rival;
     private int _damage;
 
-    public MasterMindEffect(Unit unit, Unit rival, EffectDuration effectDuration)
+    public MasterMindEffect(Unit unit, Unit rival, EffectDuration effectDuration): base(unit, effectDuration)
     {
-
-        Unit = unit;
         _rival = rival;
-        EffectDuration = effectDuration;
-
     }
     
     public override void ApplyEffect()

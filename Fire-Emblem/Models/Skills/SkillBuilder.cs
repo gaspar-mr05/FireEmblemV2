@@ -631,9 +631,8 @@ public class SkillBuilder
             weapons.AddWeapons(["Sword", "Axe", "Lance", "Bow"]);
             extraConditions.AddSingleCondition(new UnitStartCombat(unit, _roundInfo));
             extraConditions.AddSingleCondition(new UnitUseWeaponType(unit, weapons));
-            effectsConditions.AddEffectConditions(new ExtraDamageBasedOnPercentage(unit, rival, "Def", 0.3, EffectDuration.FullRound, 
-                    BasedOn.Rival), 
-                extraConditions);
+            effectsConditions.AddEffectConditions(new ExtraDamageBasedOnPercentage(unit, rival, "Def", 0.3, 
+                    EffectDuration.FullRound, BasedOn.Rival), extraConditions);
         }
         else if (_skillName == "Bravery")
         {
@@ -797,9 +796,8 @@ public class SkillBuilder
         else if (_skillName == "Poetic Justice")
         {
             effectsConditions.AddEffectConditions(new PenaltyEffect(rival, "Spd", 4), conditions);
-            effectsConditions.AddEffectConditions(new ExtraDamageBasedOnPercentage(unit, rival, "Atk", 0.15, EffectDuration.FullRound, 
-                    BasedOn.Rival), 
-                extraConditions);
+            effectsConditions.AddEffectConditions(new ExtraDamageBasedOnPercentage(unit, rival, "Atk", 0.15, 
+                    EffectDuration.FullRound, BasedOn.Rival), extraConditions);
         }
         else if (_skillName == "Laguz Friend")
         {
@@ -827,8 +825,8 @@ public class SkillBuilder
                 "Atk", "Res", 0, ComparisonType.StrictlyGreater));
             effectsConditions.AddEffectConditions(new PercentageDamageReduction(unit, 0.25, EffectDuration.FirstAttack), 
                 conditions);
-            effectsConditions.AddEffectConditions(new DragonWrathEffect(unit, rival, "Atk", "Res", EffectDuration.FirstAttack), 
-                extraConditions);
+            effectsConditions.AddEffectConditions(new DragonWrathEffect(unit, rival, "Atk", "Res", 
+                    EffectDuration.FirstAttack), extraConditions);
         }
         else if (_skillName == "Prescience")
         {

@@ -10,14 +10,9 @@ public abstract class OutOfCombatDamageEffect: Effect
     private int _damage;
     protected EffectDuration EffectDuration;
 
-    public OutOfCombatDamageEffect(Unit unit, int damage)
+    public OutOfCombatDamageEffect(Unit unit, int damage): base(unit)
     {
-
-        Unit = unit;
         _damage = damage;
-
-
-
     }
     public override void ApplyEffect()
     {
@@ -31,8 +26,7 @@ public abstract class OutOfCombatDamageEffect: Effect
         damageEffectStatus.Active = true;
         damageEffectStatus.Damage += _damage;
     }
-
-    public override int GetPriority() => 3;
+    
 
     public override void RevertEffect()
     {
