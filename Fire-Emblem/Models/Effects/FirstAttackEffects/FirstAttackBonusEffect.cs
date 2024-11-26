@@ -1,32 +1,27 @@
 using Fire_Emblem.Characters;
 using Fire_Emblem_View;
+using Fire_Emblem.Effects.EffectsInfoBoundaries;
 
 namespace Fire_Emblem.Effects;
 
 public class FirstAttackBonusEffect : FirstAttackEffect
 {
-    public FirstAttackBonusEffect(Unit unit, string statName, int change) 
+    public FirstAttackBonusEffect(Unit unit, string statName, int change)
         : base(unit, statName, change) { }
 
-    protected override void AddToEffectsSummary(EffectsSummary effectsSummary)
+    protected override NormalEffectInfo GetFirstAttackInfo(EffectsSummary effectsSummary)
     {
-        effectsSummary.FirstAttackBonusesInfo.SetActiveTrue(StatName);
-        ActiveEffectsInfo activeEffectsInfo = Unit.ActiveEffectsInfo;
-        activeEffectsInfo.BonusEffects.AddEffect(this);
-        
+        return effectsSummary.FirstAttackBonusesInfo;
     }
 
-    protected override void RemoveFromEffectsSummary(EffectsSummary effectsSummary)
+    protected override EffectsCollection GetEffects(ActiveEffectsInfo activeEffectsInfo)
     {
-        effectsSummary.FirstAttackBonusesInfo.SetActiveFalse(StatName);
-        ActiveEffectsInfo activeEffectsInfo = Unit.ActiveEffectsInfo;
-        activeEffectsInfo.BonusEffects.RemoveEffect(this);
+        return activeEffectsInfo.BonusEffects;
     }
 
-    protected override void UpdateChange(EffectsSummary effectsSummary)
+    protected override int GetAdjustedChange()
     {
-        effectsSummary.FirstAttackBonusesInfo.SaveChange(StatName, Change);
+        return Change; 
     }
 }
-
 

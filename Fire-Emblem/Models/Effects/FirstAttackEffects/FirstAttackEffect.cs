@@ -3,25 +3,40 @@ using Fire_Emblem.Effects.EffectsInfoBoundaries;
 
 namespace Fire_Emblem.Effects;
 
-public abstract class FirstAttackEffect: NormalEffect
+public abstract class FirstAttackEffect : Effect
 {
-    protected abstract void AddToEffectsSummary(EffectsSummary effectsSummary);
-    protected abstract void RemoveFromEffectsSummary(EffectsSummary effectsSummary);
-    protected abstract void UpdateChange(EffectsSummary effectsSummary);
+    protected int Change;
 
-    public FirstAttackEffect(Unit unit, string statName, int change): base(unit, statName, change)
+    protected FirstAttackEffect(Unit unit, string statName, int change) : base(unit)
     {
+        StatName = statName;
+        Change = change;
     }
+    
+    protected abstract NormalEffectInfo GetFirstAttackInfo(EffectsSummary effectsSummary);
+    protected abstract EffectsCollection GetEffects(ActiveEffectsInfo activeEffectsInfo);
+    protected abstract int GetAdjustedChange();
 
     public override void ApplyEffect()
     {
-        UpdateChange(Unit.EffectsSummary);
-        AddToEffectsSummary(Unit.EffectsSummary);
+        EffectsSummary effectsSummary = Unit.EffectsSummary;
+        NormalEffectInfo firstAttackInfo = GetFirstAttackInfo(effectsSummary);
+        
+        firstAttackInfo.SetActiveTrue(StatName);
+        firstAttackInfo.SaveChange(StatName, GetAdjustedChange());
+        
+        GetEffects(Unit.ActiveEffectsInfo).AddEffect(this);
     }
 
     public override void RevertEffect()
     {
-        RemoveFromEffectsSummary(Unit.EffectsSummary);
+        EffectsSummary effectsSummary = Unit.EffectsSummary;
+        NormalEffectInfo firstAttackInfo = GetFirstAttackInfo(effectsSummary);
+        
+        firstAttackInfo.SetActiveFalse(StatName);
+        
+        GetEffects(Unit.ActiveEffectsInfo).RemoveEffect(this);
     }
-    
+
+    public override int GetPriority() => 1;
 }

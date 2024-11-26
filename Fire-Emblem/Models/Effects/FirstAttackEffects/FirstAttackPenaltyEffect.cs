@@ -1,30 +1,26 @@
 using Fire_Emblem_View;
 using Fire_Emblem.Characters;
+using Fire_Emblem.Effects.EffectsInfoBoundaries;
 
 namespace Fire_Emblem.Effects;
 
 public class FirstAttackPenaltyEffect : FirstAttackEffect
 {
-    public FirstAttackPenaltyEffect(Unit unit, string statName, int change) 
-        : base(unit, statName, change) {}
+    public FirstAttackPenaltyEffect(Unit unit, string statName, int change)
+        : base(unit, statName, change) { }
 
-    protected override void AddToEffectsSummary(EffectsSummary effectsSummary)
+    protected override NormalEffectInfo GetFirstAttackInfo(EffectsSummary effectsSummary)
     {
-        effectsSummary.FirstAttackPenaltiesInfo.SetActiveTrue(StatName);
-        ActiveEffectsInfo activeEffectsInfo = Unit.ActiveEffectsInfo;
-        activeEffectsInfo.PenaltyEffects.AddEffect(this);
-    }
-    
-
-    protected override void RemoveFromEffectsSummary(EffectsSummary effectsSummary)
-    {
-        effectsSummary.FirstAttackPenaltiesInfo.SetActiveFalse(StatName);
-        ActiveEffectsInfo activeEffectsInfo = Unit.ActiveEffectsInfo;
-        activeEffectsInfo.PenaltyEffects.RemoveEffect(this);
+        return effectsSummary.FirstAttackPenaltiesInfo;
     }
 
-    protected override void UpdateChange(EffectsSummary effectsSummary)
+    protected override EffectsCollection GetEffects(ActiveEffectsInfo activeEffectsInfo)
     {
-        effectsSummary.FirstAttackPenaltiesInfo.SaveChange(StatName, -1 * Change);
+        return activeEffectsInfo.PenaltyEffects;
+    }
+
+    protected override int GetAdjustedChange()
+    {
+        return -1 * Change; 
     }
 }
