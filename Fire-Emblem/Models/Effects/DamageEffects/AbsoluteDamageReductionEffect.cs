@@ -4,12 +4,12 @@ using Fire_Emblem.Effects.EffectsInfoBoundaries;
 
 namespace Fire_Emblem.Effects.DamageEffects;
 
-public class AbsoluteDamageReduction : DamageEffect
+public class AbsoluteDamageReductionEffect : DamageEffect
 {
     private int _change;
     
 
-    public AbsoluteDamageReduction(Unit unit, int change, EffectDuration effectDuration): base(unit, effectDuration)
+    public AbsoluteDamageReductionEffect(Unit unit, int change, EffectDuration effectDuration): base(unit, effectDuration)
     {
         _change = change;
     }

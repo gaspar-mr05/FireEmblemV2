@@ -4,12 +4,12 @@ using Fire_Emblem.Effects.EffectsInfoBoundaries;
 
 namespace Fire_Emblem.Effects.DamageEffects;
 
-public class PercentageDamageReduction: DamageEffect
+public class PercentageDamageReductionEffect: DamageEffect
 {
     private double _percentage;
 
 
-    public PercentageDamageReduction(Unit unit, double percentage, EffectDuration effectDuration): base(unit, 
+    public PercentageDamageReductionEffect(Unit unit, double percentage, EffectDuration effectDuration): base(unit, 
         effectDuration)
     {
         _percentage = percentage;
@@ -21,7 +21,8 @@ public class PercentageDamageReduction: DamageEffect
         PercentageDamageEffectInfo percentageDamageEffectInfo = effectsSummary.PercentageDamageReductionInfo;
         PercentageEffectStatus percentageReduction = percentageDamageEffectInfo.GetPercentageReduction(EffectDuration);
         percentageReduction.Active = true;
-        percentageReduction.Percentage = 1 - ((1 - percentageReduction.Percentage) * (1 - _percentage));
+        percentageReduction.Percentage = 1 - ((1 - percentageReduction.Percentage) * (1 - _percentage * 
+            percentageReduction.ReductionOfReduction));
     }
 
 
@@ -30,4 +31,6 @@ public class PercentageDamageReduction: DamageEffect
     {
         throw new NotImplementedException();
     }
+
+    public override int GetPriority() => 4;
 }

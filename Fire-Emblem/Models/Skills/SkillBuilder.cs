@@ -561,26 +561,26 @@ public class SkillBuilder
         {
             weapons.AddWeapons(["Sword", "Lance", "Axe", "Bow"]);
             extraConditions.AddSingleCondition(new UnitUseWeaponType(rival, weapons));
-            effectsConditions.AddEffectConditions(new PercentageDamageReduction(unit, 0.5, EffectDuration.FirstAttack), 
+            effectsConditions.AddEffectConditions(new PercentageDamageReductionEffect(unit, 0.5, EffectDuration.FirstAttack), 
                 extraConditions);
         }
         else if (_skillName == "Gentility")
         {
-            effectsConditions.AddEffectConditions(new AbsoluteDamageReduction(unit, 5, EffectDuration.FullRound), extraConditions);
+            effectsConditions.AddEffectConditions(new AbsoluteDamageReductionEffect(unit, 5, EffectDuration.FullRound), extraConditions);
         }
         
         else if (_skillName == "Bow Guard")
         {
             weapons.AddWeapons(["Bow"]);
             extraConditions.AddSingleCondition(new UnitUseWeaponType(rival, weapons));
-            effectsConditions.AddEffectConditions(new AbsoluteDamageReduction(unit, 5,EffectDuration.FullRound), 
+            effectsConditions.AddEffectConditions(new AbsoluteDamageReductionEffect(unit, 5,EffectDuration.FullRound), 
                 extraConditions);
         }
         
         else if (_skillName == "Arms Shield")
         {
             extraConditions.AddSingleCondition(new UnitHasAdvantage(unit, rival));
-            effectsConditions.AddEffectConditions(new AbsoluteDamageReduction(unit, 7, EffectDuration.FullRound), 
+            effectsConditions.AddEffectConditions(new AbsoluteDamageReductionEffect(unit, 7, EffectDuration.FullRound), 
                 extraConditions);
         }
         
@@ -588,7 +588,7 @@ public class SkillBuilder
         {
             weapons.AddWeapons(["Axe"]);
             extraConditions.AddSingleCondition(new UnitUseWeaponType(rival, weapons));
-            effectsConditions.AddEffectConditions(new AbsoluteDamageReduction(unit, 5, EffectDuration.FullRound),
+            effectsConditions.AddEffectConditions(new AbsoluteDamageReductionEffect(unit, 5, EffectDuration.FullRound),
                 extraConditions);
         }
         
@@ -596,7 +596,7 @@ public class SkillBuilder
         {
             weapons.AddWeapons(["Magic"]);
             extraConditions.AddSingleCondition(new UnitUseWeaponType(rival, weapons));
-            effectsConditions.AddEffectConditions(new AbsoluteDamageReduction(unit, 5, EffectDuration.FullRound),
+            effectsConditions.AddEffectConditions(new AbsoluteDamageReductionEffect(unit, 5, EffectDuration.FullRound),
                 extraConditions);
         }
         
@@ -606,7 +606,7 @@ public class SkillBuilder
             weapons.AddWeapons(["Lance"]);
             
             extraConditions.AddSingleCondition(new UnitUseWeaponType(rival, weapons));
-            effectsConditions.AddEffectConditions(new AbsoluteDamageReduction(unit, 5, EffectDuration.FullRound),
+            effectsConditions.AddEffectConditions(new AbsoluteDamageReductionEffect(unit, 5, EffectDuration.FullRound),
                 extraConditions);
         }
         
@@ -614,7 +614,7 @@ public class SkillBuilder
         {
             extraConditions.AddSingleCondition(new UnitStartCombat(rival, _roundInfo));
             extraConditions.AddSingleCondition(new HpRespectPercentage(unit, 0.5, ComparisonType.Less, _roundInfo));
-            effectsConditions.AddEffectConditions(new AbsoluteDamageReduction(unit, 5, EffectDuration.FullRound),
+            effectsConditions.AddEffectConditions(new AbsoluteDamageReductionEffect(unit, 5, EffectDuration.FullRound),
                 extraConditions);
         }
         
@@ -664,7 +664,7 @@ public class SkillBuilder
         }
         else if (_skillName == "Blue Skies")
         {
-            effectsConditions.AddEffectConditions(new AbsoluteDamageReduction(unit, 5, EffectDuration.FullRound), extraConditions);
+            effectsConditions.AddEffectConditions(new AbsoluteDamageReductionEffect(unit, 5, EffectDuration.FullRound), extraConditions);
             effectsConditions.AddEffectConditions(new ExtraDamageEffect(unit, 5, EffectDuration.FullRound), extraConditions);
             
         }
@@ -673,7 +673,7 @@ public class SkillBuilder
 
             effectsConditions.AddEffectConditions(new BonusEffect(unit, "Def", 6), conditions);
             effectsConditions.AddEffectConditions(new BonusEffect(unit, "Res", 3), conditions);
-            effectsConditions.AddEffectConditions(new PercentageDamageReduction(unit, 0.5, EffectDuration.FirstAttack), 
+            effectsConditions.AddEffectConditions(new PercentageDamageReductionEffect(unit, 0.5, EffectDuration.FirstAttack), 
                 extraConditions);
             
         }
@@ -684,7 +684,7 @@ public class SkillBuilder
 
             effectsConditions.AddEffectConditions(new BonusEffect(unit, "Atk", 7), conditions);
             effectsConditions.AddEffectConditions(new BonusEffect(unit, "Spd", 7), conditions);
-            effectsConditions.AddEffectConditions(new PercentageDamageReduction(unit, 0.3, EffectDuration.FirstAttack), 
+            effectsConditions.AddEffectConditions(new PercentageDamageReductionEffect(unit, 0.3, EffectDuration.FirstAttack), 
                 extraConditions);
         }
         else if (_skillName == "Remote Mirror")
@@ -693,7 +693,7 @@ public class SkillBuilder
             extraConditions.AddSingleCondition(new UnitStartCombat(unit, _roundInfo));
             effectsConditions.AddEffectConditions(new BonusEffect(unit, "Atk", 7), conditions);
             effectsConditions.AddEffectConditions(new BonusEffect(unit, "Res", 10), conditions);
-            effectsConditions.AddEffectConditions(new PercentageDamageReduction(unit, 0.3, EffectDuration.FirstAttack), 
+            effectsConditions.AddEffectConditions(new PercentageDamageReductionEffect(unit, 0.3, EffectDuration.FirstAttack), 
                 extraConditions);
         }
         else if (_skillName == "Remote Sturdy")
@@ -702,7 +702,7 @@ public class SkillBuilder
             extraConditions.AddSingleCondition(new UnitStartCombat(unit, _roundInfo));
             effectsConditions.AddEffectConditions(new BonusEffect(unit, "Atk", 7), conditions);
             effectsConditions.AddEffectConditions(new BonusEffect(unit, "Def", 10), conditions);
-            effectsConditions.AddEffectConditions(new PercentageDamageReduction(unit, 0.3, EffectDuration.FirstAttack), 
+            effectsConditions.AddEffectConditions(new PercentageDamageReductionEffect(unit, 0.3, EffectDuration.FirstAttack), 
                 extraConditions);
             
         }
@@ -711,7 +711,7 @@ public class SkillBuilder
             conditions.AddSingleCondition(new UnitStartCombat(rival, _roundInfo));
             extraConditions.AddSingleCondition(new UnitStartCombat(rival, _roundInfo));
             effectsConditions.AddEffectConditions(new BonusEffect(unit, "Atk", 8), conditions);
-            effectsConditions.AddEffectConditions(new PercentageDamageReduction(unit, 0.1, EffectDuration.FollowUp), 
+            effectsConditions.AddEffectConditions(new PercentageDamageReductionEffect(unit, 0.1, EffectDuration.FollowUp), 
                 extraConditions);
         }
         else if (_skillName == "Darting Stance")
@@ -719,7 +719,7 @@ public class SkillBuilder
             conditions.AddSingleCondition(new UnitStartCombat(rival, _roundInfo));
             extraConditions.AddSingleCondition(new UnitStartCombat(rival, _roundInfo));
             effectsConditions.AddEffectConditions(new BonusEffect(unit, "Spd", 8), conditions);
-            effectsConditions.AddEffectConditions(new PercentageDamageReduction(unit, 0.1, EffectDuration.FollowUp), 
+            effectsConditions.AddEffectConditions(new PercentageDamageReductionEffect(unit, 0.1, EffectDuration.FollowUp), 
                 extraConditions);
         }
         else if (_skillName == "Steady Stance")
@@ -727,7 +727,7 @@ public class SkillBuilder
             conditions.AddSingleCondition(new UnitStartCombat(rival, _roundInfo));
             extraConditions.AddSingleCondition(new UnitStartCombat(rival, _roundInfo));
             effectsConditions.AddEffectConditions(new BonusEffect(unit, "Def", 8), conditions);
-            effectsConditions.AddEffectConditions(new PercentageDamageReduction(unit, 0.1, EffectDuration.FollowUp), 
+            effectsConditions.AddEffectConditions(new PercentageDamageReductionEffect(unit, 0.1, EffectDuration.FollowUp), 
                 extraConditions);
         }
         else if (_skillName == "Warding Stance")
@@ -735,7 +735,7 @@ public class SkillBuilder
             conditions.AddSingleCondition(new UnitStartCombat(rival, _roundInfo));
             extraConditions.AddSingleCondition(new UnitStartCombat(rival, _roundInfo));
             effectsConditions.AddEffectConditions(new BonusEffect(unit, "Res", 8), conditions);
-            effectsConditions.AddEffectConditions(new PercentageDamageReduction(unit, 0.1, EffectDuration.FollowUp), 
+            effectsConditions.AddEffectConditions(new PercentageDamageReductionEffect(unit, 0.1, EffectDuration.FollowUp), 
                 extraConditions);
         }
         else if (_skillName == "Kestrel Stance")
@@ -744,7 +744,7 @@ public class SkillBuilder
             extraConditions.AddSingleCondition(new UnitStartCombat(rival, _roundInfo));
             effectsConditions.AddEffectConditions(new BonusEffect(unit, "Atk", 6), conditions);
             effectsConditions.AddEffectConditions(new BonusEffect(unit, "Spd", 6), conditions);
-            effectsConditions.AddEffectConditions(new PercentageDamageReduction(unit, 0.1, EffectDuration.FollowUp), 
+            effectsConditions.AddEffectConditions(new PercentageDamageReductionEffect(unit, 0.1, EffectDuration.FollowUp), 
                 extraConditions);
             
         }
@@ -754,7 +754,7 @@ public class SkillBuilder
             extraConditions.AddSingleCondition(new UnitStartCombat(rival, _roundInfo));
             effectsConditions.AddEffectConditions(new BonusEffect(unit, "Atk", 6), conditions);
             effectsConditions.AddEffectConditions(new BonusEffect(unit, "Def", 6), conditions);
-            effectsConditions.AddEffectConditions(new PercentageDamageReduction(unit, 0.1, EffectDuration.FollowUp), 
+            effectsConditions.AddEffectConditions(new PercentageDamageReductionEffect(unit, 0.1, EffectDuration.FollowUp), 
                 extraConditions);
         }
         else if (_skillName == "Mirror Stance")
@@ -763,7 +763,7 @@ public class SkillBuilder
             extraConditions.AddSingleCondition(new UnitStartCombat(rival, _roundInfo));
             effectsConditions.AddEffectConditions(new BonusEffect(unit, "Atk", 6), conditions);
             effectsConditions.AddEffectConditions(new BonusEffect(unit, "Res", 6), conditions);
-            effectsConditions.AddEffectConditions(new PercentageDamageReduction(unit, 0.1, EffectDuration.FollowUp), 
+            effectsConditions.AddEffectConditions(new PercentageDamageReductionEffect(unit, 0.1, EffectDuration.FollowUp), 
                 extraConditions);
         }
         else if (_skillName == "Steady Posture")
@@ -772,7 +772,7 @@ public class SkillBuilder
             extraConditions.AddSingleCondition(new UnitStartCombat(rival, _roundInfo));
             effectsConditions.AddEffectConditions(new BonusEffect(unit, "Spd", 6), conditions);
             effectsConditions.AddEffectConditions(new BonusEffect(unit, "Def", 6), conditions);
-            effectsConditions.AddEffectConditions(new PercentageDamageReduction(unit, 0.1, EffectDuration.FollowUp), 
+            effectsConditions.AddEffectConditions(new PercentageDamageReductionEffect(unit, 0.1, EffectDuration.FollowUp), 
                 extraConditions);
         }
         else if (_skillName == "Swift Stance")
@@ -781,7 +781,7 @@ public class SkillBuilder
             extraConditions.AddSingleCondition(new UnitStartCombat(rival, _roundInfo));
             effectsConditions.AddEffectConditions(new BonusEffect(unit, "Spd", 6), conditions);
             effectsConditions.AddEffectConditions(new BonusEffect(unit, "Res", 6), conditions);
-            effectsConditions.AddEffectConditions(new PercentageDamageReduction(unit, 0.1, EffectDuration.FollowUp), 
+            effectsConditions.AddEffectConditions(new PercentageDamageReductionEffect(unit, 0.1, EffectDuration.FollowUp), 
                 extraConditions);
         }
         else if (_skillName == "Bracing Stance")
@@ -790,7 +790,7 @@ public class SkillBuilder
             extraConditions.AddSingleCondition(new UnitStartCombat(rival, _roundInfo));
             effectsConditions.AddEffectConditions(new BonusEffect(unit, "Def", 6), conditions);
             effectsConditions.AddEffectConditions(new BonusEffect(unit, "Res", 6), conditions);
-            effectsConditions.AddEffectConditions(new PercentageDamageReduction(unit, 0.1, EffectDuration.FollowUp), 
+            effectsConditions.AddEffectConditions(new PercentageDamageReductionEffect(unit, 0.1, EffectDuration.FollowUp), 
                 extraConditions);
         }
         else if (_skillName == "Poetic Justice")
@@ -807,7 +807,7 @@ public class SkillBuilder
                 (Math.Floor(Convert.ToInt32(unit.CharacterInfo.Def) * 0.5))), conditions);
             effectsConditions.AddEffectConditions(new PenaltyEffect(unit, "Res", Convert.ToInt32
                 (Math.Floor(Convert.ToInt32(unit.CharacterInfo.Res) * 0.5))), conditions);
-            effectsConditions.AddEffectConditions(new PercentageDamageReduction(unit, 0.5, EffectDuration.FullRound), 
+            effectsConditions.AddEffectConditions(new PercentageDamageReductionEffect(unit, 0.5, EffectDuration.FullRound), 
                 extraConditions);
         }
         else if (_skillName == "Chivalry")
@@ -815,7 +815,7 @@ public class SkillBuilder
             extraConditions.AddSingleCondition(new UnitStartCombat(unit, _roundInfo));
             extraConditions.AddSingleCondition(new FullHp(rival, ComparisonType.FullHp));
             effectsConditions.AddEffectConditions(new ExtraDamageEffect(unit, 2, EffectDuration.FullRound), extraConditions);
-            effectsConditions.AddEffectConditions(new AbsoluteDamageReduction(unit, 2, EffectDuration.FullRound), extraConditions);
+            effectsConditions.AddEffectConditions(new AbsoluteDamageReductionEffect(unit, 2, EffectDuration.FullRound), extraConditions);
             
         }
         else if (_skillName == "Dragon's Wrath")
@@ -823,7 +823,7 @@ public class SkillBuilder
             
             extraConditions.AddSingleCondition(new StatComparison(unit, rival, 
                 "Atk", "Res", 0, ComparisonType.StrictlyGreater));
-            effectsConditions.AddEffectConditions(new PercentageDamageReduction(unit, 0.25, EffectDuration.FirstAttack), 
+            effectsConditions.AddEffectConditions(new PercentageDamageReductionEffect(unit, 0.25, EffectDuration.FirstAttack), 
                 conditions);
             effectsConditions.AddEffectConditions(new DragonWrathEffect(unit, rival, "Atk", "Res", 
                     EffectDuration.FirstAttack), extraConditions);
@@ -837,7 +837,7 @@ public class SkillBuilder
             extraConditions.AddOrConditions(orConditions);
             effectsConditions.AddEffectConditions(new PenaltyEffect(rival, "Atk", 5), conditions);
             effectsConditions.AddEffectConditions(new PenaltyEffect(rival, "Res", 5), conditions);
-            effectsConditions.AddEffectConditions(new PercentageDamageReduction(unit, 0.3, EffectDuration.FirstAttack), 
+            effectsConditions.AddEffectConditions(new PercentageDamageReductionEffect(unit, 0.3, EffectDuration.FirstAttack), 
                 extraConditions);
             
         }
@@ -849,7 +849,7 @@ public class SkillBuilder
             effectsConditions.AddEffectConditions(new PenaltyEffect(rival, "Atk", 5), conditions);
             effectsConditions.AddEffectConditions(new PenaltyEffect(rival, "Spd", 5), conditions);
             effectsConditions.AddEffectConditions(new PenaltyEffect(rival, "Def", 5), conditions);
-            effectsConditions.AddEffectConditions(new PercentageDamageReduction(unit, 
+            effectsConditions.AddEffectConditions(new PercentageDamageReductionEffect(unit, 
                 truncatedPercentageValue, EffectDuration.FullRound), extraConditions);
 
         }
@@ -868,7 +868,7 @@ public class SkillBuilder
             effectsConditions.AddEffectConditions(new PenaltyEffect(rival, "Spd", 4), conditions);
             effectsConditions.AddEffectConditions(new PenaltyEffect(rival, "Def", 4), conditions);
             effectsConditions.AddEffectConditions(new PenaltyEffect(rival, "Res", 4), conditions);
-            effectsConditions.AddEffectConditions(new PercentageDamageReduction(unit, 0.3, EffectDuration.FirstAttack), 
+            effectsConditions.AddEffectConditions(new PercentageDamageReductionEffect(unit, 0.3, EffectDuration.FirstAttack), 
                 extraConditions);
             effectsConditions.AddEffectConditions(new DivineRecreationEffect(unit, rival, _roundInfo), 
                 extraConditions);
@@ -1083,7 +1083,7 @@ public class SkillBuilder
                 Math.Floor(0.2 * unit.Stats.GetSpd()))), conditions);
             effectsConditions.AddEffectConditions(new BonusEffect(unit, "Spd", Convert.ToInt32(
                 Math.Floor(0.2 * unit.Stats.GetSpd()))), conditions);
-            effectsConditions.AddEffectConditions(new PercentageDamageReduction(unit, 0.3, EffectDuration.FirstAttack), 
+            effectsConditions.AddEffectConditions(new PercentageDamageReductionEffect(unit, 0.3, EffectDuration.FirstAttack), 
                 conditions);
             effectsConditions.AddEffectConditions(new AfterCombatDamageEffect(unit, 7), conditions);
 
@@ -1123,7 +1123,7 @@ public class SkillBuilder
             conditions.AddOrConditions(orConditions);
             effectsConditions.AddEffectConditions(new PenaltyEffect(rival, "Def", 4), conditions);
             effectsConditions.AddEffectConditions(new PenaltyEffect(rival, "Res", 4), conditions);
-            effectsConditions.AddEffectConditions(new PercentageDamageReduction(unit, 0.3, EffectDuration.FirstAttack),
+            effectsConditions.AddEffectConditions(new PercentageDamageReductionEffect(unit, 0.3, EffectDuration.FirstAttack),
                 conditions);
             effectsConditions.AddEffectConditions(new GuaranteeFollowUpEffect(unit), conditions);
             effectsConditions.AddEffectConditions(new BrashAssaultEffect(unit, rival, _roundInfo), conditions);
@@ -1247,7 +1247,7 @@ public class SkillBuilder
                 ComparisonType.Greater)));
             effectsConditions.AddEffectConditions(new NegationOfGuaranteeEffect(rival, AttackType.FollowUpAttack), conditions);
             effectsConditions.AddEffectConditions(new NegationOfNegationEffect(unit, AttackType.FollowUpAttack), conditions);
-            effectsConditions.AddEffectConditions(new PercentageDamageReduction(unit, 0.3, EffectDuration.FirstAttack), 
+            effectsConditions.AddEffectConditions(new PercentageDamageReductionEffect(unit, 0.3, EffectDuration.FirstAttack), 
                 extraConditions);
         }
         else if (_skillName == "Flow Force")
@@ -1331,7 +1331,7 @@ public class SkillBuilder
                 _roundInfo));
             extraConditions.AddSingleCondition(new UnitStartCombat(rival, _roundInfo));
             effectsConditions.AddEffectConditions(new GuaranteeFollowUpEffect(unit), conditions);
-            effectsConditions.AddEffectConditions(new PercentageDamageReduction(unit, 0.8, EffectDuration.FollowUp), 
+            effectsConditions.AddEffectConditions(new PercentageDamageReductionEffect(unit, 0.8, EffectDuration.FollowUp), 
                 extraConditions);
         }
         else if (_skillName == "Blue Lion Rule")

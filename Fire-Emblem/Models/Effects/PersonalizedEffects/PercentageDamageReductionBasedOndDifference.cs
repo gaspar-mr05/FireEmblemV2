@@ -23,9 +23,9 @@ public class PercentageDamageReductionBasedOndDifference: DamageEffect
 
 
         CalculatePercentage();
-        PercentageDamageReduction percentageDamageReduction = new PercentageDamageReduction(Unit, 
+        PercentageDamageReductionEffect percentageDamageReductionEffect = new PercentageDamageReductionEffect(Unit, 
         _percentage, EffectDuration);
-        percentageDamageReduction.ApplyEffect();
+        percentageDamageReductionEffect.ApplyEffect();
 
 
     }
@@ -39,4 +39,6 @@ public class PercentageDamageReductionBasedOndDifference: DamageEffect
     {
         throw new NotImplementedException();
     }
+
+    public override int GetPriority() => 4;
 }

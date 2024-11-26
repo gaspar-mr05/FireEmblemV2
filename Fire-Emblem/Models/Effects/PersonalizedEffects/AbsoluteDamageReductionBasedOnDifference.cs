@@ -19,8 +19,8 @@ public class AbsoluteDamageReductionBasedOnDifference: EffectBasedOnDifference
     public override void ApplyEffect()
     {
         int absoluteDamage = CalculateChange();
-        AbsoluteDamageReduction absoluteDamageReduction = new AbsoluteDamageReduction(Unit, absoluteDamage, EffectDuration);
-        absoluteDamageReduction.ApplyEffect();
+        AbsoluteDamageReductionEffect absoluteDamageReductionEffect = new AbsoluteDamageReductionEffect(Unit, absoluteDamage, EffectDuration);
+        absoluteDamageReductionEffect.ApplyEffect();
     }
     
 

@@ -26,7 +26,7 @@ public class ReductionOfReductionDamageEffect: Effect
         PercentageDamageEffectInfo percentageDamageEffectInfo = Unit.EffectsSummary.PercentageDamageReductionInfo;
         PercentageEffectStatus percentageEffectStatus =
             percentageDamageEffectInfo.GetPercentageReduction(effectDuration);
-        percentageEffectStatus.Percentage *= _reduction;
+        percentageEffectStatus.ReductionOfReduction *= _reduction;
         
     }
 
@@ -35,5 +35,5 @@ public class ReductionOfReductionDamageEffect: Effect
         throw new NotImplementedException();
     }
 
-    public override int GetPriority() => 4;
+    public override int GetPriority() => 3;
 }

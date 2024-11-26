@@ -17,9 +17,9 @@ public class GuardBearingEffect: DamageEffect
 
     public override void ApplyEffect()
     {
-        PercentageDamageReduction percentageDamageReduction =
-            new PercentageDamageReduction(Unit, CalculatePercentage(), EffectDuration);
-        percentageDamageReduction.ApplyEffect();
+        PercentageDamageReductionEffect percentageDamageReductionEffect =
+            new PercentageDamageReductionEffect(Unit, CalculatePercentage(), EffectDuration);
+        percentageDamageReductionEffect.ApplyEffect();
     }
 
 
