@@ -2,13 +2,11 @@ using Fire_Emblem.Characters;
 
 namespace Fire_Emblem.Effects;
 
-public abstract class NeutralizationEffect: Effect
+public abstract class NeutralizationEffect : Effect
 {
-    
+    protected readonly string StatName;
 
-    protected abstract void NeutralizeEffect(ActiveEffectsInfo activeEffectsInfo);
-    protected abstract void RegisterEffect();
-    public NeutralizationEffect(Unit unit, string statName): base(unit)
+    protected NeutralizationEffect(Unit unit, string statName) : base(unit)
     {
         StatName = statName;
     }
@@ -16,11 +14,20 @@ public abstract class NeutralizationEffect: Effect
     public override void ApplyEffect()
     {
         ActiveEffectsInfo activeEffectsInfo = Unit.ActiveEffectsInfo;
-        NeutralizeEffect(activeEffectsInfo);
+        EffectsCollection targetEffects = GetTargetEffects(activeEffectsInfo);
+
+        targetEffects.RevertStatEffects(StatName);
+
         RegisterEffect();
-        
     }
+
+    protected abstract EffectsCollection GetTargetEffects(ActiveEffectsInfo activeEffectsInfo);
+    protected abstract void RegisterEffect();
 
     public override int GetPriority() => 2;
 
+    public override void RevertEffect()
+    {
+        throw new NotImplementedException();
+    }
 }
