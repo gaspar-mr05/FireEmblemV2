@@ -1,18 +1,18 @@
 using Fire_Emblem_View;
-using Fire_Emblem.Conditions;
 using Fire_Emblem.Models.Effects.EffectSummary;
 using Fire_Emblem.Models.Effects.EffectSummary.EffectsInfoBoundaries;
+using Fire_Emblem.Models.Enums;
 using Fire_Emblem.Models.Units;
 
 namespace Fire_Emblem.Views;
 
 
-public class EffectSummaryView
+public class EffectsSummaryView
 {
     private View _view;
     private Unit _attacker;
     private Unit _defender;
-    public EffectSummaryView(View view, Unit attacker, Unit defender)
+    public EffectsSummaryView(View view, Unit attacker, Unit defender)
     {
         _view = view;
         _attacker = attacker;

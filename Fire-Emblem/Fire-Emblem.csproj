@@ -64,7 +64,6 @@
       <Compile Remove="Models\Unit\Character.cs" />
       <Compile Remove="Models\Team\TeamsManager.cs" />
       <Compile Remove="Models\Attacks\AttacksBuilder.cs" />
-      <Compile Remove="Models\Attacks\AttackInfo.cs" />
     </ItemGroup>
 
     <ItemGroup>

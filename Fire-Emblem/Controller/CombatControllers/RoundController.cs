@@ -12,10 +12,10 @@ namespace Fire_Emblem.Controller.CombatControllers;
 
 public class RoundController
 {
-    private View _view;
+    private readonly View _view;
     private int _roundNumber;
-    private UnitSelector _unitSelector;
-    private TurnsManager _turnsManager;
+    private readonly UnitSelector _unitSelector;
+    private readonly TurnsManager _turnsManager;
     private SkillsManager _skillsManager;
 
     public RoundController(View view)
@@ -29,21 +29,24 @@ public class RoundController
 
     public void ExecuteRound(TeamsInfo teamsInfo)
     {
-         (AttacksController attacksManager, Unit attacker, Unit defender) = StartRound(teamsInfo);
-        attacksManager.ExecuteAllAttacks(_skillsManager);
-        _roundNumber = FinishRound(attacker, defender);
+        (AttacksController attacksController, Unit attacker, Unit defender) = StartRound(teamsInfo);
+        attacksController.ExecuteRoundAttacks(_skillsManager);
+        EndRound(attacker, defender);
     }
-    
+
     private (AttacksController, Unit, Unit) StartRound(TeamsInfo teamsInfo)
     {
         (Unit attacker, Unit defender) = SelectUnits(teamsInfo);
         InitializeEffects(attacker, defender);
+
         RoundInfo roundInfo = new RoundInfo(attacker, defender);
         _skillsManager = new SkillsManager(roundInfo);
         _skillsManager.ActivateEffects();
-        AttacksController attacksController = CreateAttacksController(attacker, defender, roundInfo);
-        ShowRoundStartView(attacker, defender);
 
+        ShowRoundStart(attacker, defender);
+        ShowEffectsSummary(attacker, defender);
+
+        AttacksController attacksController = new AttacksController(_view, attacker, defender, roundInfo);
         return (attacksController, attacker, defender);
     }
 
@@ -51,34 +54,37 @@ public class RoundController
     {
         return _unitSelector.SelectUnits(teamsInfo, _turnsManager.PlayerWhoStarts);
     }
-    
+
     private void InitializeEffects(Unit attacker, Unit defender)
     {
         attacker.EffectsSummary = new EffectsSummary();
         defender.EffectsSummary = new EffectsSummary();
     }
+    
 
-    private void ShowRoundStartView(Unit attacker, Unit defender)
+    private void ShowRoundStart(Unit attacker, Unit defender)
     {
-        RoundStartView roundStartView = new RoundStartView(_view, attacker, defender, _roundNumber, 
-            _turnsManager.PlayerWhoStarts);
+        var roundStartView = new RoundStartView(_view, attacker, defender, _roundNumber, _turnsManager.PlayerWhoStarts);
         roundStartView.ShowRoundStart();
     }
-    
 
-    private AttacksController CreateAttacksController(Unit attacker, Unit defender, RoundInfo roundInfo)
+    private void ShowEffectsSummary(Unit attacker, Unit defender)
     {
-        return new AttacksController(_view, attacker, defender, roundInfo);
+        var effectsSummaryView = new EffectsSummaryView(_view, attacker, defender);
+        effectsSummaryView.ShowEffectsSummary();
     }
 
-    
-    private int FinishRound(Unit attacker, Unit defender)
+    private void EndRound(Unit attacker, Unit defender)
     {
-        RoundSummaryView roundSummaryView = new RoundSummaryView(_view, attacker, defender);
-        roundSummaryView.ShowRoundSummary();
-        _roundNumber++;
+        ShowRoundSummary(attacker, defender);
         _turnsManager.SwitchTurns();
         _skillsManager.DeactivateEffects();
-        return _roundNumber;
+        _roundNumber++;
+    }
+
+    private void ShowRoundSummary(Unit attacker, Unit defender)
+    {
+        var roundSummaryView = new RoundSummaryView(_view, attacker, defender);
+        roundSummaryView.ShowRoundSummary();
     }
 }

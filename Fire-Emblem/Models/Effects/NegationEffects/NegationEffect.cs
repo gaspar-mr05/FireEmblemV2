@@ -1,6 +1,6 @@
-using Fire_Emblem.Conditions;
 using Fire_Emblem.Effects;
 using Fire_Emblem.Models.Effects.EffectSummary;
+using Fire_Emblem.Models.Enums;
 using Fire_Emblem.Models.Units;
 
 namespace Fire_Emblem.Models.Effects.NegationEffects;

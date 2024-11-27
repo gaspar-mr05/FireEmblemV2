@@ -1,8 +1,8 @@
-using Fire_Emblem.Conditions;
-using Fire_Emblem.Exceptions;
 using Fire_Emblem.Models.Advantage;
 using Fire_Emblem.Models.Effects.DamageEffects;
 using Fire_Emblem.Models.Effects.OutOfCombatDamageEffects;
+using Fire_Emblem.Models.Enums;
+using Fire_Emblem.Models.Exceptions;
 using Fire_Emblem.Models.Units;
 
 namespace Fire_Emblem.Models.Effects.PersonalizedEffects;

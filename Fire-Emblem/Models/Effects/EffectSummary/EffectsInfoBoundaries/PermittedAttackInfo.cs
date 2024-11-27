@@ -1,4 +1,4 @@
-using Fire_Emblem.Conditions;
+using Fire_Emblem.Models.Enums;
 
 namespace Fire_Emblem.Models.Effects.EffectSummary.EffectsInfoBoundaries;
 

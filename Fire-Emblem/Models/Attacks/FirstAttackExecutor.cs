@@ -1,4 +1,4 @@
-using Fire_Emblem.Conditions;
+using Fire_Emblem.Models.Enums;
 using Fire_Emblem.Models.Round;
 using Fire_Emblem.Models.Units;
 
@@ -13,11 +13,10 @@ public class FirstAttackExecutor : AttackExecutor
     {
     }
 
-    public string ExecuteAttack(Unit attacker, Unit defender)
+    public AttackInfo ExecuteAttack(Unit attacker, Unit defender)
     {
         RoundInfo.AttackType = AttackType.FirstAttack;
-        string attackMessage = base.ExecuteAttack(attacker, defender);
-        return attackMessage;
+        return base.ExecuteAttack(attacker, defender);
     }
     
 }

@@ -1,4 +1,5 @@
-using Fire_Emblem.Conditions;
+using Fire_Emblem.Models.Enums;
+using Fire_Emblem.Models.Exceptions;
 using Fire_Emblem.Models.Round;
 using Fire_Emblem.Models.Units;
 
@@ -13,13 +14,13 @@ public class CounterAttackExecutor : AttackExecutor
     {
     }
 
-    public string ExecuteAttack(Unit attacker, Unit defender)
+    public AttackInfo ExecuteAttack(Unit attacker, Unit defender)
     {
         string attackMessage = "";
         RoundInfo.AttackType = AttackType.CounterAttack;
         if (IsCounterAttackPossible(defender))
             return base.ExecuteAttack(defender, attacker);
-        return attackMessage;
+        return new AttackInfo(attacker, defender, 0, 0, AttackError.NoAttackPossible);
     }
 
     private bool IsCounterAttackPossible(Unit unit)

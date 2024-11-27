@@ -1,5 +1,5 @@
 using Fire_Emblem.Combat;
-using Fire_Emblem.Exceptions;
+using Fire_Emblem.Models.Exceptions;
 using Fire_Emblem.Models.Units;
 
 

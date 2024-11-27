@@ -1,6 +1,6 @@
 using Fire_Emblem.Combat;
-using Fire_Emblem.Conditions;
 using Fire_Emblem.Models.Effects.EffectSummary.EffectsInfoBoundaries;
+using Fire_Emblem.Models.Enums;
 using Fire_Emblem.Models.Round;
 using Fire_Emblem.Models.Units;
 

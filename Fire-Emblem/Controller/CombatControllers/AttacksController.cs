@@ -1,8 +1,8 @@
 using Fire_Emblem_View;
 using Fire_Emblem.Combat;
-using Fire_Emblem.Conditions;
 using Fire_Emblem.Models.Attacks;
 using Fire_Emblem.Models.Damage;
+using Fire_Emblem.Models.Enums;
 using Fire_Emblem.Models.Round;
 using Fire_Emblem.Models.Skills;
 using Fire_Emblem.Models.Units;
@@ -22,49 +22,75 @@ public class AttacksController
     {
         _attacker = attacker;
         _defender = defender;
-        _attacksView = new AttacksView(view, attacker, defender);
+        _attacksView = new AttacksView(view);
         _firstAttackExecutor = new FirstAttackExecutor(roundInfo);
         _counterAttackExecutor = new CounterAttackExecutor(roundInfo);
         _followUpAttackExecutor = new FollowUpAttackExecutor(roundInfo);
     }
 
-    public void ExecuteAllAttacks(SkillsManager skillsManager)
+    public void ExecuteRoundAttacks(SkillsManager skillsManager)
     {
-        string[] beforeCombatMessages = DamageOutOfCombatManager.ApplyDamageOutOfCombat(_attacker, _defender,
-            EffectDuration.BeforeCombat);
-        string[] attackMessages = ExecuteCombatAttacks(skillsManager);
-        string[] afterCombatMessages = DamageOutOfCombatManager.ApplyDamageOutOfCombat(_attacker, _defender, 
-            EffectDuration.AfterCombat);
-
-        string[][] allMessages = new []{beforeCombatMessages, attackMessages, afterCombatMessages};
-        ProcessAttackMessages(allMessages);
-        RegisterAttacks();
+        ApplyOutOfCombatDamage(EffectDuration.BeforeCombat);
+        ExecuteCombatAttacks();
+        ActivateSkillsAfterCombat(skillsManager);
+        ApplyOutOfCombatDamage(EffectDuration.AfterCombat);
+        RegisterCombatInfo();
+       
     }
 
-
-
-    private string[] ExecuteCombatAttacks(SkillsManager skillsManager)
+    private void ApplyOutOfCombatDamage(EffectDuration effectDuration)
     {
-        string firstAttackMessage = _firstAttackExecutor.ExecuteAttack(_attacker, _defender);
-        string counterAttackMessage = _counterAttackExecutor.ExecuteAttack(_attacker, _defender);
-        string followUpMessage = _followUpAttackExecutor.ExecuteAttack(_attacker, _defender);
+        DamageOutOfCombatInfo[] damageOutOfCombatInfos = 
+            DamageOutOfCombatManager.ApplyDamageOutOfCombat(_attacker, _defender, effectDuration);
+        _attacksView.ShowDamageOutOfCombatMessages(damageOutOfCombatInfos);
+    }
+
+    private void ExecuteCombatAttacks()
+    {
+        ExecuteFirstAttack();
+        ExecuteCounterAttack();
+        ExecuteFollowUpAttacks();
+    }
+
+    private void ExecuteFirstAttack()
+    {
+        AttackInfo firstAttackInfo = _firstAttackExecutor.ExecuteAttack(_attacker, _defender);
+        _attacksView.ShowAttackMessage(firstAttackInfo);
+    }
+
+    private void ExecuteCounterAttack()
+    {
+        AttackInfo counterAttackInfo = _counterAttackExecutor.ExecuteAttack(_attacker, _defender);
+        _attacksView.ShowAttackMessage(counterAttackInfo);
+    }
+
+    private void ExecuteFollowUpAttacks()
+    {
+        (AttackInfo attackerFollowUpInfo, AttackInfo defenderFollowUpInfo) =
+            _followUpAttackExecutor.ExecuteAttack(_attacker, _defender);
+        _attacksView.ShowFollowUpMessage(attackerFollowUpInfo, defenderFollowUpInfo);
+    }
+
+    private void ActivateSkillsAfterCombat(SkillsManager skillsManager)
+    {
         skillsManager.ActivateAfterCombatEffects();
-
-        return new[] { firstAttackMessage, counterAttackMessage, followUpMessage };
     }
-    
-    
 
-    private void ProcessAttackMessages(string[][] attackMessages)
+    private void RegisterCombatInfo()
     {
-        _attacksView.ShowAttacksMessages(attackMessages);
+        UpdateLastRival();
+        UpdateRoundsCount();
     }
 
-    private void RegisterAttacks()
+    private void UpdateLastRival()
     {
         _attacker.UnitRoundsInfo.LastRival = _defender;
         _defender.UnitRoundsInfo.LastRival = _attacker;
-        _attacker.UnitRoundsInfo.AttackingRoundsCount += 1;
-        _defender.UnitRoundsInfo.DefendingRoundsCount += 1;
+    }
+
+    private void UpdateRoundsCount()
+    {
+        _attacker.UnitRoundsInfo.AttackingRoundsCount++;
+        _defender.UnitRoundsInfo.DefendingRoundsCount++;
     }
 }

@@ -1,7 +1,7 @@
 using Fire_Emblem_View;
 using Fire_Emblem.Controller.CombatControllers;
 using Fire_Emblem.Controller.FilesControllers;
-using Fire_Emblem.Exceptions;
+using Fire_Emblem.Models.Exceptions;
 using Fire_Emblem.Models.Teams;
 using Fire_Emblem.Views;
 

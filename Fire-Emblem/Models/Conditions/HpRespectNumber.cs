@@ -1,5 +1,5 @@
-using Fire_Emblem.Conditions;
-using Fire_Emblem.Exceptions;
+using Fire_Emblem.Models.Enums;
+using Fire_Emblem.Models.Exceptions;
 using Fire_Emblem.Models.Units;
 
 namespace Fire_Emblem.Models.Conditions;

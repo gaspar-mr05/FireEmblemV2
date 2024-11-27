@@ -1,4 +1,4 @@
-using Fire_Emblem.Exceptions;
+using Fire_Emblem.Models.Exceptions;
 
 namespace Fire_Emblem.Models.Teams;
 

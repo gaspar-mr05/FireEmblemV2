@@ -2,9 +2,7 @@ using System.Diagnostics;
 using System.Security.Cryptography;
 using System.Text.Unicode;
 using Fire_Emblem.Combat;
-using Fire_Emblem.Conditions;
 using Fire_Emblem.Effects;
-using Fire_Emblem.Exceptions;
 using Fire_Emblem.Models;
 using Fire_Emblem.Models.Advantage;
 using Fire_Emblem.Models.Conditions;
@@ -17,6 +15,8 @@ using Fire_Emblem.Models.Effects.NeutralizationEffects;
 using Fire_Emblem.Models.Effects.NormalEffects;
 using Fire_Emblem.Models.Effects.OutOfCombatDamageEffects;
 using Fire_Emblem.Models.Effects.PersonalizedEffects;
+using Fire_Emblem.Models.Enums;
+using Fire_Emblem.Models.Exceptions;
 using Fire_Emblem.Models.Units;
 using Fire_Emblem.Models.Round;
 
