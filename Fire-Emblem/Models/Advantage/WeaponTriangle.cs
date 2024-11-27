@@ -2,11 +2,11 @@ namespace Fire_Emblem.Models.Advantage;
 
 public class WeaponTriangle
 {
-    public Dictionary<string, string> WeaponTriangleDict;
+    private Dictionary<string, string> _weaponTriangleDict;
 
     public WeaponTriangle()
     {
-        WeaponTriangleDict = new Dictionary<string, string>()
+        _weaponTriangleDict = new Dictionary<string, string>()
         {
             { "Sword", "Axe" },
             { "Lance", "Sword" },
@@ -16,13 +16,13 @@ public class WeaponTriangle
 
     public bool HasWeapon(string weapon)
     {
-        return WeaponTriangleDict.ContainsKey(weapon);
+        return _weaponTriangleDict.ContainsKey(weapon);
 
     }
     
     public bool IsWeaponStronger(string weaponToAttack, string weaponToDefend)
     {
-        return WeaponTriangleDict[weaponToAttack] == weaponToDefend;
+        return _weaponTriangleDict[weaponToAttack] == weaponToDefend;
     }
 
 }

@@ -5,5 +5,5 @@ public enum AttackError
     NoError,
     NoAttackPossible,
     NoFollowUpIndividual,
-    NoFollowUpBoth
+    NoFollowUp
 }

@@ -54,7 +54,7 @@ public class AttacksView
     private bool IsAttackInvalid(AttackInfo attackInfo)
     {
         return attackInfo.AttackError == AttackError.NoAttackPossible || 
-               attackInfo.AttackError == AttackError.NoFollowUpBoth;
+               attackInfo.AttackError == AttackError.NoFollowUp;
     }
     
     private string BuildDamageMessage(AttackInfo attackInfo)
@@ -71,8 +71,8 @@ public class AttacksView
     
     private bool BothFollowUpsFailed(AttackInfo attackerInfo, AttackInfo defenderInfo)
     {
-        return attackerInfo.AttackError == AttackError.NoFollowUpBoth && 
-               defenderInfo.AttackError == AttackError.NoFollowUpBoth;
+        return attackerInfo.AttackError == AttackError.NoFollowUp && 
+               defenderInfo.AttackError == AttackError.NoFollowUp;
     }
     
     private void ShowDamageOutOfCombatMessage(DamageOutOfCombatInfo damageOutOfCombatInfo)

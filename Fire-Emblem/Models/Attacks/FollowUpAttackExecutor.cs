@@ -26,15 +26,7 @@ public class FollowUpAttackExecutor : AttackExecutor
         return (ExecuteFollowUp(attacker, defender), ExecuteFollowUp(defender, attacker));
         
     }
-
-    private string ConcatenateMessage(string currentMessage, string newMessage)
-    {
-        return string.IsNullOrEmpty(newMessage) 
-            ? currentMessage 
-            : string.IsNullOrEmpty(currentMessage) 
-                ? newMessage 
-                : $"{currentMessage}\n{newMessage}";
-    }
+    
 
     
     
@@ -48,16 +40,16 @@ public class FollowUpAttackExecutor : AttackExecutor
                 return base.ExecuteAttack(attacker, defender);
 
             EffectsSummary effectsSummary = defender.EffectsSummary;
-            if (!RoundInfo.UnitAttacksCount.HasUnitAttacked(defender) &&
-                effectsSummary.PermitedAttackInfo.IsNegated(AttackType.CounterAttack))
+            if (effectsSummary.PermitedAttackInfo.IsNegated(AttackType.CounterAttack))
                 return new AttackInfo(attacker, defender, 0, 0, AttackError.NoFollowUpIndividual);
             
             if (!IsFollowUpPossible(attacker, defender))
-                return new AttackInfo(attacker, defender, 0, 0, AttackError.NoFollowUpBoth);
+                return new AttackInfo(attacker, defender, 0, 0, AttackError.NoFollowUp);
                 
         }
         return new AttackInfo(attacker, defender, 0, 0, AttackError.NoAttackPossible);
     }
+    
     
     
     

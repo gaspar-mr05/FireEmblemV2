@@ -28,10 +28,7 @@ public class AttackEffectsManagerBuilder
         {
             return new FollowUpEffectsManager(_attacker);
         }
-        else
-        {
-            throw new NoRoundInfoException();
-        }
+        throw new NoRoundInfoException();
 
     }
 }
