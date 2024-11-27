@@ -1,8 +1,7 @@
 using Fire_Emblem.Conditions;
-using Fire_Emblem.Models.Unit;
+using Fire_Emblem.Models.Units;
 
-namespace Fire_Emblem.Combat;
-using Fire_Emblem.Characters;
+namespace Fire_Emblem.Models.Round;
 
 public class RoundInfo
 {

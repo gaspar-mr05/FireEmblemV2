@@ -1,6 +1,7 @@
-using Fire_Emblem.Characters;
+using Fire_Emblem.Combat;
+using Fire_Emblem.Models.Units;
 
-namespace Fire_Emblem.Combat;
+namespace Fire_Emblem.Models.Attacks;
 
 public abstract class AttackEffectsManager
 {

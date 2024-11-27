@@ -3,8 +3,7 @@ using Fire_Emblem_View;
 using Fire_Emblem;
 using Fire_Emblem_GUI;
 using Fire_Emblem_View;
-using Fire_Emblem.Characters;
-using Fire_Emblem.Teams;
+using Fire_Emblem.Controller;
 
 
 

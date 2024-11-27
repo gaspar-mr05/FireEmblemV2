@@ -1,4 +1,4 @@
-namespace Fire_Emblem.Combat;
+namespace Fire_Emblem.Models.Attacks;
 
 public class AttacksEffects
 {

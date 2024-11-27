@@ -1,7 +1,9 @@
-using Fire_Emblem.Characters;
-using Fire_Emblem.Effects.EffectsInfoBoundaries;
+using Fire_Emblem.Effects;
+using Fire_Emblem.Models.Effects.EffectSummary;
+using Fire_Emblem.Models.Effects.EffectSummary.EffectsInfoBoundaries;
+using Fire_Emblem.Models.Units;
 
-namespace Fire_Emblem.Effects;
+namespace Fire_Emblem.Models.Effects.FirstAttackEffects;
 
 public abstract class FirstAttackEffect : Effect
 {

@@ -1,6 +1,6 @@
 using Fire_Emblem.Effects;
 
-namespace Fire_Emblem.Characters;
+namespace Fire_Emblem.Models.Units;
 
 public class ActiveEffectsInfo
 {

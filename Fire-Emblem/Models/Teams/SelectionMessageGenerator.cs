@@ -1,4 +1,4 @@
-namespace Fire_Emblem.Combat;
+namespace Fire_Emblem.Models.Teams;
 
 public class SelectionMessageGenerator
 {

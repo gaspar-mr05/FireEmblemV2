@@ -1,9 +1,9 @@
-using Fire_Emblem_View;
-using Fire_Emblem.Characters;
 using Fire_Emblem.Conditions;
-using Fire_Emblem.Effects;
+using Fire_Emblem.Models.Effects.EffectSummary;
+using Fire_Emblem.Models.Round;
+using Fire_Emblem.Models.Units;
 
-namespace Fire_Emblem.Combat;
+namespace Fire_Emblem.Models.Attacks;
 
 public class FollowUpAttackExecutor : AttackExecutor
 {
@@ -61,11 +61,6 @@ public class FollowUpAttackExecutor : AttackExecutor
     
     
     
-    private bool HasFollowUpGuaranteed(Unit unit)
-    {
-        EffectsSummary effectsSummary = unit.EffectsSummary;
-        return effectsSummary.PermitedAttackInfo.IsGuaranteed(AttackType.FollowUpAttack);
-    }
 
     private bool IsFollowUpPossible(Unit attacker, Unit defender)
     {
@@ -90,6 +85,12 @@ public class FollowUpAttackExecutor : AttackExecutor
                  effectsSummary.PermitedAttackInfo.IsNegated(AttackType.CounterAttack)))
             return true;
         return false;
+    }
+    
+    private bool HasFollowUpGuaranteed(Unit unit)
+    {
+        EffectsSummary effectsSummary = unit.EffectsSummary;
+        return effectsSummary.PermitedAttackInfo.IsGuaranteed(AttackType.FollowUpAttack);
     }
        
     

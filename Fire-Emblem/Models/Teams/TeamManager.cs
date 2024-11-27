@@ -1,8 +1,8 @@
 
-namespace Fire_Emblem.Teams;
-using Fire_Emblem.Characters;
-using Fire_Emblem.Files;
+using Fire_Emblem.Models.Files;
+using Fire_Emblem.Models.Units;
 
+namespace Fire_Emblem.Models.Teams;
 
 public class TeamManager: Team
 {
@@ -27,7 +27,7 @@ public class TeamManager: Team
     public void AddUnitToTeam(LineHandler lineHandler)
     {
         (string name, string[] skillsArray) = lineHandler.HandleLine();
-        Models.Unit.Characters characters = CharactersBuilder.CreateCharactersFromJson();
+        Characters characters = CharactersBuilder.CreateCharactersFromJson();
         Unit unit = UnitBuilder.BuildUnit(characters.GetCharacter(name), skillsArray);
         unit.Team = _team;
         _team.AddUnit(unit);

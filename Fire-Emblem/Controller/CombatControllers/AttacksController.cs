@@ -1,11 +1,13 @@
-using Fire_Emblem.Conditions;
-using Fire_Emblem.Effects;
-
-namespace Fire_Emblem.Combat;
 using Fire_Emblem_View;
-using Fire_Emblem.Characters;
-using Fire_Emblem.ViewPrinter;
+using Fire_Emblem.Combat;
+using Fire_Emblem.Conditions;
+using Fire_Emblem.Models.Attacks;
+using Fire_Emblem.Models.Damage;
+using Fire_Emblem.Models.Round;
+using Fire_Emblem.Models.Skills;
+using Fire_Emblem.Models.Units;
 
+namespace Fire_Emblem.Controller.CombatControllers;
 
 public class AttacksController
 {

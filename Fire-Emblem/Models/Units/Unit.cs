@@ -1,10 +1,11 @@
 using Fire_Emblem_GUI;
-using Fire_Emblem.Conditions;
 using Fire_Emblem.Effects;
-using Fire_Emblem.Models.Unit;
-using Fire_Emblem.Teams;
+using Fire_Emblem.Models.Effects.EffectSummary;
 
-namespace Fire_Emblem.Characters;
+
+namespace Fire_Emblem.Models.Units;
+
+using Teams;
 
 using System.Collections.Generic;
 

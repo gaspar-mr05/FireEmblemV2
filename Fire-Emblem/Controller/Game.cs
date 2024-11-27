@@ -1,10 +1,6 @@
 ﻿using Fire_Emblem_View;
-using Fire_Emblem.Teams;
-using Fire_Emblem.Combat;
-using Fire_Emblem.Files;
 
-
-namespace Fire_Emblem;
+namespace Fire_Emblem.Controller;
 
 public class Game
 {

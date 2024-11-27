@@ -1,12 +1,13 @@
 using Fire_Emblem.Conditions;
 using Fire_Emblem.Effects;
+using Fire_Emblem.Models.Units;
 
 namespace Fire_Emblem.Models.Effects.OutOfCombatDamageEffects;
 
 public class BeforeCombatDamageEffect: OutOfCombatDamageEffect
 {
 
-    public BeforeCombatDamageEffect(Characters.Unit unit, int damage) : base(unit, damage)
+    public BeforeCombatDamageEffect(Unit unit, int damage) : base(unit, damage)
     {
         EffectDuration = EffectDuration.BeforeCombat;
     }

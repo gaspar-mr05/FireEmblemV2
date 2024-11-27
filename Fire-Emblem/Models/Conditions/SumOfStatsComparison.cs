@@ -1,6 +1,6 @@
-using Fire_Emblem.Characters;
+using Fire_Emblem.Models.Units;
 
-namespace Fire_Emblem.Conditions;
+namespace Fire_Emblem.Models.Conditions;
 
 public class SumOfStatsComparison: ICondition
 {

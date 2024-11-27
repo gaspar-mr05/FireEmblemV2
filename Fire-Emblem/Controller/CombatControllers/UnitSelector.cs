@@ -1,10 +1,10 @@
-using Fire_Emblem.Models.Team;
-
-namespace Fire_Emblem.Combat;
-using Fire_Emblem.Characters;
-using Fire_Emblem.Teams;
-using Fire_Emblem.ViewPrinter;
 using Fire_Emblem_View;
+using Fire_Emblem.Models.Teams;
+using Fire_Emblem.Models.Units;
+using Fire_Emblem.Views;
+
+namespace Fire_Emblem.Controller.CombatControllers;
+
 public class UnitSelector
 {
     private View _view;

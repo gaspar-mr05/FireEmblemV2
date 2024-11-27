@@ -1,17 +1,20 @@
 using Fire_Emblem.Combat;
 using Fire_Emblem.Conditions;
 using Fire_Emblem.Effects;
-using Fire_Emblem.Effects.DamageEffects;
-using Fire_Emblem.Effects.EffectsInfoBoundaries;
+using Fire_Emblem.Models.Damage;
+using Fire_Emblem.Models.Effects.DamageEffects;
+using Fire_Emblem.Models.Effects.EffectSummary.EffectsInfoBoundaries;
+using Fire_Emblem.Models.Round;
+using Fire_Emblem.Models.Units;
 
 namespace Fire_Emblem.Models.Effects.PersonalizedEffects;
 
 public class BrashAssaultEffect: Effect
 {
-    private Characters.Unit _rival;
+    private Unit _rival;
     private RoundInfo _roundInfo;
 
-    public BrashAssaultEffect(Characters.Unit unit, Characters.Unit rival, RoundInfo roundInfo): base(unit)
+    public BrashAssaultEffect(Unit unit, Unit rival, RoundInfo roundInfo): base(unit)
     {
         _rival = rival;
         _roundInfo = roundInfo;

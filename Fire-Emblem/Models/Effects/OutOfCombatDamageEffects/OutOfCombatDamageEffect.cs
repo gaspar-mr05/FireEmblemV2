@@ -1,8 +1,9 @@
-using Fire_Emblem.Characters;
 using Fire_Emblem.Conditions;
-using Fire_Emblem.Effects.DamageEffects;
+using Fire_Emblem.Effects;
+using Fire_Emblem.Models.Effects.EffectSummary;
+using Fire_Emblem.Models.Units;
 
-namespace Fire_Emblem.Effects;
+namespace Fire_Emblem.Models.Effects.OutOfCombatDamageEffects;
 
 public abstract class OutOfCombatDamageEffect: Effect
 {

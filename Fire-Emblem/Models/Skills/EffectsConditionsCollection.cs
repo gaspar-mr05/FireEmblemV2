@@ -1,5 +1,7 @@
 using Fire_Emblem.Conditions;
 using Fire_Emblem.Effects;
+using Fire_Emblem.Models.Conditions;
+using Fire_Emblem.Models.Effects;
 
 namespace Fire_Emblem.Models.Skills;
 

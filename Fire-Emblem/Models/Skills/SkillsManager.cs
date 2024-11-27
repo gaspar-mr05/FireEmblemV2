@@ -1,12 +1,11 @@
 using System.Threading.Tasks.Sources;
 using Fire_Emblem.Effects;
-using Fire_Emblem.Skills;
+using Fire_Emblem.Models.Round;
+using Fire_Emblem.Models.Units;
 
 
-namespace Fire_Emblem.Combat;
-using Fire_Emblem_View;
-using Fire_Emblem.Characters;
-using Fire_Emblem.Conditions;
+namespace Fire_Emblem.Models.Skills;
+
 
 
 public class SkillsManager

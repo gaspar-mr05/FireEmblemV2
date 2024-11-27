@@ -1,9 +1,10 @@
-using System.Threading.Tasks.Sources;
-using Fire_Emblem_View;
-using Fire_Emblem.Characters;
-using Fire_Emblem.Effects;
+using Fire_Emblem.Combat;
+using Fire_Emblem.Models.Advantage;
+using Fire_Emblem.Models.Attacks;
+using Fire_Emblem.Models.Round;
+using Fire_Emblem.Models.Units;
 
-namespace Fire_Emblem.Combat;
+namespace Fire_Emblem.Models.Damage;
 
 public class DamageCalculator
 {

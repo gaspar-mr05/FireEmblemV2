@@ -1,14 +1,14 @@
 using System.Text.Json;
 
-namespace Fire_Emblem.Characters;
+namespace Fire_Emblem.Models.Units;
 using System.Text.Json.Serialization;
 public class CharactersBuilder
 {
-    public static Models.Unit.Characters CreateCharactersFromJson()
+    public static Characters CreateCharactersFromJson()
     {
         string characterJson = File . ReadAllText ( "characters.json") ;
         List<CharacterInfo> charactersList = JsonSerializer.Deserialize<List<CharacterInfo>>(characterJson);
-        Models.Unit.Characters characters = new Models.Unit.Characters();
+        Characters characters = new Characters();
         foreach (var character in charactersList)
         {
             characters.AddCharacter(character);

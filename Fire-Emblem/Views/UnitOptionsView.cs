@@ -1,7 +1,7 @@
 using Fire_Emblem_View;
-using Fire_Emblem.Teams;
+using Fire_Emblem.Models.Teams;
 
-namespace Fire_Emblem.ViewPrinter;
+namespace Fire_Emblem.Views;
 
 public class UnitOptionsView
 {

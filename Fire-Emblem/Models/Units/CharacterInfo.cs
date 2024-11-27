@@ -1,6 +1,6 @@
 using System.Reflection;
 
-namespace Fire_Emblem.Characters;
+namespace Fire_Emblem.Models.Units;
 
 public class CharacterInfo(string name, string weapon, string gender, string deathQuote, string hp, string atk, 
     string spd, string def, string res)

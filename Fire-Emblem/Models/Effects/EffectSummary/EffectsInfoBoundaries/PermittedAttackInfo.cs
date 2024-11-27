@@ -1,6 +1,6 @@
 using Fire_Emblem.Conditions;
 
-namespace Fire_Emblem.Effects.EffectsInfoBoundaries;
+namespace Fire_Emblem.Models.Effects.EffectSummary.EffectsInfoBoundaries;
 
 public class PermittedAttackInfo
 {

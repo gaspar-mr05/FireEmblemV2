@@ -1,7 +1,7 @@
-using Fire_Emblem.Combat;
+using Fire_Emblem.Models.Round;
+using Fire_Emblem.Models.Units;
 
-namespace Fire_Emblem.Conditions;
-using Fire_Emblem.Characters;
+namespace Fire_Emblem.Models.Conditions;
 
 public class UnitStartCombat: ICondition
 {

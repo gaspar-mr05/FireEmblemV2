@@ -1,4 +1,4 @@
-namespace Fire_Emblem.Effects.EffectsInfoBoundaries;
+namespace Fire_Emblem.Models.Effects.EffectSummary.EffectsInfoBoundaries;
 
 public class NeutralizationEffectInfo
 {

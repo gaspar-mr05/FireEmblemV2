@@ -1,5 +1,7 @@
-namespace Fire_Emblem.Files;
 using Fire_Emblem_View;
+
+
+namespace Fire_Emblem.Controller.FilesControllers;
 
 public class FileReader
 {

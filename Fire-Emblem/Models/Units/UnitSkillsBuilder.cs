@@ -1,8 +1,9 @@
-using Fire_Emblem.Characters;
-using Fire_Emblem.Combat;
-using Fire_Emblem.Conditions;
 
-namespace Fire_Emblem.Skills;
+using Fire_Emblem.Combat;
+using Fire_Emblem.Models.Round;
+using Fire_Emblem.Models.Skills;
+
+namespace Fire_Emblem.Models.Units;
 
 public class UnitSkillsBuilder
 {

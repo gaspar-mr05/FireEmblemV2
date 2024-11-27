@@ -1,7 +1,7 @@
-using Fire_Emblem.Characters;
-using Fire_Emblem.Effects;
+using Fire_Emblem.Models.Effects.EffectSummary;
+using Fire_Emblem.Models.Units;
 
-namespace Fire_Emblem.Combat;
+namespace Fire_Emblem.Models.Damage;
 
 public class HealingApplier
 {

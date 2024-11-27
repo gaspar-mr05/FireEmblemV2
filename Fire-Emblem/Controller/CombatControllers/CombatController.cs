@@ -1,10 +1,9 @@
-using Fire_Emblem.Models.Team;
-using Fire_Emblem.ViewPrinter;
-
-namespace Fire_Emblem.Combat;
 using Fire_Emblem_View;
-using Fire_Emblem.Characters;
-using Fire_Emblem.Teams;
+using Fire_Emblem.Models.Teams;
+using Fire_Emblem.Views;
+
+namespace Fire_Emblem.Controller.CombatControllers;
+
 public class CombatController
 {
     private View _view;

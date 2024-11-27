@@ -1,8 +1,7 @@
-using Fire_Emblem.Characters;
-using Fire_Emblem.Combat;
-using Fire_Emblem.Models;
+using Fire_Emblem.Models.Advantage;
+using Fire_Emblem.Models.Units;
 
-namespace Fire_Emblem.Conditions;
+namespace Fire_Emblem.Models.Conditions;
 
 public class UnitUseWeaponType: ICondition
 {

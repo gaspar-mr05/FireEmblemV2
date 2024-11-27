@@ -1,4 +1,5 @@
 ﻿using Fire_Emblem_View;
+using Fire_Emblem.Controller;
 
 namespace Fire_Emblem.Tests;
 using Fire_Emblem;

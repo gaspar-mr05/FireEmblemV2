@@ -1,11 +1,11 @@
-using System.Runtime.InteropServices.ComTypes;
-using Fire_Emblem.Characters;
-using Fire_Emblem.Combat;
 using Fire_Emblem.Conditions;
 using Fire_Emblem.Exceptions;
+using Fire_Emblem.Models.Advantage;
+using Fire_Emblem.Models.Effects.DamageEffects;
 using Fire_Emblem.Models.Effects.OutOfCombatDamageEffects;
+using Fire_Emblem.Models.Units;
 
-namespace Fire_Emblem.Effects.DamageEffects;
+namespace Fire_Emblem.Models.Effects.PersonalizedEffects;
 
 public class BewitchingTomeEffect: DamageEffect
 {

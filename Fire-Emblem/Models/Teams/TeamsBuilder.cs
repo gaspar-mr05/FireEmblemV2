@@ -1,6 +1,6 @@
-namespace Fire_Emblem.Teams;
-using Fire_Emblem.Files;
+using Fire_Emblem.Models.Files;
 
+namespace Fire_Emblem.Models.Teams;
 
 public class TeamsBuilder
 {

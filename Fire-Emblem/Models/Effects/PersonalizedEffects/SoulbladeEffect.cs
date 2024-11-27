@@ -1,7 +1,8 @@
-using Fire_Emblem_View;
-using Fire_Emblem.Characters;
+using Fire_Emblem.Effects;
+using Fire_Emblem.Models.Effects.NormalEffects;
+using Fire_Emblem.Models.Units;
 
-namespace Fire_Emblem.Effects;
+namespace Fire_Emblem.Models.Effects.PersonalizedEffects;
 
 public class SoulbladeEffect: Effect
 {

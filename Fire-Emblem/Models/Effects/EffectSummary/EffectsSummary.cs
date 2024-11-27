@@ -1,7 +1,7 @@
-using Fire_Emblem.Conditions;
-using Fire_Emblem.Effects.EffectsInfoBoundaries;
+using Fire_Emblem.Effects;
+using Fire_Emblem.Models.Effects.EffectSummary.EffectsInfoBoundaries;
 
-namespace Fire_Emblem.Effects;
+namespace Fire_Emblem.Models.Effects.EffectSummary;
 
 public class EffectsSummary
 {

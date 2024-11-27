@@ -1,6 +1,9 @@
 using Fire_Emblem_View;
+using Fire_Emblem.Models.Files;
 
-namespace Fire_Emblem.ViewPrinter;
+namespace Fire_Emblem.Views;
+
+
 
 public class FileOptionsView
 {
@@ -15,7 +18,7 @@ public FileOptionsView(View view, string[] teamFiles)
         _teamFiles = teamFiles;
 
     }
-    public void ShowFileOptions(Dictionary<int, string> filesDict)
+    public void ShowFileOptions(Files files)
     {
         _view.WriteLine("Elige un archivo para cargar los equipos");
         int fileNumber = 0;
@@ -23,7 +26,7 @@ public FileOptionsView(View view, string[] teamFiles)
         {
             string fileName = Path.GetFileName(file);
             _view.WriteLine($"{fileNumber}: {fileName}");
-            filesDict[fileNumber] = fileName;
+            files.AddFile(fileNumber, fileName);
             fileNumber += 1;
         }
     }

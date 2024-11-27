@@ -1,7 +1,4 @@
-using Fire_Emblem.Combat;
-
-namespace Fire_Emblem.Conditions;
-using Fire_Emblem.Characters;
+namespace Fire_Emblem.Models.Conditions;
 
 public interface ICondition
 {

@@ -1,6 +1,7 @@
-using Fire_Emblem.Characters;
+using Fire_Emblem.Effects;
+using Fire_Emblem.Models.Units;
 
-namespace Fire_Emblem.Effects;
+namespace Fire_Emblem.Models.Effects.NeutralizationEffects;
 
 public abstract class NeutralizationEffect : Effect
 {

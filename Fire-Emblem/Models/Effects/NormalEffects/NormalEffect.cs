@@ -1,7 +1,6 @@
-using Fire_Emblem.Characters;
-using Fire_Emblem.Effects.EffectsInfoBoundaries;
+using Fire_Emblem.Models.Units;
 
-namespace Fire_Emblem.Effects;
+namespace Fire_Emblem.Models.Effects.NormalEffects;
 
 public abstract class NormalEffect: Effect
 {

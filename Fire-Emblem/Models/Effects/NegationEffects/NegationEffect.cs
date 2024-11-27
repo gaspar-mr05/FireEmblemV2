@@ -1,7 +1,9 @@
-using Fire_Emblem.Characters;
 using Fire_Emblem.Conditions;
+using Fire_Emblem.Effects;
+using Fire_Emblem.Models.Effects.EffectSummary;
+using Fire_Emblem.Models.Units;
 
-namespace Fire_Emblem.Effects.NegationEffects;
+namespace Fire_Emblem.Models.Effects.NegationEffects;
 
 public class NegationEffect: Effect
 {

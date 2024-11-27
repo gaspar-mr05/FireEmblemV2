@@ -1,6 +1,6 @@
 using Fire_Emblem_View;
-using Fire_Emblem.Characters;
-using Fire_Emblem.ViewPrinter;
+using Fire_Emblem.Models.Units;
+using Fire_Emblem.Views;
 
 public class AttacksView
 {

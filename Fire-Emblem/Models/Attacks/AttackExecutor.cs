@@ -1,10 +1,11 @@
-using Fire_Emblem_View;
+using Fire_Emblem.Combat;
 using Fire_Emblem.Conditions;
-using Fire_Emblem.Effects;
+using Fire_Emblem.Models.Damage;
+using Fire_Emblem.Models.Effects.EffectSummary;
+using Fire_Emblem.Models.Round;
+using Fire_Emblem.Models.Units;
 
-namespace Fire_Emblem.Combat;
-using Fire_Emblem.Characters;
-
+namespace Fire_Emblem.Models.Attacks;
 
 public class AttackExecutor
 {

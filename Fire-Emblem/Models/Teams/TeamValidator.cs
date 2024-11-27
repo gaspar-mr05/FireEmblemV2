@@ -1,6 +1,6 @@
 using Fire_Emblem.Exceptions;
 
-namespace Fire_Emblem.Teams;
+namespace Fire_Emblem.Models.Teams;
 
 public class TeamValidator
 {

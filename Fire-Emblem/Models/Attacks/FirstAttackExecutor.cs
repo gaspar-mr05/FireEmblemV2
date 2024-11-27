@@ -1,9 +1,8 @@
 using Fire_Emblem.Conditions;
-using Fire_Emblem.Effects;
+using Fire_Emblem.Models.Round;
+using Fire_Emblem.Models.Units;
 
-namespace Fire_Emblem.Combat;
-using Fire_Emblem.Characters;
-using Fire_Emblem_View;
+namespace Fire_Emblem.Models.Attacks;
 
 public class FirstAttackExecutor : AttackExecutor
 {

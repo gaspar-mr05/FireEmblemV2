@@ -1,5 +1,5 @@
 using Fire_Emblem_View;
-using Fire_Emblem.Effects.DamageEffects;
+using Fire_Emblem.Models.Effects;
 
 namespace Fire_Emblem.Effects;
 

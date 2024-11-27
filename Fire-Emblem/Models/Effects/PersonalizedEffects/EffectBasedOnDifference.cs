@@ -1,18 +1,19 @@
 using Fire_Emblem.Conditions;
 using Fire_Emblem.Effects;
-using Fire_Emblem.Effects.DamageEffects;
+using Fire_Emblem.Models.Effects.DamageEffects;
+using Fire_Emblem.Models.Units;
 
 namespace Fire_Emblem.Models.Effects.PersonalizedEffects;
 
 public abstract class EffectBasedOnDifference: DamageEffect
 {
     
-    protected Characters.Unit Rival;
+    protected Unit Rival;
     protected string StatName;
     protected double Percentage;
     protected int Max;
 
-    protected EffectBasedOnDifference(Characters.Unit unit, Characters.Unit rival, string statName, double percentage, 
+    protected EffectBasedOnDifference(Unit unit, Unit rival, string statName, double percentage, 
         int max, EffectDuration effectDuration): base(unit, effectDuration)
     {
         

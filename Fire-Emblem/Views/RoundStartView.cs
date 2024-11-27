@@ -1,10 +1,8 @@
 using Fire_Emblem_View;
-using Fire_Emblem.Characters;
-using Fire_Emblem.Combat;
-using Fire_Emblem.Conditions;
-using Fire_Emblem.Effects;
+using Fire_Emblem.Models.Advantage;
+using Fire_Emblem.Models.Units;
 
-namespace Fire_Emblem.ViewPrinter;
+namespace Fire_Emblem.Views;
 
 public class RoundStartView
 {

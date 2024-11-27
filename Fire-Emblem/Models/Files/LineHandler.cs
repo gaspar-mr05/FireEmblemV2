@@ -1,4 +1,4 @@
-namespace Fire_Emblem.Files;
+namespace Fire_Emblem.Models.Files;
 
 public class LineHandler
 {

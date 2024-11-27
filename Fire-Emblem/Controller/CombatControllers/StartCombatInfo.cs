@@ -1,6 +1,6 @@
-using Fire_Emblem.Teams;
+using Fire_Emblem.Models.Teams;
 
-namespace Fire_Emblem.Combat;
+namespace Fire_Emblem.Controller.CombatControllers;
 
 public class StartCombatInfo
 {

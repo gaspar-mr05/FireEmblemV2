@@ -1,19 +1,28 @@
 using System.Diagnostics;
 using System.Security.Cryptography;
 using System.Text.Unicode;
-using Fire_Emblem.Characters;
 using Fire_Emblem.Combat;
+using Fire_Emblem.Conditions;
 using Fire_Emblem.Effects;
-using Fire_Emblem.Effects.DamageEffects;
-using Fire_Emblem.Effects.NegationEffects;
 using Fire_Emblem.Exceptions;
 using Fire_Emblem.Models;
+using Fire_Emblem.Models.Advantage;
+using Fire_Emblem.Models.Conditions;
+using Fire_Emblem.Models.Effects;
 using Fire_Emblem.Models.Effects.DamageEffects;
+using Fire_Emblem.Models.Effects.FirstAttackEffects;
+using Fire_Emblem.Models.Effects.FollowUpAttackEffects;
+using Fire_Emblem.Models.Effects.NegationEffects;
+using Fire_Emblem.Models.Effects.NeutralizationEffects;
+using Fire_Emblem.Models.Effects.NormalEffects;
 using Fire_Emblem.Models.Effects.OutOfCombatDamageEffects;
 using Fire_Emblem.Models.Effects.PersonalizedEffects;
-using Fire_Emblem.Models.Skills;
+using Fire_Emblem.Models.Units;
+using Fire_Emblem.Models.Round;
 
-namespace Fire_Emblem.Conditions;
+namespace Fire_Emblem.Models.Skills;
+
+
 
 public class SkillBuilder
 {

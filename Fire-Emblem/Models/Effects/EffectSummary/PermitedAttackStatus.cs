@@ -1,4 +1,4 @@
-namespace Fire_Emblem.Effects;
+namespace Fire_Emblem.Models.Effects.EffectSummary;
 
 public class PermitedAttackStatus
 {

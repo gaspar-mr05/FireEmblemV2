@@ -1,6 +1,6 @@
 using Fire_Emblem.Conditions;
 
-namespace Fire_Emblem.Skills;
+namespace Fire_Emblem.Models.Skills;
 
 public class SkillsCollection
 {
