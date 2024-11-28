@@ -4,12 +4,12 @@ namespace Fire_Emblem.Models.Units;
 
 public class UnitAttacksCount
 {
-    private Dictionary<Unit, int> attacksCountDict;
+    private Dictionary<Unit, int> _attacksCountDict;
 
 
     public UnitAttacksCount(Unit unitWhoStart, Unit unitWhoNotStart)
     {
-        attacksCountDict = new Dictionary<Unit, int>()
+        _attacksCountDict = new Dictionary<Unit, int>()
         {
             { unitWhoStart, 0 },
             { unitWhoNotStart, 0 }
@@ -18,12 +18,12 @@ public class UnitAttacksCount
     
     public bool HasUnitAttacked(Unit unit)
     {
-        return attacksCountDict[unit] != 0;
+        return _attacksCountDict[unit] != 0;
     }
 
     public void AddAttack(Unit unit)
     {
-        attacksCountDict[unit] += 1;
+        _attacksCountDict[unit] += 1;
     }
     
 }

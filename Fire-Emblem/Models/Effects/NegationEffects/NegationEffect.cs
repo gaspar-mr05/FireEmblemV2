@@ -7,17 +7,17 @@ namespace Fire_Emblem.Models.Effects.NegationEffects;
 
 public class NegationEffect: Effect
 {
-    protected AttackType AttackType;
+    private AttackType _attackType;
 
     public NegationEffect(Unit unit, AttackType attackType): base(unit)
     {
-        AttackType = attackType;
+        _attackType = attackType;
     }
 
     public override void ApplyEffect()
     {
         EffectsSummary effectsSummary = Unit.EffectsSummary;
-        effectsSummary.PermitedAttackInfo.NegateAttack(AttackType);
+        effectsSummary.PermitedAttackInfo.NegateAttack(_attackType);
     }
 
     public override void RevertEffect()

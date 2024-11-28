@@ -44,8 +44,7 @@ public class Unit : IUnit
     public int Res => Stats.GetRes();
 
     public string[] Skills => SkillsNames;
-
-    // Métodos adicionales de Unit
+    
     public bool HasUniqueSkills()
     {
         List<string> uniqueSkills = new List<string>();

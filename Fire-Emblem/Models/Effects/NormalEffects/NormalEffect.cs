@@ -7,7 +7,7 @@ public abstract class NormalEffect: Effect
 
     protected int Change;
 
-    public NormalEffect(Unit unit, string statName, int change) : base(unit)
+    protected NormalEffect(Unit unit, string statName, int change) : base(unit)
     {
 
         StatName = statName;

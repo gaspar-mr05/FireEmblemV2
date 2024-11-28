@@ -31,6 +31,14 @@ public class AdvantageManager
         return  _weaponTriangle.IsWeaponStronger(weaponToAttack, weaponToDefend)? maxWtb : minWtb;
     }
     
+    private bool IsAdvantagePresent()
+    {
+        string weaponToAttack = _attacker.CharacterInfo.Weapon;
+        string weaponToDefend = _defender.CharacterInfo.Weapon;
+        return _weaponTriangle.HasWeapon(weaponToAttack) && _weaponTriangle.HasWeapon(weaponToDefend)
+                                                         && weaponToAttack != weaponToDefend;
+    } 
+    
     public Unit GetUnitWithAdvantage()
     {
         string weaponToAttack = _attacker.CharacterInfo.Weapon;
@@ -44,14 +52,7 @@ public class AdvantageManager
         
         return _defender;
     }
-
-    private bool IsAdvantagePresent()
-    {
-        string weaponToAttack = _attacker.CharacterInfo.Weapon;
-        string weaponToDefend = _defender.CharacterInfo.Weapon;
-        return _weaponTriangle.HasWeapon(weaponToAttack) && _weaponTriangle.HasWeapon(weaponToDefend)
-                                                         && weaponToAttack != weaponToDefend;
-    } 
+    
     
 
     

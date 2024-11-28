@@ -16,7 +16,6 @@ public class HealingApplier
                 Convert.ToInt32(attacker.CharacterInfo.HP)));
         }
         return hpHealed;
-
     }
     
     private static bool CanBeHealed(Unit attacker, EffectsSummary attackerEffectsSummary)

@@ -11,7 +11,7 @@ public abstract class Effect
     protected Unit Unit;
     public string StatName;
 
-    public Effect(Unit unit)
+    protected Effect(Unit unit)
     {
         Unit = unit;
     }

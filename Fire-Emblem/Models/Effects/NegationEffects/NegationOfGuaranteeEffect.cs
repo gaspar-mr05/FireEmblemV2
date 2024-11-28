@@ -7,19 +7,19 @@ namespace Fire_Emblem.Models.Effects.NegationEffects;
 
 public class NegationOfGuaranteeEffect: Effect
 {
-    protected AttackType AttackType;
+    private AttackType _attackType;
     
     public NegationOfGuaranteeEffect(Unit unit, AttackType attackType): base(unit)
     {
 
         Unit = unit;
-        AttackType = attackType;
+        _attackType = attackType;
     }
 
     public override void ApplyEffect()
     {
         EffectsSummary effectsSummary = Unit.EffectsSummary;
-        effectsSummary.PermitedAttackInfo.NegateGuarantee(AttackType);
+        effectsSummary.PermitedAttackInfo.NegateGuarantee(_attackType);
     }
     
     

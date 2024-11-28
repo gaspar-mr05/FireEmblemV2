@@ -78,19 +78,10 @@ public class AttacksController
 
     private void RegisterCombatInfo()
     {
-        UpdateLastRival();
-        UpdateRoundsCount();
-    }
-
-    private void UpdateLastRival()
-    {
         _attacker.UnitRoundsInfo.LastRival = _defender;
         _defender.UnitRoundsInfo.LastRival = _attacker;
-    }
-
-    private void UpdateRoundsCount()
-    {
         _attacker.UnitRoundsInfo.AttackingRoundsCount++;
         _defender.UnitRoundsInfo.DefendingRoundsCount++;
     }
+    
 }

@@ -5,7 +5,6 @@ using Fire_Emblem.Models.Skills;
 
 namespace Fire_Emblem.Models.Skills;
 
-using Fire_Emblem.Effects;
 
 
 public class Skill

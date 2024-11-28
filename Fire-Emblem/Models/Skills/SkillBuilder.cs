@@ -575,7 +575,8 @@ public class SkillBuilder
         }
         else if (_skillName == "Gentility")
         {
-            effectsConditions.AddEffectConditions(new AbsoluteDamageReductionEffect(unit, 5, EffectDuration.FullRound), extraConditions);
+            effectsConditions.AddEffectConditions(new AbsoluteDamageReductionEffect(unit, 5, EffectDuration.FullRound), 
+                extraConditions);
         }
         
         else if (_skillName == "Bow Guard")
@@ -673,7 +674,8 @@ public class SkillBuilder
         }
         else if (_skillName == "Blue Skies")
         {
-            effectsConditions.AddEffectConditions(new AbsoluteDamageReductionEffect(unit, 5, EffectDuration.FullRound), extraConditions);
+            effectsConditions.AddEffectConditions(new AbsoluteDamageReductionEffect(unit, 5, EffectDuration.FullRound)
+                , extraConditions);
             effectsConditions.AddEffectConditions(new ExtraDamageEffect(unit, 5, EffectDuration.FullRound), extraConditions);
             
         }
@@ -824,7 +826,8 @@ public class SkillBuilder
             extraConditions.AddSingleCondition(new UnitStartCombat(unit, _roundInfo));
             extraConditions.AddSingleCondition(new FullHp(rival, ComparisonType.FullHp));
             effectsConditions.AddEffectConditions(new ExtraDamageEffect(unit, 2, EffectDuration.FullRound), extraConditions);
-            effectsConditions.AddEffectConditions(new AbsoluteDamageReductionEffect(unit, 2, EffectDuration.FullRound), extraConditions);
+            effectsConditions.AddEffectConditions(new AbsoluteDamageReductionEffect(unit, 2, EffectDuration.FullRound), 
+                extraConditions);
             
         }
         else if (_skillName == "Dragon's Wrath")
@@ -946,7 +949,8 @@ public class SkillBuilder
             conditions.AddSingleCondition(new UnitStartCombat(unit, _roundInfo));
             conditions.AddSingleCondition(new UnitUseWeaponType(unit, weapons));
             extraConditions.AddSingleCondition(new UnitStartCombat(unit, _roundInfo));
-            effectsConditions.AddEffectConditions(new ExtraDamageBasedOnPercentage(unit, rival, "Def", 0.3, EffectDuration.FullRound, 
+            effectsConditions.AddEffectConditions(new ExtraDamageBasedOnPercentage(unit, rival, "Def", 
+                    0.3, EffectDuration.FullRound, 
                     BasedOn.Rival),
                 conditions);
             effectsConditions.AddEffectConditions(new HealingEffect(unit, 0.5), extraConditions);

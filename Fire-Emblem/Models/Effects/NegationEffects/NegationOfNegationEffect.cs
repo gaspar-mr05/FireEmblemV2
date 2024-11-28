@@ -7,24 +7,24 @@ namespace Fire_Emblem.Models.Effects.NegationEffects;
 
 public class NegationOfNegationEffect: Effect
 {
-    protected AttackType AttackType;
+    private AttackType _attackType;
 
     public NegationOfNegationEffect(Unit unit, AttackType attackType): base(unit)
     {
 
         Unit = unit;
-        AttackType = attackType;
+        _attackType = attackType;
     }
 
     public override void ApplyEffect()
     {
-        if (IsAttackNegated() && AttackType == AttackType.CounterAttack)
+        if (IsAttackNegated() && _attackType == AttackType.CounterAttack)
         {
-            NegateNegationAttackEffects(AttackType);
+            NegateNegationAttackEffects(_attackType);
         }
-        else if (AttackType == AttackType.FollowUpAttack)
+        else if (_attackType == AttackType.FollowUpAttack)
         {
-            NegateNegationAttackEffects(AttackType);
+            NegateNegationAttackEffects(_attackType);
         }
     }
     
@@ -32,7 +32,7 @@ public class NegationOfNegationEffect: Effect
     private bool IsAttackNegated()
     {
         EffectsSummary effectsSummary = Unit.EffectsSummary;
-        return (effectsSummary.PermitedAttackInfo.IsNegated(AttackType)) ;
+        return (effectsSummary.PermitedAttackInfo.IsNegated(_attackType)) ;
     }
     
     private void NegateNegationAttackEffects(AttackType attackType)

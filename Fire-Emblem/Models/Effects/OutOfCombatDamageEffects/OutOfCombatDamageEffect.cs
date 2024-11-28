@@ -11,7 +11,7 @@ public abstract class OutOfCombatDamageEffect: Effect
     private int _damage;
     protected EffectDuration EffectDuration;
 
-    public OutOfCombatDamageEffect(Unit unit, int damage): base(unit)
+    protected OutOfCombatDamageEffect(Unit unit, int damage): base(unit)
     {
         _damage = damage;
     }

@@ -8,27 +8,26 @@ namespace Fire_Emblem.Models.Effects.PersonalizedEffects;
 public abstract class EffectBasedOnDifference: DamageEffect
 {
     
-    protected Unit Rival;
-    protected string StatName;
-    protected double Percentage;
-    protected int Max;
+    private Unit _rival;
+    private double _percentage;
+    private int _max;
 
     protected EffectBasedOnDifference(Unit unit, Unit rival, string statName, double percentage, 
         int max, EffectDuration effectDuration): base(unit, effectDuration)
     {
         
-        Rival = rival;
+        _rival = rival;
         StatName = statName;
-        Percentage = percentage;
-        Max = max;
+        _percentage = percentage;
+        _max = max;
     }
     
 
     protected int CalculateChange()
     {
-        int statDifference = Unit.Stats.GetStat(StatName) - Rival.Stats.GetStat(StatName);
+        int statDifference = Unit.Stats.GetStat(StatName) - _rival.Stats.GetStat(StatName);
         int change = Math.Max(0, Math.Min(Convert.ToInt32(Math.Floor
-            (Percentage * statDifference)), Max));
+            (_percentage * statDifference)), _max));
         return change;
     }
 

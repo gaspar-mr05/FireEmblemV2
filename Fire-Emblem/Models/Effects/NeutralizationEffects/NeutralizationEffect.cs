@@ -5,7 +5,6 @@ namespace Fire_Emblem.Models.Effects.NeutralizationEffects;
 
 public abstract class NeutralizationEffect : Effect
 {
-    protected readonly string StatName;
 
     protected NeutralizationEffect(Unit unit, string statName) : base(unit)
     {

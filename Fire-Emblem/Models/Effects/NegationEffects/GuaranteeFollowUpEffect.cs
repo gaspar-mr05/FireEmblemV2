@@ -8,17 +8,17 @@ namespace Fire_Emblem.Models.Effects.NegationEffects;
 public class GuaranteeFollowUpEffect: Effect
 {
 
-    protected AttackType AttackType;
+    private AttackType _attackType;
 
     public GuaranteeFollowUpEffect(Unit unit): base(unit)
     {
-        AttackType = AttackType.FollowUpAttack;
+        _attackType = AttackType.FollowUpAttack;
     }
 
     public override void ApplyEffect()
     {
         EffectsSummary effectsSummary = Unit.EffectsSummary;
-        effectsSummary.PermitedAttackInfo.GuaranteeAttack(AttackType);
+        effectsSummary.PermitedAttackInfo.GuaranteeAttack(_attackType);
     }
 
     public override void RevertEffect()
