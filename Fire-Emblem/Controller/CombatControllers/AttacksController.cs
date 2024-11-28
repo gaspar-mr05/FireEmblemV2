@@ -6,6 +6,7 @@ using Fire_Emblem.Models.Enums;
 using Fire_Emblem.Models.Round;
 using Fire_Emblem.Models.Skills;
 using Fire_Emblem.Models.Units;
+using Fire_Emblem.Views;
 
 namespace Fire_Emblem.Controller.CombatControllers;
 
@@ -13,7 +14,7 @@ public class AttacksController
 {
     private readonly Unit _attacker;
     private readonly Unit _defender;
-    private readonly AttacksView _attacksView;
+    private readonly View _view;
     private readonly FirstAttackExecutor _firstAttackExecutor;
     private readonly CounterAttackExecutor _counterAttackExecutor;
     private readonly FollowUpAttackExecutor _followUpAttackExecutor;
@@ -22,7 +23,7 @@ public class AttacksController
     {
         _attacker = attacker;
         _defender = defender;
-        _attacksView = new AttacksView(view);
+        _view = view;
         _firstAttackExecutor = new FirstAttackExecutor(roundInfo);
         _counterAttackExecutor = new CounterAttackExecutor(roundInfo);
         _followUpAttackExecutor = new FollowUpAttackExecutor(roundInfo);
@@ -40,35 +41,37 @@ public class AttacksController
 
     private void ApplyOutOfCombatDamage(EffectDuration effectDuration)
     {
+        DamageOutOfCombatView damageOutOfCombatView = new DamageOutOfCombatView(_view);
         DamageOutOfCombatInfo[] damageOutOfCombatInfos = 
             DamageOutOfCombatManager.ApplyDamageOutOfCombat(_attacker, _defender, effectDuration);
-        _attacksView.ShowDamageOutOfCombatMessages(damageOutOfCombatInfos);
+        damageOutOfCombatView.ShowDamageOutOfCombatMessages(damageOutOfCombatInfos);
     }
 
     private void ExecuteCombatAttacks()
     {
-        ExecuteFirstAttack();
-        ExecuteCounterAttack();
-        ExecuteFollowUpAttacks();
+        AttacksView attacksView = new AttacksView(_view);
+        ExecuteFirstAttack(attacksView);
+        ExecuteCounterAttack(attacksView);
+        ExecuteFollowUpAttacks(attacksView);
     }
 
-    private void ExecuteFirstAttack()
+    private void ExecuteFirstAttack(AttacksView attacksView)
     {
         AttackInfo firstAttackInfo = _firstAttackExecutor.ExecuteAttack(_attacker, _defender);
-        _attacksView.ShowAttackMessage(firstAttackInfo);
+        attacksView.ShowAttackMessage(firstAttackInfo);
     }
 
-    private void ExecuteCounterAttack()
+    private void ExecuteCounterAttack(AttacksView attacksView)
     {
         AttackInfo counterAttackInfo = _counterAttackExecutor.ExecuteAttack(_attacker, _defender);
-        _attacksView.ShowAttackMessage(counterAttackInfo);
+        attacksView.ShowAttackMessage(counterAttackInfo);
     }
 
-    private void ExecuteFollowUpAttacks()
+    private void ExecuteFollowUpAttacks(AttacksView attacksView)
     {
         (AttackInfo attackerFollowUpInfo, AttackInfo defenderFollowUpInfo) =
             _followUpAttackExecutor.ExecuteAttack(_attacker, _defender);
-        _attacksView.ShowFollowUpMessage(attackerFollowUpInfo, defenderFollowUpInfo);
+        attacksView.ShowFollowUpMessage(attackerFollowUpInfo, defenderFollowUpInfo);
     }
 
     private void ActivateSkillsAfterCombat(SkillsManager skillsManager)
