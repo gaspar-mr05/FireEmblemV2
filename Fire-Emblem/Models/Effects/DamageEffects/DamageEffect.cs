@@ -7,7 +7,7 @@ public abstract class DamageEffect: Effect
 {
     protected EffectDuration EffectDuration;
 
-    public DamageEffect(Unit unit, EffectDuration effectDuration) : base(unit)
+    protected DamageEffect(Unit unit, EffectDuration effectDuration) : base(unit)
     {
         EffectDuration = effectDuration;
     }

@@ -22,19 +22,19 @@ public class SoulbladeEffect: Effect
         else if (_change < 0)
             _effect = new PenaltyEffect(Unit, StatName, -1 * _change);
         _effect.ApplyEffect();
-
     }
-
-    public override void RevertEffect()
-    {
-        _effect.RevertEffect();
-    }
+    
 
     private void CalculateChange()
     {
         int averageRivalDefRes = (Convert.ToInt32(Unit.CharacterInfo.Def) + 
         Convert.ToInt32(Unit.CharacterInfo.Res)) / 2;
         _change = averageRivalDefRes - Convert.ToInt32(Unit.CharacterInfo.GetInfoByName(StatName));
+    }
+    
+    public override void RevertEffect()
+    {
+        _effect.RevertEffect();
     }
 
     public override int GetPriority() => 1;

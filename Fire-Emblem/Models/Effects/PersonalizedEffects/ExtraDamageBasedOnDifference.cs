@@ -6,12 +6,7 @@ namespace Fire_Emblem.Models.Effects.PersonalizedEffects;
 
 public class ExtraDamageBasedOnDifference: EffectBasedOnDifference
 {
-
-
     
-
-
-
     public ExtraDamageBasedOnDifference(Unit unit, Unit rival, string statName, double percentage, int max, 
         EffectDuration effectDuration): base(unit, rival, statName, percentage, max, effectDuration)
     { }

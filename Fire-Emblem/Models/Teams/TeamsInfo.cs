@@ -4,17 +4,17 @@ namespace Fire_Emblem.Models.Teams;
 
 public class TeamsInfo
 {
-    public Teams.Team PlayerOneTeam { get; }
-    public Teams.Team PlayerTwoTeam { get; }
+    public Team PlayerOneTeam { get; }
+    public Team PlayerTwoTeam { get; }
     
-    public TeamsInfo(Teams.Team playerOneTeam, Teams.Team playerTwoTeam)
+    public TeamsInfo(Team playerOneTeam, Team playerTwoTeam)
     {
         PlayerOneTeam = playerOneTeam;
         PlayerTwoTeam = playerTwoTeam;
     }
     
-    public Teams.Team GetAttackingTeam(int playerWhoStarts) => playerWhoStarts == 1 ? PlayerOneTeam : PlayerTwoTeam;
-    public Teams.Team GetDefendingTeam(int playerWhoStarts) => playerWhoStarts == 1 ? PlayerTwoTeam : PlayerOneTeam;
+    public Team GetAttackingTeam(int playerWhoStarts) => playerWhoStarts == 1 ? PlayerOneTeam : PlayerTwoTeam;
+    public Team GetDefendingTeam(int playerWhoStarts) => playerWhoStarts == 1 ? PlayerTwoTeam : PlayerOneTeam;
 
     public bool AreValidTeams()
     {

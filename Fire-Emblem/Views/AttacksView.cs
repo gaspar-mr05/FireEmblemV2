@@ -29,6 +29,12 @@ public class AttacksView
         }
     }
     
+    private bool BothFollowUpsFailed(AttackInfo attackerInfo, AttackInfo defenderInfo)
+    {
+        return attackerInfo.AttackError == AttackError.NoFollowUp && 
+               defenderInfo.AttackError == AttackError.NoFollowUp;
+    }
+    
     public void ShowAttackMessage(AttackInfo attackInfo)
     {
         if (IsAttackInvalid(attackInfo))
@@ -61,11 +67,6 @@ public class AttacksView
                $"y queda con {attackInfo.Attacker.Stats.GetHp()} HP.";
     }
     
-    private bool BothFollowUpsFailed(AttackInfo attackerInfo, AttackInfo defenderInfo)
-    {
-        return attackerInfo.AttackError == AttackError.NoFollowUp && 
-               defenderInfo.AttackError == AttackError.NoFollowUp;
-    }
     
  
 }

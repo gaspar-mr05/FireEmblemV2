@@ -23,24 +23,7 @@ public class SandstormEffect: Effect
             activeEffectsInfo.PenaltyEffects.AddEffect(this);
         RegisterEffect();
     }
-
-    public override void RevertEffect()
-    {
-        ActiveEffectsInfo activeEffectsInfo = Unit.ActiveEffectsInfo;
-        EffectsSummary effectsSummary = Unit.EffectsSummary;
-        if (_change >= 0)
-        {
-            activeEffectsInfo.BonusEffects.RemoveEffect(this);
-            effectsSummary.FollowUpBonusesInfo.SetActiveFalse(StatName);
-        }
-        else if (_change < 0)
-        {
-            activeEffectsInfo.PenaltyEffects.RemoveEffect(this);
-            effectsSummary.FollowUpPenaltiesInfo.SetActiveFalse(StatName);
-        }
-        
-    }
-
+    
     private void CalculateChange()
     {
         _change = (int)Math.Floor(1.5 * Convert.ToInt32(Unit.CharacterInfo.Def) - 
@@ -63,6 +46,24 @@ public class SandstormEffect: Effect
         }
 
     }
+    
+    public override void RevertEffect()
+    {
+        ActiveEffectsInfo activeEffectsInfo = Unit.ActiveEffectsInfo;
+        EffectsSummary effectsSummary = Unit.EffectsSummary;
+        if (_change >= 0)
+        {
+            activeEffectsInfo.BonusEffects.RemoveEffect(this);
+            effectsSummary.FollowUpBonusesInfo.SetActiveFalse(StatName);
+        }
+        else if (_change < 0)
+        {
+            activeEffectsInfo.PenaltyEffects.RemoveEffect(this);
+            effectsSummary.FollowUpPenaltiesInfo.SetActiveFalse(StatName);
+        }
+        
+    }
+
 
     public override int GetPriority() => 1;
 }

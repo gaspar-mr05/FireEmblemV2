@@ -20,11 +20,11 @@ public class AttackEffectsApplier
         AttackEffectsManagerBuilder attackEffectsManagerBuilder = new AttackEffectsManagerBuilder(  _attacker,
         _defender, roundInfo);
         AttackEffectsManager attackEffectsManager = attackEffectsManagerBuilder.BuildAttackEffectsManager();
-        AttacksEffects attacksEffects = attackEffectsManager.GetAttackEffects();
-        double newDamage = damage + ((attacksEffects.AtkEffect * wtb) - attacksEffects.DefEffect);
+        AttacksEffectsInfo attacksEffectsInfo = attackEffectsManager.GetAttackEffects();
+        double newDamage = damage + ((attacksEffectsInfo.AtkEffect * wtb) - attacksEffectsInfo.DefEffect);
         if (_attacker.CharacterInfo.Weapon == "Magic")
         {
-            newDamage = damage + ((attacksEffects.AtkEffect * wtb) - attacksEffects.ResEffect);
+            newDamage = damage + ((attacksEffectsInfo.AtkEffect * wtb) - attacksEffectsInfo.ResEffect);
         }
 
 

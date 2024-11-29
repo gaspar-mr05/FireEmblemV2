@@ -22,8 +22,6 @@ public class Team
     public Unit GetUnit(int idUnit)
         => _unitList[idUnit];
     
-    public int GetTeamSize()
-        => _unitList.Count;
 
 
     public Team GetDeadUnitsOfTeam()
@@ -41,6 +39,9 @@ public class Team
     {
         return GetTeamSize() > 0;
     }
+    
+    public int GetTeamSize()
+        => _unitList.Count;
     
     
 

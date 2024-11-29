@@ -8,5 +8,5 @@ public abstract class AttackEffectsManager
     protected Unit Attacker;
     protected Unit Defender;
 
-    public abstract AttacksEffects GetAttackEffects();
+    public abstract AttacksEffectsInfo GetAttackEffects();
 }

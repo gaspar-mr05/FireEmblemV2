@@ -12,13 +12,22 @@ public class UnitOptionsView
         _view = view;
     }
 
-    public int ShowUnitOptions(string message, Team team)
+    public int ShowUnitOptions(int playerNumber, Team team)
     {
-        _view.WriteLine($"{message}");
+        ShowWelcome(playerNumber);
         for (int characterNumber = 0; characterNumber < team.GetTeamSize(); characterNumber++)
             _view.WriteLine($"{characterNumber}: {team.GetUnit(characterNumber).CharacterInfo.Name}");
         int unitNumber = int.Parse(_view.ReadLine());
         return unitNumber;
+    }
+
+    private void ShowWelcome(int playerNumber)
+    {
+        if (playerNumber == 1)
+            _view.WriteLine("Player 1 selecciona una opción");
+        else if (playerNumber == 2)
+            _view.WriteLine( "Player 2 selecciona una opción");
+        
     }
 
     public void ShowInvalidTeamMessage()

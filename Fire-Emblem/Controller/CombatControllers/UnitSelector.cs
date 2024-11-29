@@ -15,20 +15,20 @@ public class UnitSelector
     }
     
 
-    public (Unit attacker, Unit defender) SelectUnits(TeamsInfo teamsInfo, int playerWhoStarts)
+    public (Unit attacker, Unit defender) SelectUnits(TeamsInfo teamsInfo, int playerWhoStartsNumber)
     {
-        SelectionMessageGenerator selectionMessageGenerator = new SelectionMessageGenerator(playerWhoStarts);
-        (string attackMessage, string defendsMessage) = selectionMessageGenerator.GenerateSelectionMessages();
+        int playerWhoAttacksNumber = playerWhoStartsNumber == 1? 1: 2;
+        int playerWhoDefendsNumber = playerWhoStartsNumber == 1? 2: 1 ;
 
-        Unit unitWhoAttacks = SetUnit(teamsInfo.GetAttackingTeam(playerWhoStarts), attackMessage);
-        Unit unitWhoDefends = SetUnit(teamsInfo.GetDefendingTeam(playerWhoStarts), defendsMessage);
+        Unit unitWhoAttacks = SetUnit(teamsInfo.GetAttackingTeam(playerWhoStartsNumber), playerWhoAttacksNumber);
+        Unit unitWhoDefends = SetUnit(teamsInfo.GetDefendingTeam(playerWhoStartsNumber), playerWhoDefendsNumber);
         return (unitWhoAttacks, unitWhoDefends);
     }
 
-    private Unit SetUnit(Team team, string message)
+    private Unit SetUnit(Team team, int playerNumber)
     {
         UnitOptionsView unitOptionsView = new UnitOptionsView(_view);
-        int unitNumber = unitOptionsView.ShowUnitOptions(message, team);
+        int unitNumber = unitOptionsView.ShowUnitOptions(playerNumber, team);
         return team.GetUnit(unitNumber);
     }
     

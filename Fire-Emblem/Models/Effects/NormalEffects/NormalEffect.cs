@@ -12,7 +12,6 @@ public abstract class NormalEffect: Effect
 
         StatName = statName;
         Change = change;
-
     }
 
 

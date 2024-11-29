@@ -6,8 +6,8 @@ public class InitialUnitStats
 
     public InitialUnitStats(Unit attacker, Unit defender)
     {
-        _initialUnitStats[attacker] = attacker.Stats.Clone();
-        _initialUnitStats[defender] = defender.Stats.Clone();
+        _initialUnitStats[attacker] = attacker.Stats.CloneStats();
+        _initialUnitStats[defender] = defender.Stats.CloneStats();
     }
 
     public Stats GetInitialStats(Unit unit) => _initialUnitStats[unit];

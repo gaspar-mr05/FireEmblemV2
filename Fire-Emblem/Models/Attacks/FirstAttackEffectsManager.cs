@@ -11,7 +11,7 @@ public class FirstAttackEffectsManager: AttackEffectsManager
         base.Defender = defender;
     }
 
-    public override AttacksEffects GetAttackEffects()
+    public override AttacksEffectsInfo GetAttackEffects()
     {
         NormalEffectInfo attackerFirstAttackBonus = Attacker.EffectsSummary.FirstAttackBonusesInfo;
         NormalEffectInfo defenderFirstAttackPenalty = Defender.EffectsSummary.FirstAttackPenaltiesInfo;
@@ -19,11 +19,11 @@ public class FirstAttackEffectsManager: AttackEffectsManager
         int atkEffect = attackerFirstAttackBonus.GetEffectInfo("Atk").Active? 
             attackerFirstAttackBonus.GetEffectInfo("Atk").Change : 0;
         
-    int defEffect = defenderFirstAttackPenalty.GetEffectInfo("Def").Active? 
+        int defEffect = defenderFirstAttackPenalty.GetEffectInfo("Def").Active? 
         defenderFirstAttackPenalty.GetEffectInfo("Def").Change : 0;
         
         int resEffect = defenderFirstAttackPenalty.GetEffectInfo("Res").Active ? 
             defenderFirstAttackPenalty.GetEffectInfo("Res").Change : 0;
-        return new AttacksEffects(atkEffect, defEffect, resEffect);
+        return new AttacksEffectsInfo(atkEffect, defEffect, resEffect);
     }
 }

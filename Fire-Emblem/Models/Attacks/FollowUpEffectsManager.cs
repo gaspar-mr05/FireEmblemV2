@@ -12,7 +12,7 @@ public class FollowUpEffectsManager: AttackEffectsManager
 
     }
 
-    public override AttacksEffects GetAttackEffects()
+    public override AttacksEffectsInfo GetAttackEffects()
     {
         NormalEffectInfo followUpAttackBonus = Attacker.EffectsSummary.FollowUpBonusesInfo;
         NormalEffectInfo followUpAttackPenalty = Attacker.EffectsSummary.FollowUpPenaltiesInfo;
@@ -24,7 +24,7 @@ public class FollowUpEffectsManager: AttackEffectsManager
             atkEffect + followUpAttackPenalty.GetEffectInfo("Atk").Change : atkEffect;
         
         
-        return new AttacksEffects(atkEffect, 0 ,0);
+        return new AttacksEffectsInfo(atkEffect, 0 ,0);
         
     }
 }

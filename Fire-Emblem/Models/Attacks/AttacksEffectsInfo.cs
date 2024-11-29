@@ -1,12 +1,12 @@
 namespace Fire_Emblem.Models.Attacks;
 
-public class AttacksEffects
+public class AttacksEffectsInfo
 {
     public int AtkEffect;
     public int DefEffect;
     public int ResEffect;
 
-    public AttacksEffects(int atkEffect, int defEffect, int resEffect)
+    public AttacksEffectsInfo(int atkEffect, int defEffect, int resEffect)
     {
         AtkEffect = atkEffect;
         DefEffect = defEffect;

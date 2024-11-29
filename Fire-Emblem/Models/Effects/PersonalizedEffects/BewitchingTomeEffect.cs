@@ -22,8 +22,8 @@ public class BewitchingTomeEffect: DamageEffect
     public override void ApplyEffect()
     {
         CalculatePercentage();
-        Effect effect = new BeforeCombatDamageEffect(_rival, -Convert.ToInt32(Math.Floor(_percentage * _rival.Stats.GetAtk()))
-            );
+        Effect effect = new BeforeCombatDamageEffect(_rival, -Convert.ToInt32(Math.Floor(_percentage * 
+            _rival.Stats.GetAtk())));
         effect.ApplyEffect();
 
     }

@@ -20,20 +20,14 @@ public class RoundInfo
         UnitAttacksCount = new UnitAttacksCount(attacker, defender);
 
     }
-    
-    public bool AreBothUnitsAlive()
-    {
-        if (Attacker.IsAlive() && Defender.IsAlive())
-            return true;
-        return false;
-    }
-    
 
-    public bool IsRoundStart()
-    {
-        return !UnitAttacksCount.HasUnitAttacked(Attacker) && !UnitAttacksCount.HasUnitAttacked(Defender);
-    }
-    
+    public bool AreBothUnitsAlive() => Attacker.IsAlive() && Defender.IsAlive();
+
+
+    public bool IsRoundStart() => !UnitAttacksCount.HasUnitAttacked(Attacker) &&
+                                  !UnitAttacksCount.HasUnitAttacked(Defender);
+
+
 
 
 }

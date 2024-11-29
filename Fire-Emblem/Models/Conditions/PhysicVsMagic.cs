@@ -19,10 +19,10 @@ public class PhysicVsMagic: ICondition
 
     private bool HasSomeoneMagicWeapon()
     {
-        return ((_unit.CharacterInfo.Weapon != "Magic" && _rival.CharacterInfo.Weapon == "Magic") ||
-                (_rival.CharacterInfo.Weapon != "Magic" && _unit.CharacterInfo.Weapon == "Magic"));
-
-
-
+        return (_unit.CharacterInfo.Weapon != "Magic" && _rival.CharacterInfo.Weapon == "Magic") ||
+                (_rival.CharacterInfo.Weapon != "Magic" && _unit.CharacterInfo.Weapon == "Magic");
+        
     }
+    
+    
 }

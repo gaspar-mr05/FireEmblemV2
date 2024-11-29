@@ -53,8 +53,6 @@ public class SkillsManager
         int afterCombatPriority = 8;
         _defenderSkillsCollection.ApplyEffects(afterCombatPriority);
         _attackerSkillsCollection.ApplyEffects(afterCombatPriority);
-        
-
     }
 
 

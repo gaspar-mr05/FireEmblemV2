@@ -16,10 +16,10 @@ public class AllyWithWeaponType: ICondition
     public bool IsConditionMet()
     {
         Unit[] teamArray = _unit.Team.GetTeam();
-        for (int index = 0; index < teamArray.Length; index++)
+        foreach (var unit in teamArray)
         {
-            if (teamArray[index] != _unit)
-                if (_weapons.ContainsWeapon(teamArray[index].CharacterInfo.Weapon))
+            if (unit != _unit)
+                if (_weapons.ContainsWeapon(unit.CharacterInfo.Weapon))
                     return true;
         }
         return false;

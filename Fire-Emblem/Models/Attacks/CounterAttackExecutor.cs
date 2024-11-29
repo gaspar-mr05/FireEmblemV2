@@ -16,7 +16,6 @@ public class CounterAttackExecutor : AttackExecutor
 
     public AttackInfo ExecuteAttack(Unit attacker, Unit defender)
     {
-        string attackMessage = "";
         RoundInfo.AttackType = AttackType.CounterAttack;
         if (IsCounterAttackPossible(defender))
             return base.ExecuteAttack(defender, attacker);

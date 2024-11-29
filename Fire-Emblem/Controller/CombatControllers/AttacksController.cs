@@ -38,14 +38,7 @@ public class AttacksController
         RegisterCombatInfo();
        
     }
-
-    private void ApplyOutOfCombatDamage(EffectDuration effectDuration)
-    {
-        DamageOutOfCombatView damageOutOfCombatView = new DamageOutOfCombatView(_view);
-        DamageOutOfCombatInfo[] damageOutOfCombatInfos = 
-            DamageOutOfCombatManager.ApplyDamageOutOfCombat(_attacker, _defender, effectDuration);
-        damageOutOfCombatView.ShowDamageOutOfCombatMessages(damageOutOfCombatInfos);
-    }
+    
 
     private void ExecuteCombatAttacks()
     {
@@ -77,6 +70,14 @@ public class AttacksController
     private void ActivateSkillsAfterCombat(SkillsManager skillsManager)
     {
         skillsManager.ActivateAfterCombatEffects();
+    }
+    
+    private void ApplyOutOfCombatDamage(EffectDuration effectDuration)
+    {
+        DamageOutOfCombatView damageOutOfCombatView = new DamageOutOfCombatView(_view);
+        DamageOutOfCombatInfo[] damageOutOfCombatInfos = 
+            DamageOutOfCombatManager.ApplyDamageOutOfCombat(_attacker, _defender, effectDuration);
+        damageOutOfCombatView.ShowDamageOutOfCombatMessages(damageOutOfCombatInfos);
     }
 
     private void RegisterCombatInfo()

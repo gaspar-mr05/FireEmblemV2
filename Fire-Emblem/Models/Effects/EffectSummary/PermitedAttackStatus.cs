@@ -17,9 +17,5 @@ public class PermitedAttackStatus
         Negated = false;
         NegationNegated = false;
         GuaranteeNegated = false;
-
-
-
-
     }
 }

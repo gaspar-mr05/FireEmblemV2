@@ -17,10 +17,7 @@ public class UnitBuilder
 
     }
 
-
-
     
-
     private static void SetBaseStatAlteration(Unit unit)
     {
         string baseStatAlteration = "HP +15";
@@ -29,7 +26,6 @@ public class UnitBuilder
         }
 
     }
-
-
+    
 
 }

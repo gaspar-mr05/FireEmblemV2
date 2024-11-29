@@ -18,7 +18,7 @@ public class NegationOfNegationEffect: Effect
 
     public override void ApplyEffect()
     {
-        if (IsAttackNegated() && _attackType == AttackType.CounterAttack)
+        if (IsPossibleNegateNegation())
         {
             NegateNegationAttackEffects(_attackType);
         }
@@ -26,6 +26,11 @@ public class NegationOfNegationEffect: Effect
         {
             NegateNegationAttackEffects(_attackType);
         }
+    }
+
+    private bool IsPossibleNegateNegation()
+    {
+        return IsAttackNegated() && _attackType == AttackType.CounterAttack;
     }
     
     

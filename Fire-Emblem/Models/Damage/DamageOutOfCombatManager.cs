@@ -30,7 +30,7 @@ public static class DamageOutOfCombatManager
         return new DamageOutOfCombatInfo(unit, effectDuration, 0, 0);
     
     }
-
+    
 
 
     private static int CalculateNewHp(Unit unit, int damage)

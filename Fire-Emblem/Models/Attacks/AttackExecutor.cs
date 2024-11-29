@@ -13,7 +13,7 @@ public class AttackExecutor
 
 
 
-    public AttackExecutor(RoundInfo roundInfo)
+    protected AttackExecutor(RoundInfo roundInfo)
     {
         RoundInfo = roundInfo;
     }

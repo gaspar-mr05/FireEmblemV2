@@ -40,7 +40,7 @@ public class Stats
     
     public void SetStat(string statName, int change) => _stats[statName] = change;
 
-    public Stats Clone()
+    public Stats CloneStats()
     {
         Stats clonedStats = new Stats();
         foreach (var stat in _stats)

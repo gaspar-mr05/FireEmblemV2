@@ -51,8 +51,6 @@ public class FollowUpAttackExecutor : AttackExecutor
     }
     
     
-    
-    
 
     private bool IsFollowUpPossible(Unit attacker, Unit defender)
     {
